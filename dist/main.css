@@ -1,0 +1,367 @@
+
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.tab-nav {
+  flex: none;
+}
+.tab-container {
+  border: 1px solid #ddd;
+  flex: 1 0 1px;
+  overflow-y: auto;
+  padding: 8px 12px;
+}
+.nav-item {
+  display: inline-block;
+  cursor: pointer;
+  border-bottom: none;
+  background: none;
+  padding: 8px 12px;
+}
+.nav-item:active {
+  outline: none;
+}
+.nav-item.active {
+  color: inherit;
+  outline: none;
+  cursor: default;
+}
+.tab-nav {
+  position: relative;
+}
+.tabs .tab-nav-inc-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 0;
+  height: 3px;
+  background-color: #1890ff;
+  transform-origin: 0 0;
+}
+.tabs.animated .tab-nav-inc-bar {
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.tab-item {
+  height: 0;
+  padding: 0 !important;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.tab-item.active {
+  flex-shrink: 0;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.45s;
+  pointer-events: all;
+  height: auto;
+  color: inherit;
+}
+.tabs.vertical {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.tabs.vertical .tab-nav {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  border: 1px solid #ccc;
+}
+.tabs.vertical .tab-nav .tab-nav-inc-bar {
+  position: absolute;
+  top: -1px;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 3px !important;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  background-color: #1890ff;
+  transform-origin: 0 0;
+}
+.tabs.vertical .tab-nav .nav-item {
+  border-bottom: 1px solid #ccc;
+}
+.tabs.vertical.animated .tab-nav-inc-bar {
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), height 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+.icon:hover {
+  opacity: 0.8;
+}
+.icon:active {
+  opacity: 1;
+}
+.icon-small {
+  width: 12px;
+  height: 12px;
+}
+.icon-default {
+  width: 16px;
+  height: 16px;
+}
+.icon-large {
+  width: 24px;
+  height: 24px;
+}
+.icon-ok {
+  background: url('/src/components/Icon/icons/ok.svg') center center no-repeat;
+}
+.icon-plus {
+  background: url('/src/components/Icon/icons/plus.svg') center center no-repeat;
+}
+.icon-maximize {
+  background: url('/src/components/Icon/icons/maximize.svg') center center no-repeat;
+}
+.icon-win {
+  background: url('/src/components/Icon/icons/win.svg') center center no-repeat;
+}
+.icon-cross {
+  background: url('/src/components/Icon/icons/cross.svg') center center no-repeat;
+}
+.icon-search {
+  background: url('/src/components/Icon/icons/search.svg') center center no-repeat;
+}
+.icon-settings {
+  background: url('/src/components/Icon/icons/settings.svg') center center no-repeat;
+}
+.icon-delete {
+  background: url('/src/components/Icon/icons/delete.svg') center center no-repeat;
+}
+.icon-star {
+  background: url('/src/components/Icon/icons/star.svg') center center no-repeat;
+}
+
+.button {
+  position: relative;
+  border: 1px solid #ccc;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.5);
+  transition: All 0.4s ease;
+}
+.button:hover {
+  opacity: 0.85;
+}
+.button:active,
+.button.active {
+  top: 1px;
+  border: none;
+  box-shadow: inset 0px 2px 1px 0px rgba(0, 0, 0, 0.5), inset 0 0px 2px 0px rgba(0, 0, 0, 0.3);
+}
+.button:focus {
+  outline: none;
+}
+.button-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.button-secondary {
+  color: #000;
+  background-color: #f6f6f6;
+  border-color: #f6f6f6;
+}
+.button-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+.button-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+.button > .icon {
+  margin-right: 6px;
+}
+.button + .button {
+  margin-left: 8px;
+}
+.button[disabled],
+.button[disabled]:hover,
+.button[disabled]:active {
+  opacity: 1;
+}
+.button[disabled]:after,
+.button[disabled]:hover:after,
+.button[disabled]:active:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  user-select: none;
+  cursor: not-allowed;
+}
+.button .icon,
+.button:hover .icon,
+.button:active .icon {
+  user-select: none;
+  opacity: 1;
+}
+
+.cos-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+.cos-modal {
+  position: absolute;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.3);
+  border: 1px solid #fff;
+  border-radius: 3px;
+  z-index: 1045;
+  top: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease 0s;
+}
+.cos-modal.open {
+  opacity: 1;
+}
+.cos-modal-header {
+  flex: none;
+  position: relative;
+  padding: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+.cos-modal-body {
+  flex: auto;
+  padding: 10px 20px;
+  overflow: auto;
+}
+.cos-modal-footer {
+  flex: none;
+  padding: 20px;
+}
+.cos-modal-caption {
+  font: 400 20px/1.2 Verdana, Tahoma, Arial;
+}
+.cos-modal-close {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 20px;
+  top: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+.cos-modal-maximize {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 50px;
+  top: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+.cos-modal-resize {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 0;
+  height: 0;
+  border-bottom: 8px solid #ccc;
+  border-left: 8px solid transparent;
+  cursor: nwse-resize;
+  transition: all 0.4s ease;
+}
+.cos-modal-resize:hover {
+  border-bottom: 8px solid #aaa;
+}
+.cos-modal-resize:active {
+  border-bottom: 8px solid #777;
+}
+
+.tag {
+  padding: 0 4px;
+  background: #ddd;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+}
+.tag.active {
+  background: #333;
+  color: #fff;
+}
+.tag + .tag {
+  margin-left: 4px;
+}
+.tag .icon {
+  opacity: 1;
+}
+.tag,
+.tag-default {
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+}
+.tag .icon,
+.tag-default .icon {
+  width: 14px;
+  height: 14px;
+  margin-top: -3px;
+}
+.tag-small {
+  height: 16px;
+  line-height: 16px;
+  font-size: 11px;
+}
+.tag-small .icon {
+  width: 11px;
+  height: 11px;
+  margin-top: -2px;
+}
+.tag-large {
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+}
+.tag-large .icon {
+  width: 16px;
+  height: 16px;
+  margin-top: -3px;
+}
+.tag-close {
+  margin-right: 3px;
+}
+.tag-label {
+  font-weight: 600;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 6px;
+}
+
