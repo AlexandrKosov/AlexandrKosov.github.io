@@ -1,0 +1,83 @@
+import React, {Component} from 'react';
+import styles from './app.module.css';
+import './app.less';
+import {BrowserRouter as Router, Route, Switch, NavLink, Link} from 'react-router-dom';
+import routes, { routesMap } from '~/routes';
+
+class App extends Component{
+
+    render(){
+        let routesComponents = routes.map((route) => {
+            return <Route path={route.url}
+                          component={route.component}
+                          exact={route.exact} 
+                          key={route.url}
+                    />;
+        });
+
+        return (
+            <Router>
+            <header>
+                <div className="container">
+                    <div className="row justify-content-between">
+						<img src="../../assets/img/logo.png" />
+					</div>
+                </div>
+            </header>
+            <div className="container "> 
+            {/* d-flex align-items-stretch */}
+                <div className="row">
+                    <div className="col col-3">
+{/*-------------------------------MENU------------------------*/}
+                        <ul className="list-group">
+                            <li className={`list-group-item ${styles.myItem}`}>
+                                <NavLink to={routesMap.home} exact activeClassName={styles.active}>
+                                    Home
+                                </NavLink>
+                            </li>
+							
+							<li className="list-group-item">
+                                <NavLink to={routesMap.modals} activeClassName={styles.active}>
+                                   Диалоговые окна
+                                </NavLink>
+                            </li>
+							<li className="list-group-item">
+                                <NavLink to={routesMap.tabs} activeClassName={styles.active}>
+                                   Табы
+                                </NavLink>
+                            </li>
+							<li className="list-group-item">
+                                <NavLink to={routesMap.icons} activeClassName={styles.active}>
+                                   иконки
+                                </NavLink>
+                            </li>
+							<li className="list-group-item">
+                                <NavLink to={routesMap.buttons} activeClassName={styles.active}>
+                                   Кнопки
+                                </NavLink>
+                            </li>
+							<li className="list-group-item">
+                                <NavLink to={routesMap.tags} activeClassName={styles.active}>
+                                   Теги
+                                </NavLink>
+                            </li>
+							
+                        </ul>
+{/*-------------------------------/MENU------------------------*/}						
+                    </div>
+                    <div className="col col-9">
+                        <Switch>
+                            {routesComponents}
+                        </Switch>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                Футер
+            </footer>    
+            </Router>
+        )
+    }
+}
+
+export default App;

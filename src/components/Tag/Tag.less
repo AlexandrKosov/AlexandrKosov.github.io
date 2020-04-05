@@ -1,0 +1,45 @@
+.tag {
+    padding: 0 4px;
+    background: #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+    &.active {
+        background: #333;
+        color: #fff;
+    }
+    &+& {
+        margin-left: 4px;
+    }
+    & .icon {opacity: 1;}
+    &,&-default {
+        height: 24px;
+        line-height: 24px;
+        font-size: 14px;
+        & .icon {width: 14px;height: 14px;margin-top: -3px;}
+    }
+    &-small {
+        height: 16px;
+        line-height: 16px;
+        font-size: 11px;
+        & .icon {width: 11px;height: 11px;margin-top: -2px;}
+    }
+    &-large {
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+        & .icon {width: 16px;height: 16px;margin-top: -3px;}
+    }
+
+}
+.tag-close {
+    margin-right: 3px;
+}
+.tag-label { 
+    font-weight: 600;
+    user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 6px;
+}
