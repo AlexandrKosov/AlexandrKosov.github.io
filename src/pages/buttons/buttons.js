@@ -5,6 +5,7 @@ import { urlBuilder } from '~/routes';
 
 import Icon from '~c/Icon';
 import Button from '~c/Button';
+import ButtonGroup from '~c/ButtonGroup';
 
 class Buttons extends Component{
 
@@ -32,23 +33,21 @@ class Buttons extends Component{
                 
                 <p>
                     <Button icon="delete" toggled onClick={this.toggleDisabled} > Toggled-кнопка</Button>
-                
-                    {/* <Button icon="delete" toggled onClick={()=>{console.log('toggled!')}}> Toggled-кнопка</Button> */}
                     <Button icon="cross" 
-                            className="button-danger" 
-                            disabled={this.state.disabledButton}
-                            onClick={()=>{console.log("Disabled кнопка нажата!")}}> 
-                            Disabled-кнопка
-                 </Button>
+                        variant="danger" 
+                        disabled={this.state.disabledButton}
+                        onClick={()=>{console.log("Disabled кнопка нажата!")}}> 
+                        Disabled-кнопка
+                    </Button>
                 </p>
                 <p>
                     <Button icon="star" 
-                            className="button-success" 
+                            variant="success" 
                             onClick={()=>{console.log("Success кнопка нажата!")}}> 
                             Success
                     </Button>
                     <Button icon="settings" 
-                            className="button-primary" 
+                            variant="primary" 
                             onClick={()=>{console.log("Primary кнопка нажата!")}}> 
                             Primary
                     </Button>
@@ -79,6 +78,18 @@ class Buttons extends Component{
                     <Button variant="light">Light</Button>
                     <Button variant="dark">Dark</Button>
                     <Button variant="link">Link</Button>
+                </p>
+                <h3>Группа кнопок</h3>
+                <p>
+                    <ButtonGroup>
+                        <Button icon="star" toggled>Button</Button>
+                        <Button icon="settings" toggled>Button</Button>
+                        <Button icon="search" toggled>Button</Button>
+                    </ButtonGroup>
+                </p>
+                <h3>Вертикальная группа кнопок</h3>
+                <p>
+                    <ButtonGroup vertical></ButtonGroup>
                 </p>
 			</React.Fragment>
        )
