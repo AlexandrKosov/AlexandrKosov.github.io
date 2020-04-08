@@ -80,17 +80,21 @@ class Buttons extends Component{
                     <Button variant="link">Link</Button>
                 </p>
                 <h3>Группа кнопок</h3>
-                <p>
-                    <ButtonGroup>
-                        <Button icon="star" toggled>Button</Button>
-                        <Button icon="settings" toggled>Button</Button>
-                        <Button icon="search" toggled>Button</Button>
-                    </ButtonGroup>
-                </p>
+                
+                <ButtonGroup>
+                    <Button icon="star" toggled>Button</Button>
+                    <Button icon="settings" toggled>Button</Button>
+                    <Button icon="search" toggled>Button</Button>
+                </ButtonGroup>
+                
                 <h3>Вертикальная группа кнопок</h3>
-                <p>
-                    <ButtonGroup vertical></ButtonGroup>
-                </p>
+               
+                <ButtonGroup vertical>
+                    <Button icon="star" toggled>Button</Button>
+                    <Button icon="settings" toggled>Btn</Button>
+                    <Button icon="search" toggled>Long-long name Button</Button>
+                </ButtonGroup>
+                
 			</React.Fragment>
        )
     }

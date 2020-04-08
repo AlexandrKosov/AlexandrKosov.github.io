@@ -19,12 +19,14 @@ const Button = ({
 
     const [active, setActive] = useState(false);
 
+    const variableStyle = variant?'button-'+variant:null;
     const classes = classNames(
        'button',
        className,
        {'active': active},
-       'button-'+variant
+       variableStyle
     );
+
     const Ico = icon?<Icon name={icon} />:null;
 
     const actionClick = (e) => {

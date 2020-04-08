@@ -1,5 +1,30 @@
 .button-group {
   position: relative;
   display: inline-block;
-  overflow: hidden;
+
+  & > .button {
+    margin: 0;
+    border-radius: 0;
+  }
+  & > .button:first-child {
+    border-radius: 4px 0 0 4px;
+  }
+  & > .button:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+
+  &.vertical {
+    display: inline-flex;
+    flex-direction: column;
+    & > .button {
+      margin-bottom: 1px;
+      text-align: left;
+    }
+    & > .button:first-child {
+      border-radius: 4px 4px 0 0;
+    }
+    & > .button:last-child {
+      border-radius: 0 0 4px 4px;
+    }
+  }
 }
