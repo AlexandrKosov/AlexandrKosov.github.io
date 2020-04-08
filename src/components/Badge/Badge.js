@@ -34,12 +34,14 @@ Badge.propTypes = {
     variant: PropTypes.string,
     className: PropTypes.string,
     as: PropTypes.string,  
+    children: PropTypes.node
 };
 
 Badge.defaultProps = {
     pill: false,
     variant: '',
-    as: 'span',  
+    as: 'span',
+    children: null
 };
 
 export default Badge;
