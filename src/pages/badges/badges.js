@@ -50,11 +50,11 @@ class Badges extends Component{
             Profile <Badge variant="dark">11</Badge>
             <span className="sr-only">unread messages</span>
         </Button>
-        <Button variant="primary">
+        <Button variant="secondary">
             Profile <Badge variant="warning">42</Badge>
             <span className="sr-only">unread messages</span>
         </Button>
-        <Button variant="primary">
+        <Button variant="light">
             Profile <Badge variant="info">edited</Badge>
             <span className="sr-only">unread messages</span>
         </Button>

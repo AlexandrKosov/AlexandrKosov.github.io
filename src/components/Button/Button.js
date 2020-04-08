@@ -13,6 +13,7 @@ const Button = ({
     icon,
     children,
     toggled, //toggle-кнопка действует как чекбокс. т.е. она либо активна, либо неактивна
+    variant,
     ...attrs
 }) => {
 
@@ -21,7 +22,8 @@ const Button = ({
     const classes = classNames(
        'button',
        className,
-       {'active': active}
+       {'active': active},
+       'button-'+variant
     );
     const Ico = icon?<Icon name={icon} />:null;
 
