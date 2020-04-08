@@ -12,10 +12,6 @@ const Badge = ({
     as,
     ...attrs
 }) => {
-    
-    
-
-console.log("v:",variant);
 
 	const classes = classNames(
         'badge',
