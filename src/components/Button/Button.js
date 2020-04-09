@@ -14,16 +14,17 @@ const Button = ({
     children,
     toggled, //toggle-кнопка действует как чекбокс. т.е. она либо активна, либо неактивна
     variant,
+    active, //имеет значение только для toggle-кнопок, устанавливает начальное значение
     ...attrs
 }) => {
 
-    const [active, setActive] = useState(false);
+    const [activeBtn, setActive] = useState(active);
 
     const variableStyle = variant?'button-'+variant:null;
     const classes = classNames(
        'button',
        className,
-       {'active': active},
+       {'active': toggled && activeBtn},
        variableStyle
     );
 
@@ -34,7 +35,7 @@ const Button = ({
     }
 
     const onToggledClick = (e) => {
-        setActive(!active);
+        setActive(!activeBtn);
         onClick(e);
     }
     
@@ -56,7 +57,8 @@ Button.propTypes = {
     className: PropTypes.string,
     icon: PropTypes.string,
     children: PropTypes.node,
-    toggled: PropTypes.bool
+    toggled: PropTypes.bool,
+    active: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -65,7 +67,8 @@ Button.defaultProps = {
     className: '',
     icon: '',
     children: 'Button',
-    toggled: false
+    toggled: false,
+    active: false
 };
 
 export default Button;
