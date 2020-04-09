@@ -95,6 +95,33 @@
   background-color: #dc3545;
   border-color: #dc3545;
 }
+.button-warning {
+  color: #212529;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+.button-info {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+.button-light {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+.button-dark {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+.button-link {
+  font-weight: 400;
+  color: #007bff;
+  text-decoration: none;
+  background: none;
+  box-shadow: none;
+}
 .button > .icon {
   margin-right: 6px;
 }
@@ -304,6 +331,39 @@
   transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), height 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
+.button-group {
+  position: relative;
+  display: inline-block;
+}
+.button-group > .button {
+  margin: 0;
+  border-radius: 0;
+}
+.button-group > .button:first-child {
+  border-radius: 4px 0 0 4px;
+}
+.button-group > .button:last-child {
+  border-radius: 0 4px 4px 0;
+}
+.button-group.vertical {
+  display: inline-flex;
+  flex-direction: column;
+}
+.button-group.vertical > .button {
+  text-align: left;
+}
+.button-group.vertical > .button:active,
+.button-group.vertical > .button.active {
+  top: 0;
+  box-shadow: inset 0px 2px 1px 0px rgba(0, 0, 0, 0.5), inset 0px -1px 0px 0px rgba(255, 255, 255, 0.5);
+}
+.button-group.vertical > .button:first-child {
+  border-radius: 4px 4px 0 0;
+}
+.button-group.vertical > .button:last-child {
+  border-radius: 0 0 4px 4px;
+}
+
 .tag {
   padding: 0 4px;
   background: #ddd;
@@ -363,5 +423,58 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 6px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.badge + .badge {
+  margin-left: 4px;
+}
+.badge-primary {
+  color: #fff;
+  background-color: #007bff;
+}
+.badge-secondary {
+  color: #fff;
+  background-color: #6c757d;
+}
+.badge-success {
+  color: #fff;
+  background-color: #28a745;
+}
+.badge-danger {
+  color: #fff;
+  background-color: #dc3545;
+}
+.badge-warning {
+  color: #212529;
+  background-color: #ffc107;
+}
+.badge-info {
+  color: #fff;
+  background-color: #17a2b8;
+}
+.badge-light {
+  color: #212529;
+  background-color: #f8f9fa;
+}
+.badge-dark {
+  color: #fff;
+  background-color: #343a40;
+}
+.pill {
+  padding-right: 0.6em;
+  padding-left: 0.6em;
+  border-radius: 10rem;
 }
 
