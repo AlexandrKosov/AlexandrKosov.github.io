@@ -7,6 +7,7 @@ import Icons from '~p/icons';
 import Buttons from '~p/buttons';
 import Tags from '~p/tags';
 import Badges from '~p/badges';
+import listView from '~p/listView';
 
 let routes = [
     {
@@ -52,7 +53,12 @@ let routes = [
         component: Badges,
         exact: true
     },
-	
+	{
+        name: 'listView',
+        url: '/list',
+        component: listView,
+        exact: true
+    },
     {
         url: '**',
         component: Page404

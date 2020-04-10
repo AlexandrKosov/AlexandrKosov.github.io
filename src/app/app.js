@@ -66,7 +66,11 @@ class App extends Component{
                                    Бейджи
                                 </NavLink>
                             </li>
-							
+							<li className="list-group-item">
+                                <NavLink to={routesMap.listView} activeClassName={styles.active}>
+                                   Списки элементов
+                                </NavLink>
+                            </li>
                         </ul>
 {/*-------------------------------/MENU------------------------*/}						
                     </div>
