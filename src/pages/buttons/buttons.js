@@ -9,14 +9,9 @@ import ButtonGroup from '~c/ButtonGroup';
 
 class Buttons extends Component{
 
-    constructor (props){
-        super(props);
-        this.state = {
-            disabledButton: true
-        };
+    state = {
+        disabledButton: true
     };
-
-  
 
     toggleDisabled = (e) => {
         this.setState((prevState)=>{
