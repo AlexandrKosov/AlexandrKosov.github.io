@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-import { Badge } from 'react-bootstrap';
-import { urlBuilder } from '~/routes';
-import { Link } from 'react-router-dom';
 
-import Tabs from '~c/List';
-
+import List from '~c/List';
+import ListItem from '~c/List/ListItem';
 
 class listView extends Component{
   
@@ -14,6 +11,11 @@ class listView extends Component{
                 <h1></h1>
                 <h3>:</h3>
                
+               <List>
+                    <ListItem>1</ListItem>
+                    <ListItem>2</ListItem>
+                    <ListItem>3</ListItem>
+               </List>
               
 			</React.Fragment>
        )
