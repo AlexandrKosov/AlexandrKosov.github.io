@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import List from '~c/List';
 import ListItem from '~c/List/ListItem';
-
+import DropList from '~c/DropList';
 import Icon from '~c/Icon';
 import  Badge  from '~c/Badge';
 import Button from '~c/Button';
@@ -22,7 +22,6 @@ class listView extends Component{
     ];
 
     render(){
-
         const custom = this.customData.map((item)=>{
              return (<ListItem className="list-item-flex" key={item.text}>
                 <Icon name={item.icon} />
@@ -51,7 +50,16 @@ class listView extends Component{
                         {custom}
                     </List>
                 </div>
-                 
+                 <h2>Dropdown list</h2>
+                 <div>
+                    <DropList>
+                        <List>
+                            <ListItem>Первый</ListItem>
+                            <ListItem>Второй</ListItem>
+                        </List> 
+                    </DropList>
+
+                 </div>
 			</React.Fragment>
 
        )
