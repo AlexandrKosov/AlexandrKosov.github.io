@@ -122,6 +122,18 @@
   background: none;
   box-shadow: none;
 }
+.button-link:hover {
+  border: none;
+  box-shadow: none;
+  color: #035fc2;
+  text-decoration: underline;
+}
+.button-link:active,
+.button-link.active {
+  top: 0;
+  color: #023164;
+  text-decoration: underline;
+}
 .button > .icon {
   margin-right: 6px;
 }
@@ -476,5 +488,67 @@
   padding-right: 0.6em;
   padding-left: 0.6em;
   border-radius: 10rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+.list-item {
+  position: relative;
+  display: block;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 0 0.7rem;
+  height: 36px;
+  line-height: 36px;
+  cursor: pointer;
+}
+.list-item + .list-item {
+  border-top-width: 0;
+}
+.list-item:first-child {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+.list-item:last-child {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+.list-item .icon:first-child {
+  margin-right: 12px;
+}
+.list-item.active,
+.list-item.active:hover {
+  background: #ddd;
+}
+.list-item:hover {
+  background: #eee;
+}
+.list-item.disabled,
+.list-item.disabled:hover {
+  background: none;
+  user-select: none;
+  opacity: 0.6;
+  cursor: default;
+}
+.list-item-flex {
+  display: flex;
+  align-items: center;
+}
+.list-item-flex > * {
+  flex: none;
+}
+.list-item-flex > .flex-fill {
+  flex: 1 0 auto;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list-item-flex > .button {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 6px;
 }
 
