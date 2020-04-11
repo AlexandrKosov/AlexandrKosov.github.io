@@ -37,9 +37,9 @@ class listView extends Component{
                 <h3>Обычный список с иконками:</h3>
                 <div style={{width: '300px'}}>
                     <List>
-                        <ListItem><Icon name="search" />Найти</ListItem>
-                        <ListItem><Icon name="settings" />Настройки</ListItem>
-                        <ListItem><Icon name="delete" />Удалить</ListItem>
+                        <ListItem active><Icon name="search" />Найти</ListItem>
+                        <ListItem><Icon name="settings"/>Настройки</ListItem>
+                        <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
                         <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
                         <ListItem>Просто пункт с текстом</ListItem>
                     

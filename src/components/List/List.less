@@ -12,7 +12,7 @@
     padding: 0 .7rem;
     height: 36px;
     line-height: 36px;
-
+    cursor: pointer;
     & + & {
         border-top-width: 0;
     }
@@ -25,6 +25,22 @@
         border-bottom-right-radius: .25rem;
     }
     & .icon:first-child {margin-right: 12px;}
+
+    &.active {
+        &,&:hover{
+            background: #ddd;
+        }
+    }
+    &:hover {
+        background: #eee;
+    };
+    &.disabled, 
+    &.disabled:hover {
+        background: none;
+        user-select: none;
+        opacity: 0.6;
+        cursor: default;
+    }
 }
 .list-item-flex {
     display: flex;

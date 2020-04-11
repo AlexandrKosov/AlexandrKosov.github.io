@@ -6,11 +6,15 @@ import classNames from 'classnames';
 const ListItem = ({
   children,
   className,
+  disabled,
+  active,
   ...attrs
 }) => {
   const classes = classNames(
     'list-item',
     className,
+    { disabled },
+    { active },
   );
 
   return (
@@ -22,12 +26,16 @@ const ListItem = ({
 
 ListItem.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  active: PropTypes.bool,
 };
 
 ListItem.defaultProps = {
   children: null,
-  className: ''
+  className: '',
+  disabled: false,
+  active: false,
 };
 
 export default ListItem;
