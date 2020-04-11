@@ -1,2 +1,45 @@
 .list {
+    display: flex;
+    flex-direction: column;
+}
+.list-item {
+    position: relative;
+    display: block;
+    // padding: .5rem 0.75rem;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.3);
+    
+    padding: 0 .7rem;
+    height: 36px;
+    line-height: 36px;
+
+    & + & {
+        border-top-width: 0;
+    }
+    &:first-child {
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+    }
+    &:last-child {
+        border-bottom-left-radius: .25rem;
+        border-bottom-right-radius: .25rem;
+    }
+    & .icon:first-child {margin-right: 12px;}
+}
+.list-item-flex {
+    display: flex;
+    align-items: center;
+    & > * {flex: none;}
+    & > .flex-fill {
+        flex: 1 0 auto;
+        align-items: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    & > .button {
+        height: 24px;
+        line-height: 24px;
+        padding: 0 6px;
+    }
 }
