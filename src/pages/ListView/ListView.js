@@ -51,15 +51,19 @@ class listView extends Component{
                     </List>
                 </div>
                  <h2>Dropdown list</h2>
-                 <div>
-                    <DropList>
-                        <List>
+                 
+                    <DropList className="one">
+                        <List className="drop" style={{
+                                top: '608px',
+                                left: '243px',
+                                position: 'absolute'
+                        }}>
                             <ListItem>Первый</ListItem>
                             <ListItem>Второй</ListItem>
                         </List> 
                     </DropList>
 
-                 </div>
+                 
 			</React.Fragment>
 
        )
