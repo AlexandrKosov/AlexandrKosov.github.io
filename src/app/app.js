@@ -48,7 +48,7 @@ class App extends Component{
                             </li>
 							<li className="list-group-item">
                                 <NavLink to={routesMap.icons} activeClassName={styles.active}>
-                                   иконки
+                                   Иконки
                                 </NavLink>
                             </li>
 							<li className="list-group-item">
