@@ -26,12 +26,13 @@ class DropList extends Component {
   state = {
     isOpen: false,
     selected: null,
+    truePos: {}
   };
 
   dropHeadRef = React.createRef();
 
-  dropListClick = () => {
-    console.log('dropListClick');
+  dropListClick = (e) => {
+    console.log('drop:', e ,e.currentTarget, e.target);
     this.setState((state)=>{
       return {isOpen: !state.isOpen}
     });
@@ -41,11 +42,24 @@ class DropList extends Component {
     const { current: dropHead } = this.dropHeadRef;
     let rect = dropHead.getBoundingClientRect();
     console.log('rect:',rect);
+    // this.state.truePos = {
+    //   top: '608px',
+    //   left: '243px',
+    //   position: 'absolute',
+    //   width: '300px'
+    // }
+    this.state.truePos = {
+      top: rect.bottom + 'px',
+      left: rect.x+'px',
+      position: 'fixed',
+      width: rect.width + 'px',
+      border: '1px solid red'
+    }
   }
 
   render() {
     const { className, disabled, active } = this.props;
-    const { isOpen, selected } = this.state;
+    const { isOpen, selected, truePos } = this.state;
     const classes = classNames(
       'drop-list',
       className,
@@ -54,11 +68,13 @@ class DropList extends Component {
     );
     return (
       <React.Fragment>
-        <div className={classes} onClick={this.dropListClick} ref={this.dropHeadRef}>
+        <div className={classes} onClick={(e)=>{this.dropListClick(e)}} ref={this.dropHeadRef}>
           {selected || '—'}
         </div>
-        { isOpen && <Portal>
-          {this.props.children}
+        {<Portal>
+          <div style={truePos} onClick={(e)=>{this.dropListClick(e)}}>
+            {isOpen && this.props.children}
+          </div>
         </Portal>}
       </React.Fragment>
     );

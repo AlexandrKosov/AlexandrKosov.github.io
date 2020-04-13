@@ -51,13 +51,9 @@ class listView extends Component{
                     </List>
                 </div>
                  <h2>Dropdown list</h2>
-                 
+                 {/* style={} */}
                     <DropList className="one">
-                        <List className="drop" style={{
-                                top: '608px',
-                                left: '243px',
-                                position: 'absolute'
-                        }}>
+                        <List className="drop">
                             <ListItem>Первый</ListItem>
                             <ListItem>Второй</ListItem>
                         </List> 
