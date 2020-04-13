@@ -14,6 +14,7 @@ class DropList extends Component {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     active: PropTypes.bool,
+    changeSelected: PropTypes.func
   };
 
   static defaultProps = {
@@ -21,6 +22,7 @@ class DropList extends Component {
     className: '',
     disabled: false,
     active: false,
+    changeSelected: ()=>{}
   };
 
   state = {
@@ -30,19 +32,15 @@ class DropList extends Component {
   };
 
   dropHeadRef = React.createRef();
-
   dropListClick = (e) => {
     e.persist();
-    console.log('dropListClick',e, this);
     this.setState((state)=>{
       return {isOpen: !state.isOpen}
     });
   };
 
   dropListItemClick = (e) => {
-    //e.stopPropagation();
     e.persist();
-    //console.log('dropListItemClick',e.currentTarget, e.target, e.target.innerText);
     let newSelected = e.target.innerText;
     this.setState((state)=>{
       return {
@@ -50,6 +48,7 @@ class DropList extends Component {
         selected: newSelected
       }
     });
+    this.props.changeSelected(newSelected);
   };
 
   componentDidMount () {
@@ -75,7 +74,6 @@ class DropList extends Component {
       { disabled },
       { active },
     );
-    console.log('truePos:',truePos);
     return (
       <React.Fragment>
         <div className={classes} onClick={this.dropListClick} ref={this.dropHeadRef}>

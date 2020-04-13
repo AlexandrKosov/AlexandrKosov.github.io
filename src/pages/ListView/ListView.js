@@ -9,6 +9,10 @@ import Button from '~c/Button';
 
 class listView extends Component{
 
+    state = {
+        select: null
+    };
+
     customData = [
         {icon:'search',text:'Первый элемент',
             badge: {name:'!!!', variant:'danger'}
@@ -20,6 +24,11 @@ class listView extends Component{
         badge: {}
     },
     ];
+
+    changeSelected = (selected) => {
+        console.log("Выбранный пункт: ",selected);
+        this.setState({select: selected});
+    };
 
     render(){
         const custom = this.customData.map((item)=>{
@@ -52,14 +61,17 @@ class listView extends Component{
                 </div>
                  <h2>Dropdown list</h2>
                  {/* style={} */}
-                    <DropList className="one">
+                    <DropList className="one" changeSelected={this.changeSelected}>
                         <List className="drop">
                             <ListItem data-id="1">Первый</ListItem>
                             <ListItem data-id="2">Второй</ListItem>
+                            <ListItem data-id="3">Третий</ListItem>
+                            <ListItem data-id="4">Четвертый</ListItem>
+                            <ListItem data-id="5">Пятый</ListItem>
+                            <ListItem data-id="6">Шестой</ListItem>
+                            <ListItem data-id="7">Седьмой</ListItem>
                         </List> 
                     </DropList>
-
-                 
 			</React.Fragment>
 
        )
