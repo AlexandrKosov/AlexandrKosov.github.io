@@ -32,7 +32,8 @@ class DropList extends Component {
   dropHeadRef = React.createRef();
 
   dropListClick = (e) => {
-    console.log('drop:', e ,e.currentTarget, e.target);
+    e.persist();
+    console.log('dropListClick',e);
     this.setState((state)=>{
       return {isOpen: !state.isOpen}
     });
@@ -40,21 +41,15 @@ class DropList extends Component {
 
   componentDidMount () {
     const { current: dropHead } = this.dropHeadRef;
-    let rect = dropHead.getBoundingClientRect();
-    console.log('rect:',rect);
-    // this.state.truePos = {
-    //   top: '608px',
-    //   left: '243px',
-    //   position: 'absolute',
-    //   width: '300px'
-    // }
-    this.state.truePos = {
-      top: rect.bottom + 'px',
-      left: rect.x+'px',
-      position: 'fixed',
-      width: rect.width + 'px',
-      border: '1px solid red'
-    }
+    setTimeout(()=>{
+      let rect = dropHead.getBoundingClientRect();
+      this.state.truePos = {
+        top: rect.bottom + 'px',
+        left: rect.x + 'px',
+        position: 'absolute',
+        width: rect.width + 'px',
+      }
+    },0);
   }
 
   render() {
@@ -68,11 +63,11 @@ class DropList extends Component {
     );
     return (
       <React.Fragment>
-        <div className={classes} onClick={(e)=>{this.dropListClick(e)}} ref={this.dropHeadRef}>
+        <div className={classes} onClick={this.dropListClick} ref={this.dropHeadRef}>
           {selected || '—'}
         </div>
         {<Portal>
-          <div style={truePos} onClick={(e)=>{this.dropListClick(e)}}>
+          <div style={truePos} onClick={this.dropListClick}>
             {isOpen && this.props.children}
           </div>
         </Portal>}
