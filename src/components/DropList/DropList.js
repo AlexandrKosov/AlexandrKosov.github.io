@@ -56,12 +56,13 @@ class DropList extends Component {
     const { current: dropHead } = this.dropHeadRef;
     setTimeout(()=>{
       let rect = dropHead.getBoundingClientRect();
-      this.state.truePos = {
+      let truePos = {
         top: rect.bottom + 'px',
         left: rect.x + 'px',
         position: 'absolute',
         width: rect.width + 'px',
       }
+      this.setState({truePos});
     },0);
   }
 
@@ -74,13 +75,14 @@ class DropList extends Component {
       { disabled },
       { active },
     );
+    console.log('truePos:',truePos);
     return (
       <React.Fragment>
         <div className={classes} onClick={this.dropListClick} ref={this.dropHeadRef}>
           {selected || '—'}
         </div>
         {<Portal>
-          <div style={truePos} onClick={this.dropListItemClick}>
+          <div className="dropdown-list" style={truePos} onClick={this.dropListItemClick}>
             {isOpen && this.props.children}
           </div>
         </Portal>}
