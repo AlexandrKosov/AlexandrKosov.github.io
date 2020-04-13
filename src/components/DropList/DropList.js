@@ -33,12 +33,19 @@ class DropList extends Component {
 
   dropListClick = (e) => {
     e.persist();
-    console.log('dropListClick',e);
+    console.log('dropListClick',e, this);
     this.setState((state)=>{
       return {isOpen: !state.isOpen}
     });
   };
-
+  dropListItemClick = (e) => {
+    e.stopPropagation();
+    e.persist();
+    console.log('dropListItemClick',e, this, e.target.value);
+    this.setState((state)=>{
+      return {isOpen: !state.isOpen}
+    });
+  };
   componentDidMount () {
     const { current: dropHead } = this.dropHeadRef;
     setTimeout(()=>{
@@ -67,7 +74,7 @@ class DropList extends Component {
           {selected || '—'}
         </div>
         {<Portal>
-          <div style={truePos} onClick={this.dropListClick}>
+          <div style={truePos} onClick={this.dropListItemClick}>
             {isOpen && this.props.children}
           </div>
         </Portal>}
