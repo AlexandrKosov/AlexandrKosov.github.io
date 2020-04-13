@@ -54,8 +54,8 @@ class listView extends Component{
                  {/* style={} */}
                     <DropList className="one">
                         <List className="drop">
-                            <ListItem>Первый</ListItem>
-                            <ListItem>Второй</ListItem>
+                            <ListItem data-id="1">Первый</ListItem>
+                            <ListItem data-id="2">Второй</ListItem>
                         </List> 
                     </DropList>
 

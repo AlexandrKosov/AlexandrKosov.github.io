@@ -38,14 +38,20 @@ class DropList extends Component {
       return {isOpen: !state.isOpen}
     });
   };
+
   dropListItemClick = (e) => {
-    e.stopPropagation();
+    //e.stopPropagation();
     e.persist();
-    console.log('dropListItemClick',e, this, e.target.value);
+    //console.log('dropListItemClick',e.currentTarget, e.target, e.target.innerText);
+    let newSelected = e.target.innerText;
     this.setState((state)=>{
-      return {isOpen: !state.isOpen}
+      return {
+        isOpen: !state.isOpen,
+        selected: newSelected
+      }
     });
   };
+
   componentDidMount () {
     const { current: dropHead } = this.dropHeadRef;
     setTimeout(()=>{
