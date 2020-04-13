@@ -32,6 +32,8 @@ class DropList extends Component {
   };
 
   dropHeadRef = React.createRef();
+  dropdownRef = React.createRef();
+
   dropListClick = (e) => {
     e.persist();
     this.setState((state)=>{
@@ -53,14 +55,29 @@ class DropList extends Component {
 
   componentDidMount () {
     const { current: dropHead } = this.dropHeadRef;
+    const {current: dropdown} = this.dropdownRef;
+
     setTimeout(()=>{
-      let rect = dropHead.getBoundingClientRect();
-      let truePos = {
-        top: rect.bottom + 'px',
-        left: rect.x + 'px',
-        position: 'absolute',
-        width: rect.width + 'px',
-      }
+      let head = dropHead.getBoundingClientRect();
+      let drop = dropdown.getBoundingClientRect();
+    
+      let calc = window.innerHeight - head.bottom - drop.height;
+      let truePos = {};
+      if(calc > 0 ){
+          truePos = {
+          top: head.bottom + 'px',
+          left: head.left + 'px',
+          position: 'absolute',
+          width: head.width + 'px',
+        }
+      } else {
+          truePos = {
+          bottom: window.innerHeight - head.top + 'px',
+          left: head.left + 'px',
+          position: 'absolute',
+          width: head.width + 'px',
+        }
+      }    
       this.setState({truePos});
     },0);
   }
@@ -74,14 +91,18 @@ class DropList extends Component {
       { disabled },
       { active },
     );
+    const dropClasses = classNames("dropdown-list",isOpen?'':'hidden');
     return (
       <React.Fragment>
         <div className={classes} onClick={this.dropListClick} ref={this.dropHeadRef}>
           {selected || '—'}
         </div>
         {<Portal>
-          <div className="dropdown-list" style={truePos} onClick={this.dropListItemClick}>
-            {isOpen && this.props.children}
+          <div className={dropClasses}
+          ref={this.dropdownRef} 
+          style={truePos} 
+          onClick={this.dropListItemClick}>
+            {this.props.children}
           </div>
         </Portal>}
       </React.Fragment>

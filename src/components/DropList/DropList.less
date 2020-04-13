@@ -6,6 +6,12 @@
     cursor: pointer;
 }
 .dropdown-list {
+    position: absolute;
+    opacity: 1;
+    &.hidden {
+        opacity: 0;
+        top: -10000px !important;
+    }
     & .list {
         margin-top: -1px;
         box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
