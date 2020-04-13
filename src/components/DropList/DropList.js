@@ -99,9 +99,9 @@ class DropList extends Component {
         </div>
         {<Portal>
           <div className={dropClasses}
-          ref={this.dropdownRef} 
-          style={truePos} 
-          onClick={this.dropListItemClick}>
+              ref={this.dropdownRef} 
+              style={truePos} 
+              onClick={this.dropListItemClick}>
             {this.props.children}
           </div>
         </Portal>}
