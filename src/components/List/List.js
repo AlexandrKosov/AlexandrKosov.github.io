@@ -17,18 +17,38 @@ class List extends Component {
         className: ''
     };
   
-    state = {
-        selected: null,
+    constructor(props){
+        super(props);
+        this.state = {
+            selected: props.selected?props.selected:null,
+        };
+    }
+    
+
+    setActiveItem = (selectedIndex) => {
+        const { selected } = this.state;
+        if (selected !== selectedIndex) {
+          this.setState({
+            selected: selectedIndex,
+          });
+        }
+    }
+
+    changeActiveItem = (activeIndex) =>{
+        this.setActiveItem(activeIndex);
     };
 
     renderItems = () => {
         const { className, children, ...attrs } = this.props;
+        const { selected } = this.state;
         return children.map((child, index)=>(
+            console.log(index, selected),
             <ListItem
                 key={index}
                 index={index}
                 disabled={child.props.disabled}
-                className={child.props.className}
+                className={classNames(child.props.className,(index==parseInt(selected))?'active':'')}
+                onChangeActiveItem={this.changeActiveItem}
             >
                 {child.props.children}
             </ListItem>
@@ -42,10 +62,13 @@ class List extends Component {
         className
         );
         return (
-            <div className={classes} {...attrs}>
-                {this.renderItems()}
-                {/* {children} */}
-            </div>
+            <React.Fragment>
+                <div className="debug">{this.state.selected}</div>
+                <div className={classes} {...attrs}>
+                    {this.renderItems()}
+                    {/* {children} */}
+                </div>
+            </React.Fragment>    
         )
     }
 	

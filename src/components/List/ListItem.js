@@ -24,6 +24,8 @@ class ListItem extends Component {
             className,
             disabled,
             active,
+            index,
+            onChangeActiveItem,
             ...attrs} = this.props;
     const classes = classNames(
       'list-item',
@@ -32,7 +34,10 @@ class ListItem extends Component {
       { active },
     );        
     return (
-      <div className={classes} {...attrs}>
+      <div className={classes} 
+      {...attrs}
+      onClick={()=>onChangeActiveItem(index)}
+      >
         {children}
       </div>
     );

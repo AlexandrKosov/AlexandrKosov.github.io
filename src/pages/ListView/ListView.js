@@ -18,11 +18,17 @@ class listView extends Component{
             badge: {name:'!!!', variant:'danger'}
         },
         {icon:'star',text:'Второй элемент с длинным текстом',
-        badge: {name:'Длинная метка', variant:'warning'}
-    },
+            badge: {name:'Длинная метка', variant:'warning'}
+        },
         {icon:'search',text:'Третий элемент',
-        badge: {}
-    },
+            badge: {}
+        },
+        {icon:'cross',text:'Четвертый элемент',disabled: true,
+            badge: {}
+        },
+        {icon:'ok',text:'пятый элемент', 
+            badge: {}
+        },
     ];
 
     changeSelected = (selected) => {
@@ -32,7 +38,7 @@ class listView extends Component{
 
     render(){
         const custom = this.customData.map((item)=>{
-             return (<ListItem className="list-item-flex" key={item.text}>
+             return (<ListItem className="list-item-flex" disabled={item.disabled} key={item.text}>
                 <Icon name={item.icon} />
                 <span className="flex-fill">{item.text}</span>
                 <Badge variant={item.badge.variant}>{item.badge.name}</Badge>
@@ -44,34 +50,34 @@ class listView extends Component{
                 <h1>Списки</h1>
                 <h3>Обычный список с иконками:</h3>
                 <div style={{width: '300px'}}>
-                    <List selected={1}>
+                {/* атрибут selected отсчитывается с НУЛЯ!!!!  */}
+                    <List selected='0'>
                         <ListItem><Icon name="search" />Найти</ListItem>
                         <ListItem><Icon name="settings"/>Настройки</ListItem>
                         <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
                         <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
                         <ListItem>Просто пункт с текстом</ListItem>
-                    
                     </List>
                 </div>
                 <h3>Кастомный список:</h3>
                 <div style={{width: '300px'}}>
-                    <List>
+                    <List selected='1'>
                         {custom}
                     </List>
                 </div>
-                  {/*<h2>Dropdown list</h2>
+                  {/* <h2>Dropdown list</h2>
          
                     <DropList className="one" changeSelected={this.changeSelected}>
                         <List className="drop">
-                            <ListItem data-id="1">Первый</ListItem>
-                            <ListItem data-id="2">Второй</ListItem>
-                            <ListItem data-id="3">Третий</ListItem>
-                            <ListItem data-id="4">Четвертый</ListItem>
-                            <ListItem data-id="5">Пятый</ListItem>
-                            <ListItem data-id="6">Шестой</ListItem>
-                            <ListItem data-id="7">Седьмой</ListItem>
+                            <ListItem>Первый</ListItem>
+                            <ListItem>Второй</ListItem>
+                            <ListItem>Третий</ListItem>
+                            <ListItem>Четвертый</ListItem>
+                            <ListItem>Пятый</ListItem>
+                            <ListItem>Шестой</ListItem>
+                            <ListItem>Седьмой</ListItem>
                         </List> 
-                    </DropList> */}
+                    </DropList>*/}
 			</React.Fragment>
 
        )
