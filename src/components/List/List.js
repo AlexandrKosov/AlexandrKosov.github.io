@@ -36,8 +36,11 @@ class List extends Component {
 
     changeActiveItem = (activeIndex) =>{
         const { children } = this.props;
-        if(!children[activeIndex].props.disabled)
+        
+        if(!children[activeIndex].props.disabled){
+            alert('active item '+activeIndex);
             this.setActiveItem(activeIndex);
+        }
     };
 
     renderItems = () => {
