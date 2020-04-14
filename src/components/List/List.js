@@ -18,8 +18,22 @@ class List extends Component {
     };
   
     state = {
- 
+        selected: null,
     };
+
+    renderItems = () => {
+        const { className, children, ...attrs } = this.props;
+        return children.map((child, index)=>(
+            <ListItem
+                key={index}
+                index={index}
+                disabled={child.props.disabled}
+                className={child.props.className}
+            >
+                {child.props.children}
+            </ListItem>
+        ));
+    }
 
     render() {
         const { className, children, ...attrs } = this.props;
@@ -29,7 +43,8 @@ class List extends Component {
         );
         return (
             <div className={classes} {...attrs}>
-                {children}
+                {this.renderItems()}
+                {/* {children} */}
             </div>
         )
     }

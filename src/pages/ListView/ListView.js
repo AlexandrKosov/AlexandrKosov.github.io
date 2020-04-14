@@ -44,8 +44,8 @@ class listView extends Component{
                 <h1>Списки</h1>
                 <h3>Обычный список с иконками:</h3>
                 <div style={{width: '300px'}}>
-                    <List>
-                        <ListItem active><Icon name="search" />Найти</ListItem>
+                    <List selected={1}>
+                        <ListItem><Icon name="search" />Найти</ListItem>
                         <ListItem><Icon name="settings"/>Настройки</ListItem>
                         <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
                         <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
@@ -59,8 +59,8 @@ class listView extends Component{
                         {custom}
                     </List>
                 </div>
-                 <h2>Dropdown list</h2>
-                 {/* style={} */}
+                  {/*<h2>Dropdown list</h2>
+         
                     <DropList className="one" changeSelected={this.changeSelected}>
                         <List className="drop">
                             <ListItem data-id="1">Первый</ListItem>
@@ -71,7 +71,7 @@ class listView extends Component{
                             <ListItem data-id="6">Шестой</ListItem>
                             <ListItem data-id="7">Седьмой</ListItem>
                         </List> 
-                    </DropList>
+                    </DropList> */}
 			</React.Fragment>
 
        )
