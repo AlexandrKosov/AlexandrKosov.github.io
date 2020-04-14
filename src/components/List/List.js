@@ -35,14 +35,15 @@ class List extends Component {
     }
 
     changeActiveItem = (activeIndex) =>{
-        this.setActiveItem(activeIndex);
+        const { children } = this.props;
+        if(!children[activeIndex].props.disabled)
+            this.setActiveItem(activeIndex);
     };
 
     renderItems = () => {
         const { className, children, ...attrs } = this.props;
         const { selected } = this.state;
         return children.map((child, index)=>(
-            console.log(index, selected),
             <ListItem
                 key={index}
                 index={index}
