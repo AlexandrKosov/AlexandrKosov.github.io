@@ -65,19 +65,18 @@ class listView extends Component{
                         {custom}
                     </List>
                 </div>
-                  {/* <h2>Dropdown list</h2>
-         
-                    <DropList className="one" changeSelected={this.changeSelected}>
-                        <List className="drop">
-                            <ListItem>Первый</ListItem>
-                            <ListItem>Второй</ListItem>
-                            <ListItem>Третий</ListItem>
-                            <ListItem>Четвертый</ListItem>
-                            <ListItem>Пятый</ListItem>
-                            <ListItem>Шестой</ListItem>
-                            <ListItem>Седьмой</ListItem>
-                        </List> 
-                    </DropList>*/}
+                <h2>Dropdown list</h2>
+                <DropList className="test" >
+                    <List className="drop">
+                        <ListItem>Первый</ListItem>
+                        <ListItem>Второй</ListItem>
+                        <ListItem>Третий</ListItem>
+                        <ListItem>Четвертый</ListItem>
+                        <ListItem>Пятый</ListItem>
+                        <ListItem>Шестой</ListItem>
+                        <ListItem>Седьмой</ListItem>
+                    </List> 
+                </DropList>
 			</React.Fragment>
 
        )

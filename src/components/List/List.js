@@ -67,10 +67,8 @@ class List extends Component {
         );
         return (
             <React.Fragment>
-                <div className="debug">{this.state.selected}</div>
                 <div className={classes} {...attrs}>
                     {this.renderItems()}
-                    {/* {children} */}
                 </div>
             </React.Fragment>    
         )
