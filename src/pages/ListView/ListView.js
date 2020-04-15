@@ -67,7 +67,7 @@ class listView extends Component{
                 </div>
                 <h2>Dropdown list</h2>
                 <DropList className="test" >
-                    <List className="drop">
+                    {/* <List className="drop"> */}
                         <ListItem>Первый</ListItem>
                         <ListItem>Второй</ListItem>
                         <ListItem>Третий</ListItem>
@@ -75,7 +75,7 @@ class listView extends Component{
                         <ListItem>Пятый</ListItem>
                         <ListItem>Шестой</ListItem>
                         <ListItem>Седьмой</ListItem>
-                    </List> 
+                    {/* </List>  */}
                 </DropList>
 			</React.Fragment>
 

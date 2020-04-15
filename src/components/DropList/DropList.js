@@ -112,6 +112,23 @@ class DropList extends Component {
     },0);
   }
 
+  renderItems = () => {
+    const { className, children, ...attrs } = this.props;
+    const { selected } = this.state;
+    //console.log(children);
+    return children.map((child, index)=>(
+        <ListItem
+            key={index}
+            index={index}
+            disabled={child.props.disabled}
+            className={classNames(child.props.className,(index==parseInt(selected))?'active':'')}
+            onChangeActiveItem={this.changeActiveItem}
+        >
+            {child.props.children}
+        </ListItem>
+    ));
+  }
+
   render() {
     const { className, disabled, active } = this.props;
     const { isOpen, selected, truePos } = this.state;
@@ -132,7 +149,10 @@ class DropList extends Component {
               ref={this.dropdownRef} 
               style={truePos} 
               onClick={this.dropListItemClick}>
-            {this.props.children}
+            {/* {this.props.children} */}
+            <List className="drop" selected=''>
+              {this.renderItems()}
+            </List>
           </div>
         </Portal>}
       </React.Fragment>
