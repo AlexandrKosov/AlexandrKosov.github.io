@@ -9,12 +9,14 @@ import './List.less';
 class List extends Component {
     static propTypes = {
         children: PropTypes.node,
-        className: PropTypes.string
+        className: PropTypes.string,
+        getActiveItem: PropTypes.func
     };
   
     static defaultProps = {
         children: null,
-        className: ''
+        className: '',
+        getActiveItem: ()=>{}
     };
   
     constructor(props){
@@ -24,6 +26,13 @@ class List extends Component {
         };
     }
     
+    componentDidMount(){
+        if(this.state.selected){
+            this.props.getActiveItem(this.state.selected);
+        }
+    }
+
+    //getActiveItem = () => {return this.state.selected};
 
     setActiveItem = (selectedIndex) => {
         const { selected } = this.state;
@@ -33,13 +42,14 @@ class List extends Component {
           });
         }
     }
-
+    
     changeActiveItem = (activeIndex) =>{
         const { children } = this.props;
         
         if(!children[activeIndex].props.disabled){
-            alert('active item '+activeIndex);
+            //alert('active item '+activeIndex);
             this.setActiveItem(activeIndex);
+            this.props.getActiveItem(activeIndex);
         }
     };
 

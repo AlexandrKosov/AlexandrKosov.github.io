@@ -31,14 +31,19 @@ class listView extends Component{
         },
     ];
 
-    changeSelected = (selected) => {
-        console.log("Выбранный пункт: ",selected);
-        this.setState({select: selected});
-    };
+    // changeSelected = (selected) => {
+    //     console.log("Выбранный пункт: ",selected);
+    //     this.setState({select: selected});
+    // };
+
+    getActive = (index) => {
+        this.setState({select: index});
+    }
+
 
     render(){
         const custom = this.customData.map((item)=>{
-             return (<ListItem className="list-item-flex" disabled={item.disabled} key={item.text}>
+            return (<ListItem className="list-item-flex" disabled={item.disabled} key={item.text}>
                 <Icon name={item.icon} />
                 <span className="flex-fill">{item.text}</span>
                 <Badge variant={item.badge.variant}>{item.badge.name}</Badge>
@@ -48,10 +53,10 @@ class listView extends Component{
         return (
            <React.Fragment>
                 <h1>Списки</h1>
-                <h3>Обычный список с иконками:</h3>
+                <h3>Обычный список с иконками: <i> выбрано {this.state.select}</i></h3>
                 <div style={{width: '300px'}}>
                 {/* атрибут selected отсчитывается с НУЛЯ!!!!  */}
-                    <List selected='0'>
+                    <List selected='3' getActiveItem={this.getActive}>
                         <ListItem><Icon name="search" />Найти</ListItem>
                         <ListItem><Icon name="settings"/>Настройки</ListItem>
                         <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
