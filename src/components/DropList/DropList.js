@@ -35,14 +35,15 @@ class DropList extends Component {
   dropdownRef = React.createRef();
 
   dropListClick = (e) => {
-    e.persist();
+    //e.persist();
     this.setState((state)=>{
       return {isOpen: !state.isOpen}
     });
   };
 
   dropListItemClick = (e) => {
-    e.persist();
+    //e.persist();
+    console.log(e, e.target);
     let newSelected = e.target.innerText;
     this.setState((state)=>{
       return {
@@ -50,10 +51,39 @@ class DropList extends Component {
         selected: newSelected
       }
     });
-    this.props.changeSelected(newSelected);
+    // this.props.changeSelected(newSelected);
   };
 
   componentDidMount () {
+    const { current: dropHead } = this.dropHeadRef;
+    const {current: dropdown} = this.dropdownRef;
+
+    //setTimeout(()=>{
+      let head = dropHead.getBoundingClientRect();
+      let drop = dropdown.getBoundingClientRect();
+    
+      let calc = window.innerHeight - head.bottom - drop.height;
+      let truePos = {};
+      if(calc > 0 ){
+          truePos = {
+          top: head.bottom + 'px',
+          left: head.left + 'px',
+          position: 'absolute',
+          width: head.width + 'px',
+        }
+      } else {
+          truePos = {
+          bottom: window.innerHeight - head.top + 'px',
+          left: head.left + 'px',
+          position: 'absolute',
+          width: head.width + 'px',
+        }
+      }    
+      this.setState({truePos});
+    //},0);
+  }
+
+  componentDidUpdate(){
     const { current: dropHead } = this.dropHeadRef;
     const {current: dropdown} = this.dropdownRef;
 
