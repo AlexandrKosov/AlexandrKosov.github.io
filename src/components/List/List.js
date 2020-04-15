@@ -27,12 +27,11 @@ class List extends Component {
     }
     
     componentDidMount(){
+        const { getActiveItem } = this.props;
         if(this.state.selected){
-            this.props.getActiveItem(this.state.selected);
+            getActiveItem(this.state.selected);
         }
     }
-
-    //getActiveItem = () => {return this.state.selected};
 
     setActiveItem = (selectedIndex) => {
         const { selected } = this.state;
@@ -44,12 +43,12 @@ class List extends Component {
     }
     
     changeActiveItem = (activeIndex) =>{
-        const { children } = this.props;
+        const { children, getActiveItem } = this.props;
         
         if(!children[activeIndex].props.disabled){
             //alert('active item '+activeIndex);
             this.setActiveItem(activeIndex);
-            this.props.getActiveItem(activeIndex);
+            getActiveItem(activeIndex);
         }
     };
 
@@ -70,7 +69,7 @@ class List extends Component {
     }
 
     render() {
-        const { className, children, ...attrs } = this.props;
+        const { className, children, getActiveItem, ...attrs } = this.props;
         const classes = classNames(
         'list',
         className

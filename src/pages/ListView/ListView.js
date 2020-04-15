@@ -10,7 +10,9 @@ import Button from '~c/Button';
 class listView extends Component{
 
     state = {
-        select: null
+        select1: null,
+        select2: null,
+        select3: null
     };
 
     customData = [
@@ -31,15 +33,18 @@ class listView extends Component{
         },
     ];
 
-    // changeSelected = (selected) => {
-    //     console.log("Выбранный пункт: ",selected);
-    //     this.setState({select: selected});
-    // };
-
+    //первый список
     getActive = (index) => {
-        this.setState({select: index});
+        this.setState({select1: index});
     }
-
+    //второй список
+     getActive2 = (index) => {
+        this.setState({select2: index});
+    }
+    //третий список
+    getActive3 = (index) => {
+        this.setState({select3: index});
+    }
 
     render(){
         const custom = this.customData.map((item)=>{
@@ -53,7 +58,7 @@ class listView extends Component{
         return (
            <React.Fragment>
                 <h1>Списки</h1>
-                <h3>Обычный список с иконками: <i> выбрано {this.state.select}</i></h3>
+                <h3>Обычный список с иконками: <i> выбрано {this.state.select1}</i></h3>
                 <div style={{width: '300px'}}>
                 {/* атрибут selected отсчитывается с НУЛЯ!!!!  */}
                     <List selected='3' getActiveItem={this.getActive}>
@@ -64,14 +69,14 @@ class listView extends Component{
                         <ListItem>Просто пункт с текстом</ListItem>
                     </List>
                 </div>
-                <h3>Кастомный список:</h3>
+                <h3>Кастомный список: <i> выбрано {this.state.select2}</i></h3>
                 <div style={{width: '300px'}}>
-                    <List selected='1'>
+                    <List selected='1' getActiveItem={this.getActive2}>
                         {custom}
                     </List>
                 </div>
-                <h2>Dropdown list</h2>
-                <DropList className="test" >
+                <h2>Dropdown list  <i> выбрано {this.state.select3}</i></h2>
+                <DropList className="test" getActiveItem={this.getActive3}>
                     {/* <List className="drop"> */}
                         <ListItem>Первый</ListItem>
                         <ListItem>Второй</ListItem>
