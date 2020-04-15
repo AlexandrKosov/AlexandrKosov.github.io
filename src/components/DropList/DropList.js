@@ -130,7 +130,7 @@ class DropList extends Component {
   }
 
   render() {
-    const { className, disabled, active } = this.props;
+    const { className, disabled, active, getActiveItem } = this.props;
     const { isOpen, selected, truePos } = this.state;
     const classes = classNames(
       'drop-list',
@@ -150,7 +150,7 @@ class DropList extends Component {
               style={truePos} 
               onClick={this.dropListItemClick}>
             {/* {this.props.children} */}
-            <List className="drop" selected=''>
+            <List className="drop" selected='' getActiveItem={getActiveItem}>
               {this.renderItems()}
             </List>
           </div>
