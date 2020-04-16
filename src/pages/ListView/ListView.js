@@ -12,7 +12,9 @@ class listView extends Component{
     state = {
         select1: null,
         select2: null,
-        select3: null
+        select3: null,
+        select4: null,
+        select5: null
     };
 
     customData = [
@@ -45,7 +47,14 @@ class listView extends Component{
     getActive3 = (index) => {
         this.setState({select3: index});
     }
-
+    //четвертый список
+    getActive4 = (index) => {
+        this.setState({select4: index});
+    }
+    //пятый список
+    getActive5 = (index) => {
+        this.setState({select5: index});
+    }
     render(){
         const custom = this.customData.map((item)=>{
             return (<ListItem className="list-item-flex" disabled={item.disabled} key={item.text}>
@@ -76,23 +85,29 @@ class listView extends Component{
                     </List>
                 </div>
                 <h2>Dropdown list  <i> выбрано {this.state.select3}</i></h2>
-                <DropList className="test" getActiveItem={this.getActive3}>
-                    {/* <List className="drop"> */}
-                        {/* <ListItem><Icon name="search" />Найти</ListItem>
-                        <ListItem><Icon name="settings"/>Настройки</ListItem>
-                        <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
-                        <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
-                        <ListItem>Просто пункт с текстом</ListItem> */}
-                    {custom}
-                        {/* <ListItem><Icon name="search" />Первый</ListItem>
+                <DropList className="first" getActiveItem={this.getActive3}>
+                        <ListItem><Icon name="search" />Первый</ListItem>
                         <ListItem>Второй<Badge variant="success">OK</Badge></ListItem>
                         <ListItem>Третий</ListItem>
                         <ListItem>Четвертый</ListItem>
                         <ListItem>Пятый</ListItem>
                         <ListItem>Шестой</ListItem>
-                        <ListItem>Седьмой</ListItem> */}
-                    {/* </List>  */}
+                        <ListItem>Седьмой</ListItem>
                 </DropList>
+                <br /><i> выбрано {this.state.select4}</i>
+                <DropList className="second" selected="3" getActiveItem={this.getActive4}>
+                        <ListItem><Icon name="search" />Найти</ListItem>
+                        <ListItem><Icon name="settings"/>Настройки</ListItem>
+                        <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
+                        <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
+                        <ListItem>Просто пункт с текстом</ListItem>
+                </DropList>
+                 <br /><i> выбрано {this.state.select5}</i>
+                <DropList className="third" selected="1" getActiveItem={this.getActive5}>   
+                    {custom}
+                </DropList>
+
+
 			</React.Fragment>
 
        )
