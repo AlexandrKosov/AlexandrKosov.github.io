@@ -40,19 +40,12 @@ class DropList extends Component {
     };
 
     dropListItemClick = (e) => {
-      e.persist();
-      console.log('e', this, e.target);
-      //let newSelected = e.target.innerHTML;
-      let sel = (
-        <div className="list-current-item" dangerouslySetInnerHTML={{__html: e.target.innerHTML}} />
-      );
+      //e.persist();
       this.setState((state)=>{
         return {
           isOpen: !state.isOpen,
-          selected: sel,//newSelected
         }
       });
-      // this.props.changeSelected(newSelected);
     };
 
     componentDidMount(){
@@ -126,13 +119,7 @@ class DropList extends Component {
           this.setState({
             selected: selectedIndex,
           });
-          console.log("act:",children[selectedIndex]);
           this.state.zx = (React.cloneElement(children[selectedIndex]));
-          //console.log('zx',zx);
-          // let zx = children.filter((child)=>{
-          //   //console.log('child:',child);  
-          //   return child
-          // });
         }
     }
     
@@ -187,8 +174,7 @@ class DropList extends Component {
                 </Portal>}
             </React.Fragment>    
         )
-    }
-	
+    }	
 };
 
 export default DropList;

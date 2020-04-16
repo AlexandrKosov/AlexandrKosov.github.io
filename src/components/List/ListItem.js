@@ -10,6 +10,7 @@ class ListItem extends Component {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     active: PropTypes.bool,
+    onChangeActiveItem: PropTypes.func
   };
   
   static defaultProps = {
@@ -17,6 +18,7 @@ class ListItem extends Component {
     className: '',
     disabled: false,
     active: false,
+    onChangeActiveItem: ()=>{}
   };
 
   render() {
