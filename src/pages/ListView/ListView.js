@@ -83,14 +83,14 @@ class listView extends Component{
                         <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
                         <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
                         <ListItem>Просто пункт с текстом</ListItem> */}
-                    {/* {custom} */}
-                        <ListItem><Icon name="search" />Первый</ListItem>
+                    {custom}
+                        {/* <ListItem><Icon name="search" />Первый</ListItem>
                         <ListItem>Второй<Badge variant="success">OK</Badge></ListItem>
                         <ListItem>Третий</ListItem>
                         <ListItem>Четвертый</ListItem>
                         <ListItem>Пятый</ListItem>
                         <ListItem>Шестой</ListItem>
-                        <ListItem>Седьмой</ListItem>
+                        <ListItem>Седьмой</ListItem> */}
                     {/* </List>  */}
                 </DropList>
 			</React.Fragment>

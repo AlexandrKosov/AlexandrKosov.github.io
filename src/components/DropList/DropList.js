@@ -41,7 +41,7 @@ class DropList extends Component {
 
     dropListItemClick = (e) => {
       e.persist();
-      console.log(e, e.target);
+      console.log('e', this, e.target);
       //let newSelected = e.target.innerHTML;
       let sel = (
         <div className="list-current-item" dangerouslySetInnerHTML={{__html: e.target.innerHTML}} />
@@ -120,11 +120,19 @@ class DropList extends Component {
     }
 
     setActiveItem = (selectedIndex) => {
+        const { className, children, ...attrs } = this.props;
         const { selected } = this.state;
         if (selected !== selectedIndex) {
           this.setState({
             selected: selectedIndex,
           });
+          console.log("act:",children[selectedIndex]);
+          this.state.zx = (React.cloneElement(children[selectedIndex]));
+          //console.log('zx',zx);
+          // let zx = children.filter((child)=>{
+          //   //console.log('child:',child);  
+          //   return child
+          // });
         }
     }
     
@@ -154,7 +162,7 @@ class DropList extends Component {
     }
 
     render() {
-        const { className, children, getActiveItem, ...attrs } = this.props;
+        const { className, children, getActiveItem, onChangeActiveItem, ...attrs } = this.props;
         const { isOpen, selected, truePos } = this.state;
         const classes = classNames(
           'drop-list',
@@ -165,7 +173,9 @@ class DropList extends Component {
             <React.Fragment>
 
               <div className={classes} onClick={this.dropListClick} ref={this.dropHeadRef}>
-                {selected || '—'}
+                <div className="list-current-item">
+                  {this.state.zx || '—'}
+                </div>
               </div>
                 {<Portal>
                   <div className={dropClasses}

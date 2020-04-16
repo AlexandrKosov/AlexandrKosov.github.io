@@ -1,14 +1,21 @@
 .drop-list {
     //display: inline-block;
+    position: relative;
     border: 1px solid #ccc;
     max-width: 300px;
     padding: 4px 8px;
     height: 34px;
     cursor: pointer;
-    & .list-current-item {
-        position: relative;
-        display: block;
-        padding: 0;
+    & .list-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: none;
+        line-height: 1;
+        height: 32px;
+        padding: 4px 8px;
         & .icon:first-child {
             margin-right: 12px;
         }
@@ -17,8 +24,10 @@
 .dropdown-list {
     position: absolute;
     opacity: 1;
+    visibility: visible;
     &.hidden {
         opacity: 0;
+        visibility: hidden;
         top: -10000px !important;
     }
     & .list {
