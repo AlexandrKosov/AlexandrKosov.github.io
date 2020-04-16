@@ -25,10 +25,11 @@ class DropList extends Component {
         this.state = {
             selected: props.selected?props.selected:null,
             isOpen: false,
-            truePos: {}
+            truePos: {},
+            
         };
     }
-
+    current = null;//не в State, а как локальная переменная. т.к. выбранным пунктом управляет state.selected, а current просто хранит данные об текущем объекте для внутреннего пользования
     dropHeadRef = React.createRef();
     dropdownRef = React.createRef();
 
@@ -119,7 +120,7 @@ class DropList extends Component {
           this.setState({
             selected: selectedIndex,
           });
-          this.state.current = (React.cloneElement(children[selectedIndex]));
+          this.current = (React.cloneElement(children[selectedIndex]));
         }
     }
     
@@ -162,7 +163,7 @@ class DropList extends Component {
 
               <div className={classes} onClick={this.dropListClick} ref={this.dropHeadRef}>
                 <div className="list-current-item">
-                  {this.state.current || '—'}
+                  {this.current || '—'}
                 </div>
               </div>
                 {<Portal>
