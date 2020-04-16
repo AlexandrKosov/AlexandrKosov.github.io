@@ -78,8 +78,8 @@ class listView extends Component{
                 <h2>Dropdown list  <i> выбрано {this.state.select3}</i></h2>
                 <DropList className="test" getActiveItem={this.getActive3}>
                     {/* <List className="drop"> */}
-                        <ListItem>Первый</ListItem>
-                        <ListItem>Второй</ListItem>
+                        <ListItem><Icon name="search" />Первый</ListItem>
+                        <ListItem>Второй<Badge variant="success">OK</Badge></ListItem>
                         <ListItem>Третий</ListItem>
                         <ListItem>Четвертый</ListItem>
                         <ListItem>Пятый</ListItem>
