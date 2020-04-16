@@ -25,18 +25,16 @@
     position: absolute;
     opacity: 1;
     visibility: visible;
+    margin-top: -1px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
     &.hidden {
         opacity: 0;
         visibility: hidden;
         top: -10000px !important;
     }
-    & .list {
-        margin-top: -1px;
-        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
-        & .list-item {
-            &:first-child, 
-            &:last-child {border-radius: 0;}
-        }
+    & .list-item {
+        &:first-child, 
+        &:last-child {border-radius: 0;}
     }
     
 }
