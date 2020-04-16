@@ -36,10 +36,21 @@
     };
     &.disabled, 
     &.disabled:hover {
-        background: none;
+        background: #fff;
         user-select: none;
-        opacity: 0.6;
         cursor: default;
+        position: relative;
+        &:after {
+            content: '';
+            background: #fff;
+            opacity: .6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            user-select: none;
+        }
     }
 }
 .list-item-flex {

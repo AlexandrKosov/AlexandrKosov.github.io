@@ -78,6 +78,12 @@ class listView extends Component{
                 <h2>Dropdown list  <i> выбрано {this.state.select3}</i></h2>
                 <DropList className="test" getActiveItem={this.getActive3}>
                     {/* <List className="drop"> */}
+                        {/* <ListItem><Icon name="search" />Найти</ListItem>
+                        <ListItem><Icon name="settings"/>Настройки</ListItem>
+                        <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
+                        <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
+                        <ListItem>Просто пункт с текстом</ListItem> */}
+                    {/* {custom} */}
                         <ListItem><Icon name="search" />Первый</ListItem>
                         <ListItem>Второй<Badge variant="success">OK</Badge></ListItem>
                         <ListItem>Третий</ListItem>
