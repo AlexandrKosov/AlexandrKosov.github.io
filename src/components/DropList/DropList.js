@@ -119,7 +119,7 @@ class DropList extends Component {
           this.setState({
             selected: selectedIndex,
           });
-          this.state.zx = (React.cloneElement(children[selectedIndex]));
+          this.state.current = (React.cloneElement(children[selectedIndex]));
         }
     }
     
@@ -140,7 +140,8 @@ class DropList extends Component {
                 key={index}
                 index={index}
                 disabled={child.props.disabled}
-                className={classNames(child.props.className,(index==parseInt(selected))?'active':'')}
+                active={index==parseInt(selected)}
+                className={classNames(child.props.className)}
                 onChangeActiveItem={this.changeActiveItem}
             >
                 {child.props.children}
@@ -161,7 +162,7 @@ class DropList extends Component {
 
               <div className={classes} onClick={this.dropListClick} ref={this.dropHeadRef}>
                 <div className="list-current-item">
-                  {this.state.zx || '—'}
+                  {this.state.current || '—'}
                 </div>
               </div>
                 {<Portal>

@@ -21,6 +21,19 @@ class ListItem extends Component {
     onChangeActiveItem: ()=>{}
   };
 
+  componentDidMount(){
+    const { children,
+      className,
+      disabled,
+      active,
+      index,
+      onChangeActiveItem,
+      ...attrs} = this.props;
+    if(active){
+      onChangeActiveItem(index)
+    }
+  }
+
   render() {
     const {  children,
             className,

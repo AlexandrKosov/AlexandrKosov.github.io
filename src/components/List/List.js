@@ -55,12 +55,14 @@ class List extends Component {
     renderItems = () => {
         const { className, children, ...attrs } = this.props;
         const { selected } = this.state;
+
         return children.map((child, index)=>(
             <ListItem
                 key={index}
                 index={index}
                 disabled={child.props.disabled}
-                className={classNames(child.props.className,(index==parseInt(selected))?'active':'')}
+                active={index==parseInt(selected)} //,(index==parseInt(selected))?'active':'')
+                className={classNames(child.props.className)}
                 onChangeActiveItem={this.changeActiveItem}
             >
                 {child.props.children}
