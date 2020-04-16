@@ -44,11 +44,14 @@ class DropList extends Component {
   dropListItemClick = (e) => {
     //e.persist();
     console.log(e, e.target);
-    let newSelected = e.target.innerText;
+    //let newSelected = e.target.innerHTML;
+    let sel = (
+      <div className="list-current-item" dangerouslySetInnerHTML={{__html: e.target.innerHTML}} />
+    );
     this.setState((state)=>{
       return {
         isOpen: !state.isOpen,
-        selected: newSelected
+        selected: sel,//newSelected
       }
     });
     // this.props.changeSelected(newSelected);
@@ -139,6 +142,7 @@ class DropList extends Component {
       { active },
     );
     const dropClasses = classNames("dropdown-list",isOpen?'':'hidden');
+
     return (
       <React.Fragment>
         <div className={classes} onClick={this.dropListClick} ref={this.dropHeadRef}>
