@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Portal from '~c/portal';
 
+import ReactDOM from 'react-dom';
+
 import ListItem from '~c/List/ListItem';
 import './DropList.less';
 
@@ -82,6 +84,11 @@ class DropList extends Component {
           this.setState({truePos});
         },0);
         //---------------  
+        document.addEventListener('click', this.handleClickOutside, false);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('click', this.handleClickOutside, false);
     }
 
     componentDidUpdate(){
@@ -112,6 +119,18 @@ class DropList extends Component {
         this.setState({truePos});
       },0);
     }
+
+    handleClickOutside = (e) => {
+        // Получаем элемент, на который произведен клик https://archakov.im/post/detect-click-outside-react-component.html
+        const domNode = ReactDOM.findDOMNode(this);
+        
+        // Проверяем, что элемент присутствует в переменной,
+        // а также, является ли "domNode" узел потомком "event.target" узла.
+        // Если не является, то скрываем элемент.
+        if ((!domNode || !domNode.contains(e.target))) {
+            this.setState({isOpen: false});
+        }
+    };
 
     setActiveItem = (selectedIndex) => {
         const { className, children, ...attrs } = this.props;
