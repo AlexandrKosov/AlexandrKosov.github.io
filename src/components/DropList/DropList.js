@@ -62,7 +62,8 @@ class DropList extends Component {
         setTimeout(()=>{
             let head = dropHead.getBoundingClientRect();
             let drop = dropdown.getBoundingClientRect();
-            this.updateDimensions();
+            //this.updateDimensions();
+            this.reCalcPosition(head, drop);
             window.addEventListener("resize", this.updateDimensions);
             document.addEventListener('click', this.handleClickOutside, false);
         },0); 
@@ -78,9 +79,7 @@ class DropList extends Component {
         const {current: dropdown} = this.dropdownRef;
         let head = dropHead.getBoundingClientRect();
         let drop = dropdown.getBoundingClientRect();
-        setTimeout(()=>{
-            this.reCalcPosition(head, drop);
-        },1)
+        this.reCalcPosition(head, drop);
     };
 
     reCalcPosition = (head, drop) => {
