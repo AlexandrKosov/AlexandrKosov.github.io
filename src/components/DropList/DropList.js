@@ -57,11 +57,13 @@ class DropList extends Component {
         if(this.state.selected){
             getActiveItem(this.state.selected);
         }
-        let head = dropHead.getBoundingClientRect();
-        let drop = dropdown.getBoundingClientRect();
-        this.updateDimensions();
-        window.addEventListener("resize", this.updateDimensions);
-        document.addEventListener('click', this.handleClickOutside, false);
+        setTimeout(()=>{
+            let head = dropHead.getBoundingClientRect();
+            let drop = dropdown.getBoundingClientRect();
+            this.updateDimensions();
+            window.addEventListener("resize", this.updateDimensions);
+            document.addEventListener('click', this.handleClickOutside, false);
+        },0)
     }
 
     componentWillUnmount() {
@@ -73,9 +75,9 @@ class DropList extends Component {
         const {current: dropdown} = this.dropdownRef;
         let head = dropHead.getBoundingClientRect();
         let drop = dropdown.getBoundingClientRect();
-        setTimeout(()=>{
+        // setTimeout(()=>{
             this.reCalcPosition(head, drop);
-        },1)
+        // },1)
     };
 
     reCalcPosition = (head, drop) => {     
