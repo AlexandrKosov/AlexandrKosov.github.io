@@ -150,6 +150,13 @@ class DropList extends Component {
         ));
     }
 
+    onMaskClick = (e) => {
+        //console.log('onMaskClick', e);
+        this.setState(
+            {isOpen: false}
+          );
+    }
+
     render() {
         const { className, children, getActiveItem, onChangeActiveItem, ...attrs } = this.props;
         const { isOpen, selected, truePos } = this.state;
@@ -167,11 +174,13 @@ class DropList extends Component {
                 </div>
               </div>
                 {<Portal>
+                    <div className={classNames("dropdown-mask", isOpen?'':'hidden')} onClick={this.onMaskClick}>
                   <div className={dropClasses}
                       ref={this.dropdownRef}
                       style={truePos} 
                       onClick={this.dropListItemClick}>
                       {this.renderItems()}
+                  </div>
                   </div>
                 </Portal>}
             </React.Fragment>    

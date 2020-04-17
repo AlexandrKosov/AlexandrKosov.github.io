@@ -27,6 +27,7 @@
     visibility: visible;
     margin-top: -1px;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+    z-index: 2;
     &.hidden {
         opacity: 0;
         visibility: hidden;
@@ -35,6 +36,19 @@
     & .list-item {
         &:first-child, 
         &:last-child {border-radius: 0;}
+    }  
+}
+
+.dropdown-mask {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    &.hidden {
+        opacity: 0;
+        visibility: hidden;
     }
-    
 }
