@@ -69,14 +69,14 @@ class listView extends Component{
                 <h1>Списки</h1>
                 <h3>Обычный список с иконками: <i> выбрано {this.state.select1}</i></h3>
                 <div style={{width: '300px'}}>
-                {/* атрибут selected отсчитывается с НУЛЯ!!!! 
+                {/* атрибут selected отсчитывается с НУЛЯ!!!!  */}
                     <List selected='3' getActiveItem={this.getActive}>
                         <ListItem><Icon name="search" />Найти</ListItem>
                         <ListItem><Icon name="settings"/>Настройки</ListItem>
                         <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
                         <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
                         <ListItem>Просто пункт с текстом</ListItem>
-                    </List> */}
+                    </List>
                 </div>
                 <h3>Кастомный список: <i> выбрано {this.state.select2}</i></h3>
                 <div style={{width: '300px'}}>
