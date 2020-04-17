@@ -24,7 +24,7 @@ class App extends Component{
 					</div>
                 </div>
             </header>
-            <div className="container "> 
+            <div className="container main"> 
             {/* d-flex align-items-stretch */}
                 <div className="row">
                     <div className="col col-3">
@@ -82,7 +82,9 @@ class App extends Component{
                 </div>
             </div>
             <footer>
-                Футер
+                <div className="container">
+                    Футер
+                </div>
             </footer>    
             </Router>
         )
