@@ -60,29 +60,33 @@ class DropList extends Component {
             getActiveItem(this.state.selected);
         }
         //---------------
-        setTimeout(()=>{
-          let head = dropHead.getBoundingClientRect();
-          let drop = dropdown.getBoundingClientRect();
-          this.reCalcPosition(head, drop);
-        },0);
+        // setTimeout(()=>{
+        //   let head = dropHead.getBoundingClientRect();
+        //   let drop = dropdown.getBoundingClientRect();
+        //   this.reCalcPosition(head, drop);
+        // },0);
         //---------------  
+        let head = dropHead.getBoundingClientRect();
+        let drop = dropdown.getBoundingClientRect();
+        this.updateDimensions();
+        window.addEventListener("resize", this.updateDimensions);
         document.addEventListener('click', this.handleClickOutside, false);
     }
 
     componentWillUnmount() {
+        window.removeEventListener("resize", this.updateDimensions);
         document.removeEventListener('click', this.handleClickOutside, false);
     }
-
-    // componentDidUpdate(){
-    //   const { current: dropHead } = this.dropHeadRef;
-    //   const {current: dropdown} = this.dropdownRef;
-  
-    //   setTimeout(()=>{
-    //     let head = dropHead.getBoundingClientRect();
-    //     let drop = dropdown.getBoundingClientRect();
-    //     this.reCalcPosition(head, drop);
-    //   },0);
-    // }
+    
+    updateDimensions = () => {
+        const { current: dropHead } = this.dropHeadRef;
+        const {current: dropdown} = this.dropdownRef;
+        let head = dropHead.getBoundingClientRect();
+        let drop = dropdown.getBoundingClientRect();
+        setTimeout(()=>{
+            this.reCalcPosition(head, drop);
+        },1)
+    };
 
     reCalcPosition = (head, drop) => {
         let calc = window.innerHeight - head.bottom - drop.height;
