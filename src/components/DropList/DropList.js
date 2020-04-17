@@ -57,25 +57,27 @@ class DropList extends Component {
         if(this.state.selected){
             getActiveItem(this.state.selected);
         }
-        //---------------
         let head = dropHead.getBoundingClientRect();
         let drop = dropdown.getBoundingClientRect();
-        setTimeout(()=>{
-          this.reCalcPosition(head, drop);
-        },0);
-        //---------------  
+        this.updateDimensions();
+        window.addEventListener("resize", this.updateDimensions);
+        document.addEventListener('click', this.handleClickOutside, false);
     }
 
-    componentDidUpdate(){
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateDimensions);
+    }
+
+    updateDimensions = () => {
         const { current: dropHead } = this.dropHeadRef;
         const {current: dropdown} = this.dropdownRef;
         let head = dropHead.getBoundingClientRect();
         let drop = dropdown.getBoundingClientRect();
         setTimeout(()=>{
-          this.reCalcPosition(head, drop);
-        },0);
-      }
-  
+            this.reCalcPosition(head, drop);
+        },1)
+    };
+
     reCalcPosition = (head, drop) => {     
         let calc = window.innerHeight - head.bottom - drop.height;
         let truePos = {};
@@ -135,10 +137,9 @@ class DropList extends Component {
     }
 
     onMaskClick = (e) => {
-        //console.log('onMaskClick', e);
         this.setState(
             {isOpen: false}
-          );
+        );
     }
 
     render() {
@@ -158,7 +159,8 @@ class DropList extends Component {
                 </div>
               </div>
                 {<Portal>
-                    <div className={classNames("dropdown-mask", isOpen?'':'hidden')} onClick={this.onMaskClick}>
+                    <div className={classNames("dropdown-mask", isOpen?'':'hidden')} 
+                    onClick={this.onMaskClick}>
                   <div className={dropClasses}
                       ref={this.dropdownRef}
                       style={truePos} 
