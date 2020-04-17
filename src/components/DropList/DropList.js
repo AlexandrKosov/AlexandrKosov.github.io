@@ -63,25 +63,7 @@ class DropList extends Component {
         setTimeout(()=>{
           let head = dropHead.getBoundingClientRect();
           let drop = dropdown.getBoundingClientRect();
-        
-          let calc = window.innerHeight - head.bottom - drop.height;
-          let truePos = {};
-          if(calc > 0 ){
-              truePos = {
-              top: head.bottom + 'px',
-              left: head.left + 'px',
-              position: 'absolute',
-              width: head.width + 'px',
-            }
-          } else {
-              truePos = {
-              bottom: window.innerHeight - head.top + 'px',
-              left: head.left + 'px',
-              position: 'absolute',
-              width: head.width + 'px',
-            }
-          }    
-          this.setState({truePos});
+          this.reCalcPosition(head, drop);
         },0);
         //---------------  
         document.addEventListener('click', this.handleClickOutside, false);
@@ -91,14 +73,18 @@ class DropList extends Component {
         document.removeEventListener('click', this.handleClickOutside, false);
     }
 
-    componentDidUpdate(){
-      const { current: dropHead } = this.dropHeadRef;
-      const {current: dropdown} = this.dropdownRef;
+    // componentDidUpdate(){
+    //   const { current: dropHead } = this.dropHeadRef;
+    //   const {current: dropdown} = this.dropdownRef;
   
-      setTimeout(()=>{
-        let head = dropHead.getBoundingClientRect();
-        let drop = dropdown.getBoundingClientRect();
-      
+    //   setTimeout(()=>{
+    //     let head = dropHead.getBoundingClientRect();
+    //     let drop = dropdown.getBoundingClientRect();
+    //     this.reCalcPosition(head, drop);
+    //   },0);
+    // }
+
+    reCalcPosition = (head, drop) => {
         let calc = window.innerHeight - head.bottom - drop.height;
         let truePos = {};
         if(calc > 0 ){
@@ -117,8 +103,7 @@ class DropList extends Component {
           }
         }    
         this.setState({truePos});
-      },0);
-    }
+    };
 
     handleClickOutside = (e) => {
         // Получаем элемент, на который произведен клик https://archakov.im/post/detect-click-outside-react-component.html
