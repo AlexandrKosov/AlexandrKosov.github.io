@@ -80,14 +80,14 @@ class listView extends Component{
                 </div>
                 <h3>Кастомный список: <i> выбрано {this.state.select2}</i></h3>
                 <div style={{width: '300px'}}>
-                    <List selected='1' getActiveItem={this.getActive2}>
+                    <List getActiveItem={this.getActive2}>
                         {custom}
                     </List>
                 </div>
                 <h2>Dropdown list  <i> выбрано {this.state.select3}</i></h2>
                 <DropList className="first" getActiveItem={this.getActive3}>
                         <ListItem><Icon name="search" />Первый</ListItem>
-                        <ListItem>Второй<Badge variant="success">OK</Badge></ListItem>
+                        <ListItem>Второй<Badge variant="success" style={{marginLeft: '10px'}}>OK</Badge></ListItem>
                         <ListItem>Третий</ListItem>
                         <ListItem>Четвертый</ListItem>
                         <ListItem>Пятый</ListItem>

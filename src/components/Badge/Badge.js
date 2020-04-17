@@ -23,7 +23,7 @@ const Badge = ({
     const Tag = as ? as : 'span';
 
     return (
-        <Tag className={classes}>
+        <Tag className={classes} {...attrs}>
             {children}
         </Tag>
     )
