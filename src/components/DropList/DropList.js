@@ -58,40 +58,25 @@ class DropList extends Component {
             getActiveItem(this.state.selected);
         }
         //---------------
+        let head = dropHead.getBoundingClientRect();
+        let drop = dropdown.getBoundingClientRect();
         setTimeout(()=>{
-          let head = dropHead.getBoundingClientRect();
-          let drop = dropdown.getBoundingClientRect();
-        
-          let calc = window.innerHeight - head.bottom - drop.height;
-          let truePos = {};
-          if(calc > 0 ){
-              truePos = {
-              top: head.bottom + 'px',
-              left: head.left + 'px',
-              position: 'absolute',
-              width: head.width + 'px',
-            }
-          } else {
-              truePos = {
-              bottom: window.innerHeight - head.top + 'px',
-              left: head.left + 'px',
-              position: 'absolute',
-              width: head.width + 'px',
-            }
-          }    
-          this.setState({truePos});
+          this.reCalcPosition(head, drop);
         },0);
         //---------------  
     }
 
     componentDidUpdate(){
-      const { current: dropHead } = this.dropHeadRef;
-      const {current: dropdown} = this.dropdownRef;
-  
-      setTimeout(()=>{
+        const { current: dropHead } = this.dropHeadRef;
+        const {current: dropdown} = this.dropdownRef;
         let head = dropHead.getBoundingClientRect();
         let drop = dropdown.getBoundingClientRect();
-      
+        setTimeout(()=>{
+          this.reCalcPosition(head, drop);
+        },0);
+      }
+  
+    reCalcPosition = (head, drop) => {     
         let calc = window.innerHeight - head.bottom - drop.height;
         let truePos = {};
         if(calc > 0 ){
@@ -100,18 +85,17 @@ class DropList extends Component {
             left: head.left + 'px',
             position: 'absolute',
             width: head.width + 'px',
-          }
+        }
         } else {
             truePos = {
             bottom: window.innerHeight - head.top + 'px',
             left: head.left + 'px',
             position: 'absolute',
             width: head.width + 'px',
-          }
+        }
         }    
         this.setState({truePos});
-      },0);
-    }
+      };
 
     setActiveItem = (selectedIndex) => {
         const { className, children, ...attrs } = this.props;
