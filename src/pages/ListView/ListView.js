@@ -67,23 +67,30 @@ class listView extends Component{
         return (
            <React.Fragment>
                 <h1>Списки</h1>
-                
-                <h3>Обычный список с иконками: <i style={{fontSize: '14px'}}> выбран № {this.state.select1}</i></h3>
-                <div style={{width: '300px'}}>
-                {/* атрибут selected отсчитывается с НУЛЯ!!!!  */}
-                    <List selected='3' getActiveItem={this.getActive}>
-                        <ListItem><Icon name="search" />Найти</ListItem>
-                        <ListItem><Icon name="settings"/>Настройки</ListItem>
-                        <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
-                        <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
-                        <ListItem>Просто пункт с текстом</ListItem>
-                    </List>
-                </div>
-                <h3>Кастомный список: <i style={{fontSize: '14px'}}> выбран № {this.state.select2}</i></h3>
-                <div style={{width: '300px'}}>
-                    <List getActiveItem={this.getActive2}>
-                        {custom}
-                    </List>
+                <div style={{display: 'flex'}}>
+                    <div style={{width: '45%', marginRight: '20px'}}>
+                        <h3>Обычный список с иконками:</h3>
+                        <i style={{fontSize: '14px'}}> выбран № {this.state.select1}</i>
+                        <div style={{width: '300px'}}>
+                        {/* атрибут selected отсчитывается с НУЛЯ!!!!  */}
+                            <List selected='3' getActiveItem={this.getActive}>
+                                <ListItem><Icon name="search" />Найти</ListItem>
+                                <ListItem><Icon name="settings"/>Настройки</ListItem>
+                                <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
+                                <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
+                                <ListItem>Просто пункт с текстом</ListItem>
+                            </List>
+                        </div>
+                    </div>
+                    <div>    
+                        <h3>Кастомный список:</h3>
+                        <div style={{width: '300px'}}>
+                            <List getActiveItem={this.getActive2}>
+                                {custom}
+                            </List>
+                        </div>
+                        <i style={{fontSize: '14px'}}> выбран № {this.state.select2}</i>
+                    </div>    
                 </div>
                 <h2>Dropdown list  <i style={{fontSize: '14px'}}> выбран № {this.state.select3}</i></h2>
                 <DropList className="first" getActiveItem={this.getActive3}>
