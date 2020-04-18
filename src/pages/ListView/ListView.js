@@ -67,7 +67,8 @@ class listView extends Component{
         return (
            <React.Fragment>
                 <h1>Списки</h1>
-                <h3>Обычный список с иконками: <i> выбрано {this.state.select1}</i></h3>
+                
+                <h3>Обычный список с иконками: <i style={{fontSize: '14px'}}> выбран № {this.state.select1}</i></h3>
                 <div style={{width: '300px'}}>
                 {/* атрибут selected отсчитывается с НУЛЯ!!!!  */}
                     <List selected='3' getActiveItem={this.getActive}>
@@ -78,13 +79,13 @@ class listView extends Component{
                         <ListItem>Просто пункт с текстом</ListItem>
                     </List>
                 </div>
-                <h3>Кастомный список: <i> выбрано {this.state.select2}</i></h3>
+                <h3>Кастомный список: <i style={{fontSize: '14px'}}> выбран № {this.state.select2}</i></h3>
                 <div style={{width: '300px'}}>
                     <List getActiveItem={this.getActive2}>
                         {custom}
                     </List>
                 </div>
-                <h2>Dropdown list  <i> выбрано {this.state.select3}</i></h2>
+                <h2>Dropdown list  <i style={{fontSize: '14px'}}> выбран № {this.state.select3}</i></h2>
                 <DropList className="first" getActiveItem={this.getActive3}>
                         <ListItem><Icon name="search" />Первый</ListItem>
                         <ListItem>Второй<Badge variant="success" style={{marginLeft: '10px'}}>OK</Badge></ListItem>
@@ -94,7 +95,7 @@ class listView extends Component{
                         <ListItem>Шестой</ListItem>
                         <ListItem>Седьмой</ListItem>
                 </DropList>
-                <br /><i> выбрано {this.state.select4}</i>
+                <br /><i style={{fontSize: '14px'}}> выбран № {this.state.select4}</i>
                 <DropList className="second" selected="3" getActiveItem={this.getActive4}>
                         <ListItem><Icon name="search" />Найти</ListItem>
                         <ListItem><Icon name="settings"/>Настройки</ListItem>
@@ -102,7 +103,7 @@ class listView extends Component{
                         <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
                         <ListItem>Просто пункт с текстом</ListItem>
                 </DropList>
-                 <br /><i> выбрано {this.state.select5}</i>
+                 <br /><i style={{fontSize: '14px'}}> выбран № {this.state.select5}</i>
                 <DropList className="third" selected="1" getActiveItem={this.getActive5}>   
                     {custom}
                 </DropList>
