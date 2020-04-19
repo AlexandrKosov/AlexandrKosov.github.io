@@ -93,7 +93,7 @@ class listView extends Component{
                     </div>    
                 </div>
                 <h2>Dropdown list  <i style={{fontSize: '14px'}}> выбран № {this.state.select3}</i></h2>
-                <DropList className="first" getActiveItem={this.getActive3}>
+                <DropList className="first" getActiveItem={this.getActive3} clearable>
                         <ListItem><Icon name="search" />Первый</ListItem>
                         <ListItem>Второй<Badge variant="success" style={{marginLeft: '10px'}}>OK</Badge></ListItem>
                         <ListItem>Третий</ListItem>
@@ -103,7 +103,7 @@ class listView extends Component{
                         <ListItem>Седьмой</ListItem>
                 </DropList>
                 <br /><i style={{fontSize: '14px'}}> выбран № {this.state.select4}</i>
-                <DropList className="second" selected="3" getActiveItem={this.getActive4}>
+                <DropList className="second" selected="3" getActiveItem={this.getActive4} clearable>
                         <ListItem><Icon name="search" />Найти</ListItem>
                         <ListItem><Icon name="settings"/>Настройки</ListItem>
                         <ListItem disabled><Icon name="delete"/>Удалить</ListItem>

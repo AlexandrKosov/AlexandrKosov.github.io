@@ -13,13 +13,15 @@ class DropList extends Component {
     static propTypes = {
         children: PropTypes.node,
         className: PropTypes.string,
-        getActiveItem: PropTypes.func
+        getActiveItem: PropTypes.func,
+        clearable: PropTypes.bool
     };
   
     static defaultProps = {
         children: null,
         className: '',
-        getActiveItem: ()=>{}
+        getActiveItem: ()=>{},
+        clearable: false
     };
   
     constructor(props){
@@ -161,7 +163,7 @@ class DropList extends Component {
     }
 
     render() {
-        const { className, children, getActiveItem, onChangeActiveItem, ...attrs } = this.props;
+        const { className, children, getActiveItem, onChangeActiveItem, clearable, ...attrs } = this.props;
         const { isOpen, selected, truePos } = this.state;
         const classes = classNames(
           'drop-list',
@@ -175,7 +177,9 @@ class DropList extends Component {
                 <div className="list-current-item" onClick={this.dropListClick}>
                   {this.current || '—'}
                 </div>
-                <div className="list-clear-selected" onClick={this.clearSelected}><Icon name="cross" size="small"/></div>
+                {clearable && <div className="list-clear-selected" onClick={this.clearSelected}>
+                    <Icon name="cross" size="small"/>
+                </div>}
               </div>
                 {<Portal>
                   <div className={dropClasses}
