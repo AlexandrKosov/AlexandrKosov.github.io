@@ -177,9 +177,9 @@ class DropList extends Component {
                 <div className="list-current-item" onClick={this.dropListClick}>
                   {this.current || '—'}
                 </div>
-                {clearable && <div className="list-clear-selected" onClick={this.clearSelected}>
+                {((selected!=null) && clearable) && <div className="list-clear-selected" onClick={this.clearSelected}>
                     <Icon name="cross" size="small"/>
-                </div>}
+                </div>} 
               </div>
                 {<Portal>
                   <div className={dropClasses}

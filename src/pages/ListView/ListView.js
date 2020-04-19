@@ -111,7 +111,7 @@ class listView extends Component{
                         <ListItem>Просто пункт с текстом</ListItem>
                 </DropList>
                  <br /><i style={{fontSize: '14px'}}> выбран № {this.state.select5}</i>
-                <DropList className="third" selected="1" getActiveItem={this.getActive5}>   
+                <DropList className="third" selected="1" getActiveItem={this.getActive5} clearable>   
                     {custom}
                 </DropList>
 
