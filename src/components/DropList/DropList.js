@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 
 import ListItem from '~c/List/ListItem';
 import './DropList.less';
-
+import Icon from '~c/Icon';
 
 class DropList extends Component {
     static propTypes = {
@@ -151,6 +151,15 @@ class DropList extends Component {
         ));
     }
 
+    clearSelected = () => {
+        const { getActiveItem } = this.props;
+        this.setState({
+            selected: null,
+          });
+          this.current = null;
+          getActiveItem(null);
+    }
+
     render() {
         const { className, children, getActiveItem, onChangeActiveItem, ...attrs } = this.props;
         const { isOpen, selected, truePos } = this.state;
@@ -162,10 +171,11 @@ class DropList extends Component {
         return (
             <React.Fragment>
 
-              <div className={classes} onClick={this.dropListClick} ref={this.dropHeadRef}>
-                <div className="list-current-item">
+              <div className={classes}  ref={this.dropHeadRef}>
+                <div className="list-current-item" onClick={this.dropListClick}>
                   {this.current || '—'}
                 </div>
+                <div className="list-clear-selected" onClick={this.clearSelected}><Icon name="cross" size="small"/></div>
               </div>
                 {<Portal>
                   <div className={dropClasses}
