@@ -70,7 +70,6 @@ class listView extends Component{
                 <div style={{display: 'flex'}}>
                     <div style={{width: '45%', marginRight: '20px'}}>
                         <h3>Обычный список с иконками:</h3>
-                        <i style={{fontSize: '14px'}}> выбран № {this.state.select1}</i>
                         <div style={{width: '300px'}}>
                         {/* атрибут selected отсчитывается с НУЛЯ!!!!  */}
                             <List selected='3' getActiveItem={this.getActive}>
@@ -81,6 +80,7 @@ class listView extends Component{
                                 <ListItem>Просто пункт с текстом</ListItem>
                             </List>
                         </div>
+                        <i style={{fontSize: '14px'}}> выбран № {this.state.select1}</i>
                     </div>
                     <div>    
                         <h3>Кастомный список:</h3>
