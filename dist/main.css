@@ -584,9 +584,29 @@ footer {
   position: relative;
   border: 1px solid #ccc;
   max-width: 300px;
-  padding: 4px 8px;
   height: 34px;
   cursor: pointer;
+  display: flex;
+}
+.drop-list .list-current-item {
+  padding: 4px 8px;
+  flex: 1 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.drop-list .list-clear-selected {
+  flex: none;
+  cursor: pointer;
+  width: 28px;
+  padding: 3px 8px;
+  position: relative;
+  opacity: 0.4;
+}
+.drop-list .list-clear-selected:hover {
+  opacity: 0.7;
+}
+.drop-list .list-clear-selected:active {
+  opacity: 1;
 }
 .drop-list .list-item {
   position: absolute;
