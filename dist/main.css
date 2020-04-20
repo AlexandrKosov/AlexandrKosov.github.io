@@ -69,6 +69,13 @@ footer {
 .icon-star {
   background: url('/src/components/Icon/icons/star.svg') center center no-repeat;
 }
+.icon-dropdown {
+  background: url('/src/components/Icon/icons/dropdown.svg') center center no-repeat;
+}
+.icon-dropdown-up {
+  background: url('/src/components/Icon/icons/dropdown.svg') center center no-repeat;
+  transform: rotate(180deg);
+}
 
 .button {
   position: relative;
@@ -601,11 +608,29 @@ footer {
   padding: 3px 8px;
   position: relative;
   opacity: 0.4;
+  transition: opacity 0.5s ease-out;
 }
 .drop-list .list-clear-selected:hover {
   opacity: 0.7;
+  background: #eee;
 }
 .drop-list .list-clear-selected:active {
+  opacity: 1;
+}
+.drop-list .dropdown-arrow {
+  flex: none;
+  cursor: pointer;
+  width: 28px;
+  padding: 3px 6px;
+  position: relative;
+  opacity: 0.4;
+  transition: opacity 0.5s ease-out;
+}
+.drop-list .dropdown-arrow:hover {
+  opacity: 0.7;
+  background: #eee;
+}
+.drop-list .dropdown-arrow:active {
   opacity: 1;
 }
 .drop-list .list-item {
@@ -618,6 +643,7 @@ footer {
   line-height: 24px;
   height: 32px;
   padding: 4px 8px;
+  border-radius: 0;
 }
 .drop-list .list-item .icon:first-child {
   margin-right: 12px;
