@@ -195,7 +195,7 @@ class DropListMulti extends Component {
                     //   onClick={this.dropListItemClick}
                       >
                       {this.renderItems()}
-                      <label className="all list-item"><input type="checkbox" name="check-all" value="" />Выбрать все</label>
+                      <label className="all list-item"><input type="checkbox" name="check-all"  className="dropdown-check" />Выбрать все</label>
                   </div>
                 </Portal>}
             </React.Fragment>    
