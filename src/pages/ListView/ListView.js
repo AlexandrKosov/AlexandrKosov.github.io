@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import List from '~c/List';
 import ListItem from '~c/List/ListItem';
 import DropList from '~c/DropList';
+import DropListMulti from '~c/DropListMulti';
 import Icon from '~c/Icon';
 import  Badge  from '~c/Badge';
 import Button from '~c/Button';
@@ -92,28 +93,47 @@ class listView extends Component{
                         <i style={{fontSize: '14px'}}> выбран № {this.state.select2}</i>
                     </div>    
                 </div>
-                <h2>Dropdown list  <i style={{fontSize: '14px'}}> выбран № {this.state.select3}</i></h2>
-                <DropList className="first" getActiveItem={this.getActive3} clearable>
-                        <ListItem><Icon name="search" />Первый</ListItem>
-                        <ListItem>Второй<Badge variant="success" style={{marginLeft: '10px'}}>OK</Badge></ListItem>
-                        <ListItem>Третий</ListItem>
-                        <ListItem>Четвертый</ListItem>
-                        <ListItem>Пятый</ListItem>
-                        <ListItem>Шестой</ListItem>
-                        <ListItem>Седьмой</ListItem>
-                </DropList>
-                <br /><i style={{fontSize: '14px'}}> выбран № {this.state.select4}</i>
-                <DropList className="second" selected="3" getActiveItem={this.getActive4} clearable>
-                        <ListItem><Icon name="search" />Найти</ListItem>
-                        <ListItem><Icon name="settings"/>Настройки</ListItem>
-                        <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
-                        <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
-                        <ListItem>Просто пункт с текстом</ListItem>
-                </DropList>
-                 <br /><i style={{fontSize: '14px'}}> выбран № {this.state.select5}</i>
-                <DropList className="third" selected="1" getActiveItem={this.getActive5} clearable>   
-                    {custom}
-                </DropList>
+
+
+
+                <div style={{display: 'flex'}}>
+                    <div style={{width: '45%', marginRight: '20px'}}>
+                        <h2>Dropdown list  <i style={{fontSize: '14px'}}> выбран № {this.state.select3}</i></h2>
+                        <DropList className="first" getActiveItem={this.getActive3} clearable>
+                                <ListItem><Icon name="search" />Первый</ListItem>
+                                <ListItem>Второй<Badge variant="success" style={{marginLeft: '10px'}}>OK</Badge></ListItem>
+                                <ListItem>Третий</ListItem>
+                                <ListItem>Четвертый</ListItem>
+                                <ListItem>Пятый</ListItem>
+                                <ListItem>Шестой</ListItem>
+                                <ListItem>Седьмой</ListItem>
+                        </DropList>
+                        <br /><i style={{fontSize: '14px'}}> выбран № {this.state.select4}</i>
+                        <DropList className="second" selected="3" getActiveItem={this.getActive4} clearable>
+                                <ListItem><Icon name="search" />Найти</ListItem>
+                                <ListItem><Icon name="settings"/>Настройки</ListItem>
+                                <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
+                                <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
+                                <ListItem>Просто пункт с текстом</ListItem>
+                        </DropList>
+                        <br /><i style={{fontSize: '14px'}}> выбран № {this.state.select5}</i>
+                        <DropList className="third" selected="1" getActiveItem={this.getActive5} clearable>   
+                            {custom}
+                        </DropList>
+                    </div>
+                    <div>
+                        <h2>Dropdown list Multiselect <i style={{fontSize: '14px'}}> </i></h2>
+                        <DropListMulti selected={[1,3]} getActiveItem={this.getActive6} clearable>
+                            <ListItem>Первый</ListItem>
+                            <ListItem>Второй</ListItem>
+                            <ListItem>Третий</ListItem>
+                            <ListItem disabled>Четвертый</ListItem>
+                            <ListItem>Пятый</ListItem>
+                            <ListItem>Шестой</ListItem>
+                            <ListItem>Седьмой</ListItem>
+                        </DropListMulti>
+                    </div>
+                </div>
 
 
 			</React.Fragment>
