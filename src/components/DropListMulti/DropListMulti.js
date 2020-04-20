@@ -106,12 +106,13 @@ class DropListMulti extends Component {
     };
 
     handleClickOutside = (e) => {
+        const {current: dropdown} = this.dropdownRef;
         // Получаем элемент, на который произведен клик https://archakov.im/post/detect-click-outside-react-component.html
-        const domNode = ReactDOM.findDOMNode(this);
+       const domNode = ReactDOM.findDOMNode(this);
         // Проверяем, что элемент присутствует в переменной,
         // а также, является ли "domNode" узел потомком "event.target" узла.
         // Если не является, то скрываем элемент.
-        if ((!domNode || !domNode.contains(e.target))) {
+        if ((!domNode || !domNode.contains(e.target) && !dropdown.contains(e.target))) {
             this.setState({isOpen: false});
         }
     };
@@ -170,7 +171,7 @@ class DropListMulti extends Component {
           'drop-list',
           className
         );
-        const dropClasses = classNames("dropdown-list",isOpen?'':'hidden');
+        const dropClasses = classNames("dropdown-list dropdown-list-multiple",isOpen?'':'hidden');
         return (
             <React.Fragment>
 
@@ -189,8 +190,10 @@ class DropListMulti extends Component {
                   <div className={dropClasses}
                       ref={this.dropdownRef}
                       style={truePos} 
-                      onClick={this.dropListItemClick}>
+                    //   onClick={this.dropListItemClick}
+                      >
                       {this.renderItems()}
+                      <div className="all list-item"><input type="checkbox" name="check-all" value="" />Выбрать все</div>
                   </div>
                 </Portal>}
             </React.Fragment>    
