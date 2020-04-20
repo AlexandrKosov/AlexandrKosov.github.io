@@ -19,7 +19,19 @@
         padding: 3px 8px;
         position: relative;
         opacity: 0.4;
-        &:hover {opacity: 0.7;}
+        transition: opacity 0.5s ease-out;
+        &:hover {opacity: 0.7;background: #eee;}
+        &:active {opacity: 1;}
+    }
+    .dropdown-arrow {
+        flex: none;
+        cursor: pointer;
+        width: 28px;
+        padding: 3px 6px;
+        position: relative;
+        opacity: 0.4;
+        transition: opacity 0.5s ease-out;
+        &:hover {opacity: 0.7;background: #eee;}
         &:active {opacity: 1;}
     }
     & .list-item {
@@ -32,6 +44,7 @@
         line-height: 24px;
         height: 32px;
         padding: 4px 8px;
+        border-radius: 0;
         & .icon:first-child {
             margin-right: 12px;
         }
@@ -51,6 +64,5 @@
     & .list-item {
         &:first-child, 
         &:last-child {border-radius: 0;}
-    }
-    
+    }   
 }

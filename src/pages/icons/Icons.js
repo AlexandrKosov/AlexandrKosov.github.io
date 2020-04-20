@@ -41,6 +41,8 @@ class Icons extends Component{
                     <Icon name="settings" size='small' />
                     <Icon name="delete" size='small' />
                     <Icon name="star" size='small' />
+                    <Icon name="dropdown" size='small' />
+                    <Icon name="dropdown-up" size='small' />
                 </p>
                 <p>Большие иконки, size="large"</p>
                 <p>
