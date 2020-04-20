@@ -46,11 +46,11 @@ class DropListMulti extends Component {
 
     dropListItemClick = (e) => {
       //e.persist();
-      this.setState((state)=>{
-        return {
-          isOpen: !state.isOpen,
-        }
-      });
+    //   this.setState((state)=>{
+    //     return {
+    //       isOpen: !state.isOpen,
+    //     }
+    //   });
     };
 
     componentDidMount(){
@@ -192,7 +192,7 @@ class DropListMulti extends Component {
                   <div className={dropClasses}
                       ref={this.dropdownRef}
                       style={truePos} 
-                    //   onClick={this.dropListItemClick}
+                      onClick={this.dropListItemClick}
                       >
                       {this.renderItems()}
                       <label className="all list-item"><input type="checkbox" name="check-all"  className="dropdown-check" />Выбрать все</label>
