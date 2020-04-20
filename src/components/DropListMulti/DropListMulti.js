@@ -148,6 +148,7 @@ class DropListMulti extends Component {
                 className={classNames(child.props.className)}
                 onChangeActiveItem={this.changeActiveItem}
             >
+                <input type="checkbox" className="dropdown-check" />
                 {child.props.children}
             </ListItem>
         ));
