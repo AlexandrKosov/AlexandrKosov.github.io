@@ -115,6 +115,7 @@ class DropListMulti extends Component {
         if ((!domNode || !domNode.contains(e.target) && !dropdown.contains(e.target))) {
             this.setState({isOpen: false});
         }
+
     };
 
     setActiveItem = (selectedIndex) => {
@@ -142,6 +143,7 @@ class DropListMulti extends Component {
         const { selected } = this.state;
         return children.map((child, index)=>(
             <ListItem
+                tag='label'
                 key={index}
                 index={index}
                 disabled={child.props.disabled}
@@ -193,7 +195,7 @@ class DropListMulti extends Component {
                     //   onClick={this.dropListItemClick}
                       >
                       {this.renderItems()}
-                      <div className="all list-item"><input type="checkbox" name="check-all" value="" />Выбрать все</div>
+                      <label className="all list-item"><input type="checkbox" name="check-all" value="" />Выбрать все</label>
                   </div>
                 </Portal>}
             </React.Fragment>    
