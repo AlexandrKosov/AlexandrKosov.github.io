@@ -143,12 +143,11 @@ class DropListMulti extends Component {
     
     changeActiveItem = (activeIndex) =>{
         const { children, getActiveItem } = this.props;
-
-        console.log("ch:",children);
+        const {selected} = this.state;
 
         if(!children[activeIndex].props.disabled){
             this.setActiveItem(activeIndex);
-            getActiveItem(activeIndex);
+            getActiveItem(selected);//getActiveItem(activeIndex);
         }
     };
 

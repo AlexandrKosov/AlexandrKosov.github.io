@@ -58,7 +58,8 @@ class listView extends Component{
         this.setState({select5: index});
     }
     //список с мультивыбором
-    getActive6 = (index) => {
+    getActive6 = (selected) => {
+        this.setState({select6: selected});
        // this.setState((state)=>{select6: state.select6.push(index)});
         //console.log('s6:',this.state.select6);
     }    
@@ -138,7 +139,7 @@ class listView extends Component{
                             <ListItem disabled>Шестой</ListItem>
                             <ListItem>Седьмой</ListItem>
                         </DropListMulti>
-                        <div>{this.state.select6.map((item, index)=>{index, item})}</div>
+                        <div>{this.state.select6.map((item, index)=>{return (<span>{item}, </span>)})}</div>
                     </div>
                 </div>
 
