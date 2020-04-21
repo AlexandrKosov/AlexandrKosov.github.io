@@ -61,7 +61,7 @@ class DropListMulti extends Component {
         const { current: dropHead } = this.dropHeadRef;
         const {current: dropdown} = this.dropdownRef;
 
-
+        this.updateCurrent(); 
         // if(selected.length!=0){
         //     console.log('->',selected);
 
@@ -72,9 +72,6 @@ class DropListMulti extends Component {
         //     //this.setActiveItem(activeIndex);
         //     getActiveItem(this.state.selected);
         // } 
-
-
-
         setTimeout(()=>{
             let head = dropHead.getBoundingClientRect();
             let drop = dropdown.getBoundingClientRect();
@@ -131,6 +128,15 @@ class DropListMulti extends Component {
         }
     };
 
+    updateCurrent = () => {
+        const { children } = this.props;
+        const { selected } = this.state;
+        let names = [];
+        for(let i=0;i<selected.length; ++i){
+            names.push(children[selected[i]].props.children);
+        }
+        this.current = [...names];
+    }
     setActiveItem = (selectedIndex) => {
         const { className, children, ...attrs } = this.props;
         const { selected } = this.state;
@@ -146,11 +152,7 @@ class DropListMulti extends Component {
         this.setState({selected: arr});
 
         console.log('==',arr);
-        let names = [];
-        for(let i=0;i<arr.length; ++i){
-            names.push(children[arr[i]].props.children);
-        }
-        this.current = [...names];
+        this.updateCurrent(arr);   
     }
     
     changeActiveItem = (activeIndex) =>{
@@ -197,7 +199,7 @@ class DropListMulti extends Component {
 
     clearSelected = () => {
         const { getActiveItem } = this.props;
-        this.current = null;
+        this.current = [];
         getActiveItem([]);
         this.setState({
             selected: [],
