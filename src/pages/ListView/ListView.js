@@ -59,7 +59,9 @@ class listView extends Component{
     }
     //список с мультивыбором
     getActive6 = (selected) => {
+        console.log('act6:',selected);
         this.setState({select6: selected});
+        
        // this.setState((state)=>{select6: state.select6.push(index)});
         //console.log('s6:',this.state.select6);
     }    
@@ -130,16 +132,19 @@ class listView extends Component{
                     </div>
                     <div>
                         <h2>Dropdown list Multiselect <i style={{fontSize: '14px'}}> </i></h2>
-                        <DropListMulti selected={[2,4]} getActiveItem={this.getActive6} clearable>
-                            <ListItem>Первый</ListItem>
-                            <ListItem>Второй</ListItem>
-                            <ListItem>Третий</ListItem>
-                            <ListItem disabled>Четвертый</ListItem>
-                            <ListItem>Пятый</ListItem>
-                            <ListItem disabled>Шестой</ListItem>
-                            <ListItem>Седьмой</ListItem>
+                        <div>{this.state.select6.map((item, index)=>{return (<span key={item}>{item}, </span>)})}</div>
+                        <DropListMulti selected={[1,5]} getActiveItem={this.getActive6} clearable>
+                            <ListItem disabled>Zero</ListItem>
+                            <ListItem>Uno</ListItem>
+                            <ListItem>Due</ListItem>
+                            <ListItem>Tre</ListItem>
+                            <ListItem >Quattro</ListItem>
+                            <ListItem>Cinque</ListItem>
+                            <ListItem>Sei</ListItem>
+                            <ListItem>Sette</ListItem>
+                            <ListItem disabled>Otto</ListItem>
                         </DropListMulti>
-                        <div>{this.state.select6.map((item, index)=>{return (<span>{item}, </span>)})}</div>
+                        
                     </div>
                 </div>
 
