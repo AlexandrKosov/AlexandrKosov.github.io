@@ -92,8 +92,19 @@ label.list-item {
 
    &.active {
        &::before{
-          background: url(/src/components/DropListMulti/icons/ok.svg) center center no-repeat; 
-       }   
+          background: url(/src/components/DropListMulti/icons/check.svg) center center no-repeat; 
+          opacity: 0.6;
+       } 
+       &::hover {
+        &::before{
+            opacity: 0.8;
+         }
+       }
+       &:active {
+        &::before{
+            opacity: 1;
+         }
+       }
    }
    &_check-all {
        //-
