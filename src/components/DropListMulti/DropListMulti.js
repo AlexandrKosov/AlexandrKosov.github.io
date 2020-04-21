@@ -35,7 +35,7 @@ class DropListMulti extends Component {
             
         };
     }
-    current = null;//не в State, а как локальная переменная. т.к. выбранным пунктом управляет state.selected, а current просто хранит данные об текущем объекте для внутреннего пользования
+    current = null;//список выбранных элементов
     dropHeadRef = React.createRef();
     dropdownRef = React.createRef();
 
@@ -46,14 +46,14 @@ class DropListMulti extends Component {
       });
     };
 
-    dropListItemClick = (e) => {
-      //e.persist();
+    // dropListItemClick = (e) => {
+    //   e.persist();
     //   this.setState((state)=>{
     //     return {
     //       isOpen: !state.isOpen,
     //     }
     //   });
-    };
+    // };
 
     componentDidMount(){
         const { getActiveItem } = this.props;
@@ -117,47 +117,28 @@ class DropListMulti extends Component {
         if ((!domNode || !domNode.contains(e.target) && !dropdown.contains(e.target))) {
             this.setState({isOpen: false});
         }
-
     };
 
     setActiveItem = (selectedIndex) => {
         const { className, children, ...attrs } = this.props;
         const { selected } = this.state;
-        console.log('sel:', selectedIndex, selected);
-    
-//let array = [...mySet]; или Array.from(S);   array from Set
-// new Set([iterable]);
 
         let set  = new Set(selected);
+
         if(set.has(selectedIndex)){
             set.delete(selectedIndex);
         }else{
             set.add(selectedIndex);
         }
-        //console.log('has:', set.has(selectedIndex));
-        console.log('set:',set);
-        //let arr = Array.from(set);
         let arr = [...set];
-       // console.log('new:', arr);
-       this.setState({selected: arr});
+        this.setState({selected: arr});
 
-//      console.log('-',selected.includes(selectedIndex));
-
-        //console.log('ind:',selected.findIndex((el,index)=>{el[index]==selectedIndex}));
-// let cur = children[selectedIndex]; console.log('a:',cur);
-
-        // if (selected.includes(selectedIndex)) {
-        //   this.setState((state)=>{
-        //     selected: state.selected.push(selectedIndex)
-        //   });
-        //   this.current = (React.cloneElement(children[selectedIndex]));
-        // } 
-
-        // else {
-        //     this.setState((state)=>{
-        //     selected: state.selected.pop(selectedIndex)
-        //   });
-        // }
+        console.log(arr);
+        let names = [];
+        for(let i=0;i<arr.length; ++i){
+            names.push(children[arr[i]].props.children);
+        }
+        this.current = [...names];
     }
     
     changeActiveItem = (activeIndex) =>{
@@ -210,7 +191,7 @@ class DropListMulti extends Component {
 
               <div className={classes}  ref={this.dropHeadRef}>
                 <div className="list-current-item" onClick={this.dropListClick}>
-                  {this.current || '—'}
+                  {(this.current && this.current.length)? this.current.toString() :'—'}
                 </div>
                 <div className="dropdown-arrow" onClick={this.dropListClick}>    
                     {isOpen?<Icon name="dropdown-up" />:<Icon name="dropdown" />}
