@@ -129,7 +129,7 @@ class listView extends Component{
                     </div>
                     <div>
                         <h2>Dropdown list Multiselect <i style={{fontSize: '14px'}}> </i></h2>
-                        <DropListMulti selected={[2]} getActiveItem={this.getActive6} clearable>
+                        <DropListMulti selected={[2,4]} getActiveItem={this.getActive6} clearable>
                             <ListItem>Первый</ListItem>
                             <ListItem>Второй</ListItem>
                             <ListItem>Третий</ListItem>

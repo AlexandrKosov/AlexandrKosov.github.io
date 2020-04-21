@@ -8,9 +8,11 @@
     display: flex;
     & .list-current-item {
         padding: 4px 8px;
-        flex: 1 0 auto;
+        flex: 1;
         position: relative;
+        white-space: nowrap;
         overflow: hidden;
+        text-overflow: ellipsis;
     }
     & .list-clear-selected {
         flex: none;

@@ -57,12 +57,24 @@ class DropListMulti extends Component {
 
     componentDidMount(){
         const { getActiveItem } = this.props;
+        const { selected=[] } = this.state;
         const { current: dropHead } = this.dropHeadRef;
         const {current: dropdown} = this.dropdownRef;
 
-        if(this.state.selected.length!=0){
-            getActiveItem(this.state.selected);
-        } 
+
+        // if(selected.length!=0){
+        //     console.log('->',selected);
+
+        //     selected.forEach((el,i)=>{
+        //         this.setActiveItem(el);
+        //     });
+
+        //     //this.setActiveItem(activeIndex);
+        //     getActiveItem(this.state.selected);
+        // } 
+
+
+
         setTimeout(()=>{
             let head = dropHead.getBoundingClientRect();
             let drop = dropdown.getBoundingClientRect();
@@ -133,7 +145,7 @@ class DropListMulti extends Component {
         let arr = [...set];
         this.setState({selected: arr});
 
-        console.log(arr);
+        console.log('==',arr);
         let names = [];
         for(let i=0;i<arr.length; ++i){
             names.push(children[arr[i]].props.children);
@@ -150,32 +162,46 @@ class DropListMulti extends Component {
         }
     };
 
+
+    // setChecked = (index) => {
+    //     const { selected } = this.state;
+    //     selected.forEach((val,i)=>{
+    //        // console.log("selected:",i,val,'==',index);
+    //         if(val===index) return true;
+    //     });
+    // };
+
     renderItems = () => {
         const { className, children, ...attrs } = this.props;
         const { selected } = this.state;
-        return children.map((child, index)=>(
+        //console.log(selected);//2,4 третий, пятый
+        let checked = false;
+        return children.map((child, index)=>{// 0..6  3,5==disabled
+            return (
             <ListItem
                 tag='label'
                 key={index}
                 index={index}
+                className={classNames(child.props.className, selected.includes(index)?'active':'')}
+                // active={selected.includes(index)} - не работает, лучше передавать через className
                 disabled={child.props.disabled}
-                active={index==parseInt(selected[index])}
-                className={classNames(child.props.className)}
                 onChangeActiveItem={this.changeActiveItem}
             >
-                <input type="checkbox" disabled={child.props.disabled} defaultChecked={index==parseInt(selected[index])} className="dropdown-check" />
+                <input type="checkbox" disabled={child.props.disabled} defaultChecked={selected.includes(index)} className="dropdown-check" />
                 {child.props.children}
             </ListItem>
-        ));
+        )
+    }
+    );
     }
 
     clearSelected = () => {
         const { getActiveItem } = this.props;
+        this.current = null;
+        getActiveItem([]);
         this.setState({
             selected: [],
-          });
-          this.current = null;
-          getActiveItem([]);
+        });
     }
 
     render() {
@@ -191,12 +217,12 @@ class DropListMulti extends Component {
 
               <div className={classes}  ref={this.dropHeadRef}>
                 <div className="list-current-item" onClick={this.dropListClick}>
-                  {(this.current && this.current.length)? this.current.toString() :'—'}
+                  {(this.current && this.current.length)? this.current.join(', ') :'—'}
                 </div>
                 <div className="dropdown-arrow" onClick={this.dropListClick}>    
                     {isOpen?<Icon name="dropdown-up" />:<Icon name="dropdown" />}
                 </div>    
-                {((selected.length!==0) && clearable) && <div className="list-clear-selected" onClick={this.clearSelected}>
+                {((this.current!==null && this.current.length!==0) && clearable) && <div className="list-clear-selected" onClick={this.clearSelected}>
                     <Icon name="cross" size="small"/>
                 </div>} 
               </div>

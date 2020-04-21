@@ -53,7 +53,7 @@ class ListItem extends Component {
       className,
       { disabled },
       { active },
-    );        
+    );
     return (
       <Tag className={classes} 
       {...attrs}
