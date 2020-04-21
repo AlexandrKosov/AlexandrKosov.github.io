@@ -46,15 +46,6 @@ class DropListMulti extends Component {
       });
     };
 
-    // dropListItemClick = (e) => {
-    //   e.persist();
-    //   this.setState((state)=>{
-    //     return {
-    //       isOpen: !state.isOpen,
-    //     }
-    //   });
-    // };
-
     componentDidMount(){
         const { getActiveItem } = this.props;
         const { selected=[] } = this.state;
@@ -62,16 +53,7 @@ class DropListMulti extends Component {
         const {current: dropdown} = this.dropdownRef;
 
         this.updateCurrent(); 
-        // if(selected.length!=0){
-        //     console.log('->',selected);
 
-        //     selected.forEach((el,i)=>{
-        //         this.setActiveItem(el);
-        //     });
-
-        //     //this.setActiveItem(activeIndex);
-        //     getActiveItem(this.state.selected);
-        // } 
         setTimeout(()=>{
             let head = dropHead.getBoundingClientRect();
             let drop = dropdown.getBoundingClientRect();
@@ -81,6 +63,10 @@ class DropListMulti extends Component {
             document.addEventListener('click', this.handleClickOutside, false);
         },0); 
     }
+
+    // componentDidUpdate(){
+    //     this.updateCurrent(); 
+    // }
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.updateDimensions);
@@ -128,15 +114,17 @@ class DropListMulti extends Component {
         }
     };
 
-    updateCurrent = () => {
+    updateCurrent = (arr) => {
         const { children } = this.props;
         const { selected } = this.state;
         let names = [];
-        for(let i=0;i<selected.length; ++i){
-            names.push(children[selected[i]].props.children);
+        let selArr =arr? arr : selected;
+        for(let i=0;i<selArr.length; ++i){
+            names.push(children[selArr[i]].props.children);
         }
         this.current = [...names];
     }
+
     setActiveItem = (selectedIndex) => {
         const { className, children, ...attrs } = this.props;
         const { selected } = this.state;
@@ -149,29 +137,20 @@ class DropListMulti extends Component {
             set.add(selectedIndex);
         }
         let arr = [...set];
+        this.updateCurrent(arr); 
         this.setState({selected: arr});
-
-        console.log('==',arr);
-        this.updateCurrent(arr);   
     }
     
     changeActiveItem = (activeIndex) =>{
         const { children, getActiveItem } = this.props;
+
+        console.log("ch:",children);
 
         if(!children[activeIndex].props.disabled){
             this.setActiveItem(activeIndex);
             getActiveItem(activeIndex);
         }
     };
-
-
-    // setChecked = (index) => {
-    //     const { selected } = this.state;
-    //     selected.forEach((val,i)=>{
-    //        // console.log("selected:",i,val,'==',index);
-    //         if(val===index) return true;
-    //     });
-    // };
 
     renderItems = () => {
         const { className, children, ...attrs } = this.props;
@@ -189,7 +168,10 @@ class DropListMulti extends Component {
                 disabled={child.props.disabled}
                 onChangeActiveItem={this.changeActiveItem}
             >
-                <input type="checkbox" disabled={child.props.disabled} defaultChecked={selected.includes(index)} className="dropdown-check" />
+                {/* <input type="checkbox" onChange={(e,index)=>{this.handleCheck}} 
+                        disabled={child.props.disabled} 
+                        defaultChecked={selected.includes(index)} 
+                        className="dropdown-check" /> */}
                 {child.props.children}
             </ListItem>
         )
@@ -235,7 +217,10 @@ class DropListMulti extends Component {
                       onClick={this.dropListItemClick}
                       >
                       {this.renderItems()}
-                      <label className="all list-item"><input type="checkbox" name="check-all"  className="dropdown-check" />Выбрать все</label>
+                      <label className="list-item list-item_check-all">
+                        {/* <input type="checkbox" name="check-all"  className="dropdown-check" /> */}
+                        Выбрать все
+                      </label>
                   </div>
                 </Portal>}
             </React.Fragment>    

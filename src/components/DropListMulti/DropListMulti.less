@@ -79,3 +79,23 @@ label.list-item {
         &:last-child {border-radius: 0;}
     }   
 }
+
+.dropdown-list-multiple .list-item {
+
+    &::before {
+        content: '';
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        border: 1px solid #ccc;
+    }
+
+   &.active {
+       &::before{
+          background: url(/src/components/DropListMulti/icons/ok.svg) center center no-repeat; 
+       }   
+   }
+   &_check-all {
+       //-
+   }
+} 
