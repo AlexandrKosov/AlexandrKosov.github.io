@@ -15,7 +15,8 @@ class listView extends Component{
         select2: null,
         select3: null,
         select4: null,
-        select5: null
+        select5: null,
+        select6: []
     };
 
     customData = [
@@ -56,6 +57,11 @@ class listView extends Component{
     getActive5 = (index) => {
         this.setState({select5: index});
     }
+    //список с мультивыбором
+    getActive6 = (index) => {
+       // this.setState((state)=>{select6: state.select6.push(index)});
+        //console.log('s6:',this.state.select6);
+    }    
     render(){
         const custom = this.customData.map((item)=>{
             return (<ListItem className="list-item-flex" disabled={item.disabled} key={item.text}>
@@ -123,15 +129,16 @@ class listView extends Component{
                     </div>
                     <div>
                         <h2>Dropdown list Multiselect <i style={{fontSize: '14px'}}> </i></h2>
-                        <DropListMulti selected={[1,3]} getActiveItem={this.getActive6} clearable>
+                        <DropListMulti selected={[]} getActiveItem={this.getActive6} clearable>
                             <ListItem>Первый</ListItem>
                             <ListItem>Второй</ListItem>
                             <ListItem>Третий</ListItem>
                             <ListItem disabled>Четвертый</ListItem>
                             <ListItem>Пятый</ListItem>
-                            <ListItem>Шестой</ListItem>
+                            <ListItem disabled>Шестой</ListItem>
                             <ListItem>Седьмой</ListItem>
                         </DropListMulti>
+                        <div>{this.state.select6.map((item, index)=>{index, item})}</div>
                     </div>
                 </div>
 

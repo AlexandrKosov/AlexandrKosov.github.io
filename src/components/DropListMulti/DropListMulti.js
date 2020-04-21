@@ -14,20 +14,22 @@ class DropListMulti extends Component {
         children: PropTypes.node,
         className: PropTypes.string,
         getActiveItem: PropTypes.func,
-        clearable: PropTypes.bool
+        clearable: PropTypes.bool,
+        selected: PropTypes.array
     };
   
     static defaultProps = {
         children: null,
         className: '',
         getActiveItem: ()=>{},
-        clearable: false
+        clearable: false,
+        selected: []
     };
   
     constructor(props){
         super(props);
         this.state = {
-            selected: props.selected?props.selected:null,
+            selected: props.selected?props.selected:[],
             isOpen: false,
             truePos: {},
             
@@ -58,7 +60,7 @@ class DropListMulti extends Component {
         const { current: dropHead } = this.dropHeadRef;
         const {current: dropdown} = this.dropdownRef;
 
-        if(this.state.selected){
+        if(this.state.selected.length!=0){
             getActiveItem(this.state.selected);
         } 
         setTimeout(()=>{
@@ -121,17 +123,46 @@ class DropListMulti extends Component {
     setActiveItem = (selectedIndex) => {
         const { className, children, ...attrs } = this.props;
         const { selected } = this.state;
-        if (selected !== selectedIndex) {
-          this.setState({
-            selected: selectedIndex,
-          });
-          this.current = (React.cloneElement(children[selectedIndex]));
+        console.log('sel:', selectedIndex, selected);
+    
+//let array = [...mySet]; или Array.from(S);   array from Set
+// new Set([iterable]);
+
+        let set  = new Set(selected);
+        if(set.has(selectedIndex)){
+            set.delete(selectedIndex);
+        }else{
+            set.add(selectedIndex);
         }
+        //console.log('has:', set.has(selectedIndex));
+        console.log('set:',set);
+        //let arr = Array.from(set);
+        let arr = [...set];
+       // console.log('new:', arr);
+       this.setState({selected: arr});
+
+//      console.log('-',selected.includes(selectedIndex));
+
+        //console.log('ind:',selected.findIndex((el,index)=>{el[index]==selectedIndex}));
+// let cur = children[selectedIndex]; console.log('a:',cur);
+
+        // if (selected.includes(selectedIndex)) {
+        //   this.setState((state)=>{
+        //     selected: state.selected.push(selectedIndex)
+        //   });
+        //   this.current = (React.cloneElement(children[selectedIndex]));
+        // } 
+
+        // else {
+        //     this.setState((state)=>{
+        //     selected: state.selected.pop(selectedIndex)
+        //   });
+        // }
     }
     
     changeActiveItem = (activeIndex) =>{
         const { children, getActiveItem } = this.props;
-        
+
         if(!children[activeIndex].props.disabled){
             this.setActiveItem(activeIndex);
             getActiveItem(activeIndex);
@@ -147,11 +178,11 @@ class DropListMulti extends Component {
                 key={index}
                 index={index}
                 disabled={child.props.disabled}
-                active={index==parseInt(selected)}
+                active={index==parseInt(selected[index])}
                 className={classNames(child.props.className)}
                 onChangeActiveItem={this.changeActiveItem}
             >
-                <input type="checkbox" className="dropdown-check" />
+                <input type="checkbox" disabled={child.props.disabled} defaultChecked={index==parseInt(selected[index])} className="dropdown-check" />
                 {child.props.children}
             </ListItem>
         ));
@@ -160,10 +191,10 @@ class DropListMulti extends Component {
     clearSelected = () => {
         const { getActiveItem } = this.props;
         this.setState({
-            selected: null,
+            selected: [],
           });
           this.current = null;
-          getActiveItem(null);
+          getActiveItem([]);
     }
 
     render() {
@@ -184,7 +215,7 @@ class DropListMulti extends Component {
                 <div className="dropdown-arrow" onClick={this.dropListClick}>    
                     {isOpen?<Icon name="dropdown-up" />:<Icon name="dropdown" />}
                 </div>    
-                {((selected!==null) && clearable) && <div className="list-clear-selected" onClick={this.clearSelected}>
+                {((selected.length!==0) && clearable) && <div className="list-clear-selected" onClick={this.clearSelected}>
                     <Icon name="cross" size="small"/>
                 </div>} 
               </div>
