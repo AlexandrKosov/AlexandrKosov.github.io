@@ -140,12 +140,12 @@ class DropListMulti extends Component {
     
     renderItems = () => {
         const { className, children, selected, ...attrs } = this.props;
+        console.log(children)
         return children.map((child, index)=>(
             <ListItem
                 key={index}
                 index={index}
-                className={classNames(child.props.className, selected.includes(index)?'active':'')}
-                // active={selected.includes(index)} - не работает, лучше передавать через className
+                active={selected.includes(index)}
                 disabled={child.props.disabled}
                 onChangeActiveItem={this.changeActiveItem} >
                 {child.props.children}
