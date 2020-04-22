@@ -15,7 +15,7 @@ class DropListMulti extends Component {
         className: PropTypes.string,
         getActiveItem: PropTypes.func,
         clearable: PropTypes.bool,
-        selected: PropTypes.array
+        selected: PropTypes.array.isRequired
     };
   
     static defaultProps = {
