@@ -59,7 +59,6 @@ class listView extends Component{
     }
     //список с мультивыбором
     getActive6 = (selected) => {
-        console.log('act6:',selected);
         this.setState({select6: selected});
         
        // this.setState((state)=>{select6: state.select6.push(index)});
