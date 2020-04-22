@@ -130,7 +130,7 @@ class listView extends Component{
                         <h2>Dropdown list Multiselect <i style={{fontSize: '14px'}}> </i></h2>
                         <div>{this.state.select6.map((item, index)=>{return (<span key={item}>{item}, </span>)})}</div>
                         <DropListMulti selected={this.state.select6} getActiveItem={this.getActive6} clearable>
-                            <ListItem disabled>Zero</ListItem>
+                            <ListItem>Zero</ListItem>
                             <ListItem>Uno</ListItem>
                             <ListItem>Due</ListItem>
                             <ListItem>Tre</ListItem>
@@ -138,7 +138,7 @@ class listView extends Component{
                             <ListItem>Cinque</ListItem>
                             <ListItem>Sei</ListItem>
                             <ListItem>Sette</ListItem>
-                            <ListItem disabled>Otto</ListItem>
+                            <ListItem>Otto</ListItem>
                         </DropListMulti>
                         
                     </div>

@@ -177,6 +177,17 @@ class DropListMulti extends Component {
         getActiveItem([]);
     }
 
+    checkAll(){
+        const { className, children, selected,getActiveItem, ...attrs } = this.props; 
+        if(selected.length === 0){
+            return '';
+        } else if(selected.length !== children.length){ //не все выбраны
+            return 'partly';
+        } else {
+            return 'full'
+        }
+    }
+
     render() {
         const { className, children, getActiveItem, onChangeActiveItem, clearable,selected, ...attrs } = this.props;
         const { isOpen,truePos } = this.state;
@@ -185,6 +196,11 @@ class DropListMulti extends Component {
           className
         );
         const dropClasses = classNames("dropdown-list dropdown-list-multiple",isOpen?'':'hidden');
+        const checkSelectAll = classNames(
+            'list-item',
+            'list-item_check-all',
+            this.checkAll()
+        );
         return (
             <React.Fragment>
 
@@ -206,7 +222,7 @@ class DropListMulti extends Component {
                       onClick={this.dropListItemClick}
                       >
                       {this.renderItems()}
-                      <label className="list-item list-item_check-all" onClick={this.selectAll}>
+                      <label className={checkSelectAll} onClick={this.selectAll}>
                         Выбрать все
                       </label>
                   </div>
