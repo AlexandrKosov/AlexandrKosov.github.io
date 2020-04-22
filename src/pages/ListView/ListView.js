@@ -16,7 +16,7 @@ class listView extends Component{
         select3: null,
         select4: null,
         select5: null,
-        select6: []
+        select6: [1,5]
     };
 
     customData = [
@@ -133,7 +133,7 @@ class listView extends Component{
                     <div>
                         <h2>Dropdown list Multiselect <i style={{fontSize: '14px'}}> </i></h2>
                         <div>{this.state.select6.map((item, index)=>{return (<span key={item}>{item}, </span>)})}</div>
-                        <DropListMulti selected={[1,5]} getActiveItem={this.getActive6} clearable>
+                        <DropListMulti selected={this.state.select6} getActiveItem={this.getActive6} clearable>
                             <ListItem disabled>Zero</ListItem>
                             <ListItem>Uno</ListItem>
                             <ListItem>Due</ListItem>

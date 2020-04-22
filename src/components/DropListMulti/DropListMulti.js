@@ -29,7 +29,7 @@ class DropListMulti extends Component {
     constructor(props){
         super(props);
         this.state = {
-            selected: props.selected?props.selected:[],
+            //selected: props.selected?props.selected:[],
             isOpen: false,
             truePos: {},
             
@@ -48,7 +48,7 @@ class DropListMulti extends Component {
 
     componentDidMount(){
         const { getActiveItem } = this.props;
-        const { selected=[] } = this.state;
+        //const { selected=[] } = this.state;
         const { current: dropHead } = this.dropHeadRef;
         const {current: dropdown} = this.dropdownRef;
 
@@ -115,8 +115,8 @@ class DropListMulti extends Component {
     };
 
     updateCurrent = (arr) => {
-        const { children } = this.props;
-        const { selected } = this.state;
+        const { children, selected } = this.props;
+        //const { selected } = this.state;
         let names = [];
         let selArr =arr? arr : selected;
         for(let i=0;i<selArr.length; ++i){
@@ -126,8 +126,8 @@ class DropListMulti extends Component {
     }
 
     setActiveItem = (selectedIndex) => {
-        const { className, children, ...attrs } = this.props;
-        const { selected } = this.state;
+        const { className, children, selected, ...attrs } = this.props;
+        //const { selected } = this.state;
 
         let set  = new Set(selected);
 
@@ -138,22 +138,23 @@ class DropListMulti extends Component {
         }
         let arr = [...set];
         this.updateCurrent(arr); 
-        this.setState({selected: arr});
+        //this.setState({selected: arr});
+        return arr;
     }
     
     changeActiveItem = (activeIndex) =>{
-        const { children, getActiveItem } = this.props;
-        const {selected} = this.state;
+        const { children, getActiveItem, selected } = this.props;
+        //const {selected} = this.state;
 
         if(!children[activeIndex].props.disabled){
-            this.setActiveItem(activeIndex);
-            getActiveItem(selected);//getActiveItem(activeIndex);
+            
+            getActiveItem(this.setActiveItem(activeIndex));//getActiveItem(activeIndex);
         }
     };
 
     renderItems = () => {
-        const { className, children, ...attrs } = this.props;
-        const { selected } = this.state;
+        const { className, children, selected, ...attrs } = this.props;
+        //const { selected } = this.state;
         //console.log(selected);//2,4 третий, пятый
         let checked = false;
         return children.map((child, index)=>{// 0..6  3,5==disabled
@@ -182,14 +183,14 @@ class DropListMulti extends Component {
         const { getActiveItem } = this.props;
         this.current = [];
         getActiveItem([]);
-        this.setState({
-            selected: [],
-        });
+        // this.setState({
+        //     selected: [],
+        // });
     }
 
     render() {
-        const { className, children, getActiveItem, onChangeActiveItem, clearable, ...attrs } = this.props;
-        const { isOpen, selected, truePos } = this.state;
+        const { className, children, getActiveItem, onChangeActiveItem, clearable,selected, ...attrs } = this.props;
+        const { isOpen,truePos } = this.state;
         const classes = classNames(
           'drop-list',
           className
