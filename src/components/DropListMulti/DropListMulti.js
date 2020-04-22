@@ -116,6 +116,14 @@ class DropListMulti extends Component {
         this.current = [...names];
     }
 
+    changeActiveItem = (activeIndex) =>{
+        const { children, getActiveItem, selected } = this.props;
+        if(!children[activeIndex].props.disabled){ 
+            getActiveItem(this.setActiveItem(activeIndex));      
+        };
+       // this.updateDimensions();
+    };
+
     setActiveItem = (selectedIndex) => {
         const { className, children, selected, ...attrs } = this.props;
         let set  = new Set(selected);
@@ -130,19 +138,9 @@ class DropListMulti extends Component {
         return arr;
     }
     
-    changeActiveItem = (activeIndex) =>{
-        const { children, getActiveItem, selected } = this.props;
-        if(!children[activeIndex].props.disabled){ 
-            getActiveItem(this.setActiveItem(activeIndex));
-        };
-       // this.updateDimensions();
-    };
-
     renderItems = () => {
         const { className, children, selected, ...attrs } = this.props;
-        let checked = false;
-        return children.map((child, index)=>{
-            return (
+        return children.map((child, index)=>(
             <ListItem
                 tag='label'
                 key={index}
@@ -150,14 +148,28 @@ class DropListMulti extends Component {
                 className={classNames(child.props.className, selected.includes(index)?'active':'')}
                 // active={selected.includes(index)} - не работает, лучше передавать через className
                 disabled={child.props.disabled}
-                onChangeActiveItem={this.changeActiveItem}
-            >
+                onChangeActiveItem={this.changeActiveItem} >
                 {child.props.children}
             </ListItem>
-        )
+        ));
     }
-    );
-    }
+
+    selectAll = () => {
+        const { className, children, selected,getActiveItem, ...attrs } = this.props;    
+        if(selected.length !== children.length){ //не все выбраны
+            let all = [];
+            children.map((child, index)=>{
+                if(!child.props.disabled){
+                   all.push(index); 
+                }
+            });
+            this.updateCurrent(all); 
+            getActiveItem(all);
+        }
+        else {// выбраны все, нужно отключить 
+            this.clearSelected();
+        }
+    };
 
     clearSelected = () => {
         const { getActiveItem } = this.props;
@@ -194,7 +206,7 @@ class DropListMulti extends Component {
                       onClick={this.dropListItemClick}
                       >
                       {this.renderItems()}
-                      <label className="list-item list-item_check-all">
+                      <label className="list-item list-item_check-all" onClick={this.selectAll}>
                         Выбрать все
                       </label>
                   </div>
