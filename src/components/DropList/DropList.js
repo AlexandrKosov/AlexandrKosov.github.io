@@ -32,19 +32,17 @@ class DropList extends Component {
             
         };
     }
-    current = null;//не в State, а как локальная переменная. т.к. выбранным пунктом управляет state.selected, а current просто хранит данные об текущем объекте для внутреннего пользования
+    current = null;
     dropHeadRef = React.createRef();
     dropdownRef = React.createRef();
 
     dropListClick = (e) => {
-      //e.persist();
       this.setState((state)=>{
         return {isOpen: !state.isOpen}
       });
     };
 
     dropListItemClick = (e) => {
-      //e.persist();
       this.setState((state)=>{
         return {
           isOpen: !state.isOpen,
@@ -57,12 +55,7 @@ class DropList extends Component {
         const { current: dropHead } = this.dropHeadRef;
         const {current: dropdown} = this.dropdownRef;
 
-        // if(this.state.selected){
-        //     getActiveItem(this.state.selected);
-        // } 
         if(selected){
-           // getActiveItem(selected);
-
            this.setActiveItem(selected);
            this.current = (React.cloneElement(children[selected]));
            getActiveItem(selected);
@@ -71,22 +64,11 @@ class DropList extends Component {
         setTimeout(()=>{
             let head = dropHead.getBoundingClientRect();
             let drop = dropdown.getBoundingClientRect();
-            //this.updateDimensions();
             this.reCalcPosition(head, drop);
             window.addEventListener("resize", this.updateDimensions);
             document.addEventListener('click', this.handleClickOutside, false);
         },0); 
     }
-
-    // componentDidUpdate(prevProps) {
-    //     if(prevProps.selected !== this.props.selected) {
-    //         getActiveItem(this.setActiveItem(activeIndex));
-    //       // У this.props.myProp изменилось значение
-    //       // Поэтому мы можем выполнять любые операции для которых
-    //       // нужны новые значения и/или выполнять сайд-эффекты
-    //       // вроде AJAX вызовов с новым значением - this.props.myProp
-    //     }
-    // }
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.updateDimensions);
@@ -135,11 +117,7 @@ class DropList extends Component {
 
     setActiveItem = (selectedIndex) => {
         const { className, children, selected, ...attrs } = this.props;
-        //const { selected } = this.state;
         if (selected !== selectedIndex) {
-        //   this.setState({
-        //     selected: selectedIndex,
-        //   });
             this.current = (React.cloneElement(children[selectedIndex]));
             return selectedIndex;
         }
@@ -148,15 +126,12 @@ class DropList extends Component {
     changeActiveItem = (activeIndex) =>{
         const { children, getActiveItem } = this.props;
         if(!children[activeIndex].props.disabled){
-            // this.setActiveItem(activeIndex);
-            // getActiveItem(activeIndex);
             getActiveItem(this.setActiveItem(activeIndex));
         }
     };
 
     renderItems = () => {
         const { className, children, selected, ...attrs } = this.props;
-       //const {  } = this.state;
         return children.map((child, index)=>(
             <ListItem
                 key={index}
@@ -198,10 +173,7 @@ class DropList extends Component {
                 </div>    
                 {(this.current && clearable) && <div className="list-clear-selected" onClick={this.clearSelected}>
                     <Icon name="cross" size="small"/>
-                </div>} 
-                {/* { (selected!==null || selected!==undefined)  && clearable && <div className="list-clear-selected" onClick={this.clearSelected}>
-                    <Icon name="cross" size="small"/>
-                </div>}  */}
+                </div>}
               </div>
                 {<Portal>
                   <div className={dropClasses}
