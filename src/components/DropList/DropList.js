@@ -14,7 +14,12 @@ class DropList extends Component {
         children: PropTypes.node,
         className: PropTypes.string,
         getActiveItem: PropTypes.func,
-        clearable: PropTypes.bool
+        clearable: PropTypes.bool,
+        selected: PropTypes.oneOfType([
+            PropTypes.number.isRequired,
+            PropTypes.string.isRequired,
+            PropTypes.oneOf([null]).isRequired,
+        ])
     };
   
     static defaultProps = {
@@ -160,7 +165,6 @@ class DropList extends Component {
           className
         );
         const dropClasses = classNames("dropdown-list",isOpen?'':'hidden');
-        console.log('_sel:',selected);
         return (
             <React.Fragment>
 

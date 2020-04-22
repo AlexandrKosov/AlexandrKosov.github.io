@@ -10,22 +10,20 @@ class List extends Component {
     static propTypes = {
         children: PropTypes.node,
         className: PropTypes.string,
-        getActiveItem: PropTypes.func
+        getActiveItem: PropTypes.func,
+        selected: PropTypes.oneOfType([
+            PropTypes.number.isRequired,
+            PropTypes.string.isRequired,
+            PropTypes.oneOf([null]).isRequired,
+        ])
     };
   
     static defaultProps = {
         children: null,
         className: '',
-        getActiveItem: ()=>{}
+        getActiveItem: ()=>{},
     };
-  
-    // constructor(props){
-    //     super(props);
-    //     this.state = {
-    //         selected: props.selected?props.selected:null,
-    //     };
-    // }
-    
+   
     componentDidMount(){
         const { getActiveItem, selected } = this.props;
         if(selected){
@@ -50,7 +48,6 @@ class List extends Component {
 
     renderItems = () => {
         const { className, children, selected, ...attrs } = this.props;
-        console.log('selected:',selected);
         return children.map((child, index)=>(
             <ListItem
                 key={index}
