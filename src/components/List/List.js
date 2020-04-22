@@ -19,49 +19,44 @@ class List extends Component {
         getActiveItem: ()=>{}
     };
   
-    constructor(props){
-        super(props);
-        this.state = {
-            selected: props.selected?props.selected:null,
-        };
-    }
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //         selected: props.selected?props.selected:null,
+    //     };
+    // }
     
     componentDidMount(){
-        const { getActiveItem } = this.props;
-        if(this.state.selected){
-            getActiveItem(this.state.selected);
+        const { getActiveItem, selected } = this.props;
+        if(selected){
+            getActiveItem(selected);
         }
     }
 
     setActiveItem = (selectedIndex) => {
-        const { selected } = this.state;
+        const { selected } = this.props;
         if (selected !== selectedIndex) {
-          this.setState({
-            selected: selectedIndex,
-          });
+            return selectedIndex;
         }
     }
     
     changeActiveItem = (activeIndex) =>{
         const { children, getActiveItem } = this.props;
-        
         if(!children[activeIndex].props.disabled){
-            //alert('active item '+activeIndex);
             this.setActiveItem(activeIndex);
             getActiveItem(activeIndex);
         }
     };
 
     renderItems = () => {
-        const { className, children, ...attrs } = this.props;
-        const { selected } = this.state;
-
+        const { className, children, selected, ...attrs } = this.props;
+        console.log('selected:',selected);
         return children.map((child, index)=>(
             <ListItem
                 key={index}
                 index={index}
                 disabled={child.props.disabled}
-                active={index==parseInt(selected)} //,(index==parseInt(selected))?'active':'')
+                active={index==parseInt(selected)}
                 className={classNames(child.props.className)}
                 onChangeActiveItem={this.changeActiveItem}
             >

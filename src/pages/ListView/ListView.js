@@ -10,7 +10,7 @@ import Button from '~c/Button';
 class listView extends Component{
 
     state = {
-        select1: null,
+        select1: 3,
         select2: null,
         select3: null,
         select4: 3,
@@ -72,7 +72,7 @@ class listView extends Component{
                         <h3>Обычный список с иконками:</h3>
                         <div style={{width: '300px'}}>
                         {/* атрибут selected отсчитывается с НУЛЯ!!!!  */}
-                            <List selected='3' getActiveItem={this.getActive}>
+                            <List selected={this.state.select1} getActiveItem={this.getActive}>
                                 <ListItem><Icon name="search" />Найти</ListItem>
                                 <ListItem><Icon name="settings"/>Настройки</ListItem>
                                 <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
@@ -85,7 +85,7 @@ class listView extends Component{
                     <div>    
                         <h3>Кастомный список:</h3>
                         <div style={{width: '300px'}}>
-                            <List getActiveItem={this.getActive2}>
+                            <List selected={this.state.select2} getActiveItem={this.getActive2}>
                                 {custom}
                             </List>
                         </div>

@@ -116,7 +116,7 @@ class DropList extends Component {
     };
 
     setActiveItem = (selectedIndex) => {
-        const { className, children, selected, ...attrs } = this.props;
+        const { children, selected } = this.props;
         if (selected !== selectedIndex) {
             this.current = (React.cloneElement(children[selectedIndex]));
             return selectedIndex;
