@@ -1,0 +1,112 @@
+.drop-list {
+    //display: inline-block;
+    position: relative;
+    border: 1px solid #ccc;
+    max-width: 300px;
+    height: 34px;
+    cursor: pointer;
+    display: flex;
+    & .list-selected-items {
+        padding: 4px 8px;
+        flex: 1;
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    & .list-clear-selected {
+        flex: none;
+        cursor: pointer;
+        width: 28px;
+        padding: 3px 8px;
+        position: relative;
+        opacity: 0.4;
+        transition: opacity 0.5s ease-out;
+        &:hover {opacity: 0.7;background: #eee;}
+        &:active {opacity: 1;}
+    }
+    .dropdown-arrow {
+        flex: none;
+        cursor: pointer;
+        width: 28px;
+        padding: 3px 6px;
+        position: relative;
+        opacity: 0.4;
+        transition: opacity 0.5s ease-out;
+        &:hover {opacity: 0.7;background: #eee;}
+        &:active {opacity: 1;}
+    }
+    & .list-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: none;
+        line-height: 24px;
+        height: 32px;
+        padding: 4px 8px;
+        border-radius: 0;
+        & .icon:first-child {
+            margin-right: 12px;
+        }
+    }
+}
+label.list-item {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.dropdown-check {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+.dropdown-list {
+    position: absolute;
+    opacity: 1;
+    visibility: visible;
+    margin-top: -1px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+    &.hidden {
+        opacity: 0;
+        visibility: hidden;
+        top: -10000px !important;
+    }
+    & .list-item {
+        &:first-child, 
+        &:last-child {border-radius: 0;}
+    }   
+}
+
+.dropdown-list-multiple .list-item {
+
+    &::before {
+        content: '';
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        border: 1px solid #ccc;
+    }
+
+   &.active {
+       &::before{
+          background: url(/src/components/DropListMulti/icons/check.svg) center center no-repeat; 
+          opacity: 0.6;
+       } 
+       &::hover {
+        &::before{
+            opacity: 0.8;
+         }
+       }
+       &:active {
+        &::before{
+            opacity: 1;
+         }
+       }
+   }
+   &_check-all {
+       //-
+   }
+} 

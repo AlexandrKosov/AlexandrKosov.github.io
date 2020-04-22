@@ -10,7 +10,11 @@ class ListItem extends Component {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     active: PropTypes.bool,
-    onChangeActiveItem: PropTypes.func
+    onChangeActiveItem: PropTypes.func,
+    tag: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string
+    ])
   };
   
   static defaultProps = {
@@ -18,7 +22,8 @@ class ListItem extends Component {
     className: '',
     disabled: false,
     active: false,
-    onChangeActiveItem: ()=>{}
+    onChangeActiveItem: ()=>{},
+    tag: 'div'
   };
 
   componentDidMount(){
@@ -40,6 +45,7 @@ class ListItem extends Component {
             disabled,
             active,
             index,
+            tag: Tag,
             onChangeActiveItem,
             ...attrs} = this.props;
     const classes = classNames(
@@ -47,14 +53,14 @@ class ListItem extends Component {
       className,
       { disabled },
       { active },
-    );        
+    );
     return (
-      <div className={classes} 
+      <Tag className={classes} 
       {...attrs}
       onClick={()=>onChangeActiveItem(index)}
       >
         {children}
-      </div>
+      </Tag>
     );
   }
 
