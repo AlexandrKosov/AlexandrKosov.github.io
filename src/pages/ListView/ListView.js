@@ -127,10 +127,14 @@ class listView extends Component{
                         </DropList>
                     </div>
                     <div>
-                        <h2>Dropdown list Multiselect <i style={{fontSize: '14px'}}> </i></h2>
-                        <div>{this.state.select6.map((item, index)=>{return (<span key={item}>{item}, </span>)})}</div>
+                        <h2>Dropdown list Multiselect  </h2>
+                        <div>
+                            <i style={{fontSize: '14px'}}>
+                                Выбранные: {this.state.select6.map((item, index)=>{return (<span key={item}>{item}, </span>)})}
+                            </i>
+                        </div>
                         <DropListMulti selected={this.state.select6} getActiveItem={this.getActive6} clearable>
-                            <ListItem>Zero</ListItem>
+                            <ListItem disabled>Zero</ListItem>
                             <ListItem>Uno</ListItem>
                             <ListItem>Due</ListItem>
                             <ListItem>Tre</ListItem>

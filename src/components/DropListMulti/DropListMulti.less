@@ -1,3 +1,5 @@
+@itemHeight: 36px;
+
 .drop-list {
     //display: inline-block;
     position: relative;
@@ -69,8 +71,19 @@
         top: -10000px !important;
     }
     & .list-item {
+        height: @itemHeight;
+        line-height: @itemHeight; 
+        border-right-width: 0;
+        &:first-child {
+            border-top-width: 0;
+        }
+        &:last-child {
+            border-bottom-width: 0;
+        }
         &:first-child, 
-        &:last-child {border-radius: 0;}
+        &:last-child {
+            border-radius: 0;
+        }
     }   
 }
 
@@ -132,4 +145,9 @@
             
         }
     } 
+}
+
+.list-items-container {
+    overflow-y: auto;
+    max-height: 8 * @itemHeight;
 }

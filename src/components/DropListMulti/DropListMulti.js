@@ -142,7 +142,6 @@ class DropListMulti extends Component {
         const { className, children, selected, ...attrs } = this.props;
         return children.map((child, index)=>(
             <ListItem
-                tag='label'
                 key={index}
                 index={index}
                 className={classNames(child.props.className, selected.includes(index)?'active':'')}
@@ -221,7 +220,11 @@ class DropListMulti extends Component {
                       style={truePos} 
                       onClick={this.dropListItemClick}
                       >
-                      {this.renderItems()}
+                      <div className="list-items-container">
+                        {this.renderItems()}
+                      </div>
+                      
+
                       <label className={checkSelectAll} onClick={this.selectAll}>
                         Выбрать все
                       </label>
