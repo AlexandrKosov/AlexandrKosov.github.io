@@ -29,10 +29,8 @@ class DropListMulti extends Component {
     constructor(props){
         super(props);
         this.state = {
-            //selected: props.selected?props.selected:[],
             isOpen: false,
             truePos: {},
-            
         };
     }
     current = null;//список выбранных элементов
@@ -40,7 +38,6 @@ class DropListMulti extends Component {
     dropdownRef = React.createRef();
 
     dropListClick = (e) => {
-      //e.persist();
       this.setState((state)=>{
         return {isOpen: !state.isOpen}
       });
@@ -48,7 +45,6 @@ class DropListMulti extends Component {
 
     componentDidMount(){
         const { getActiveItem } = this.props;
-        //const { selected=[] } = this.state;
         const { current: dropHead } = this.dropHeadRef;
         const {current: dropdown} = this.dropdownRef;
 
@@ -63,10 +59,6 @@ class DropListMulti extends Component {
             document.addEventListener('click', this.handleClickOutside, false);
         },0); 
     }
-
-    // componentDidUpdate(){
-    //     this.updateCurrent(); 
-    // }
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.updateDimensions);
@@ -116,7 +108,6 @@ class DropListMulti extends Component {
 
     updateCurrent = (arr) => {
         const { children, selected } = this.props;
-        //const { selected } = this.state;
         let names = [];
         let selArr =arr? arr : selected;
         for(let i=0;i<selArr.length; ++i){
@@ -127,8 +118,6 @@ class DropListMulti extends Component {
 
     setActiveItem = (selectedIndex) => {
         const { className, children, selected, ...attrs } = this.props;
-        //const { selected } = this.state;
-
         let set  = new Set(selected);
 
         if(set.has(selectedIndex)){
@@ -138,26 +127,21 @@ class DropListMulti extends Component {
         }
         let arr = [...set];
         this.updateCurrent(arr); 
-        //this.setState({selected: arr});
         return arr;
     }
     
     changeActiveItem = (activeIndex) =>{
         const { children, getActiveItem, selected } = this.props;
-        //const {selected} = this.state;
-
-        if(!children[activeIndex].props.disabled){
-            
-            getActiveItem(this.setActiveItem(activeIndex));//getActiveItem(activeIndex);
-        }
+        if(!children[activeIndex].props.disabled){ 
+            getActiveItem(this.setActiveItem(activeIndex));
+        };
+       // this.updateDimensions();
     };
 
     renderItems = () => {
         const { className, children, selected, ...attrs } = this.props;
-        //const { selected } = this.state;
-        //console.log(selected);//2,4 третий, пятый
         let checked = false;
-        return children.map((child, index)=>{// 0..6  3,5==disabled
+        return children.map((child, index)=>{
             return (
             <ListItem
                 tag='label'
@@ -168,10 +152,6 @@ class DropListMulti extends Component {
                 disabled={child.props.disabled}
                 onChangeActiveItem={this.changeActiveItem}
             >
-                {/* <input type="checkbox" onChange={(e,index)=>{this.handleCheck}} 
-                        disabled={child.props.disabled} 
-                        defaultChecked={selected.includes(index)} 
-                        className="dropdown-check" /> */}
                 {child.props.children}
             </ListItem>
         )
@@ -183,9 +163,6 @@ class DropListMulti extends Component {
         const { getActiveItem } = this.props;
         this.current = [];
         getActiveItem([]);
-        // this.setState({
-        //     selected: [],
-        // });
     }
 
     render() {
@@ -218,7 +195,6 @@ class DropListMulti extends Component {
                       >
                       {this.renderItems()}
                       <label className="list-item list-item_check-all">
-                        {/* <input type="checkbox" name="check-all"  className="dropdown-check" /> */}
                         Выбрать все
                       </label>
                   </div>
