@@ -166,11 +166,8 @@ class DropList extends Component {
 
     clearSelected = () => {
         const { getActiveItem } = this.props;
-        // this.setState({
-        //     selected: null,
-        //   });
-          this.current = null;
-          getActiveItem(null);
+        this.current = null;
+        getActiveItem(null);
     }
 
     render() {
@@ -192,10 +189,12 @@ class DropList extends Component {
                 <div className="dropdown-arrow" onClick={this.dropListClick}>    
                     {isOpen?<Icon name="dropdown-up" />:<Icon name="dropdown" />}
                 </div>    
-                
-                { (selected!==null || selected!==undefined)  && clearable && <div className="list-clear-selected" onClick={this.clearSelected}>
+                {(this.current && clearable) && <div className="list-clear-selected" onClick={this.clearSelected}>
                     <Icon name="cross" size="small"/>
                 </div>} 
+                {/* { (selected!==null || selected!==undefined)  && clearable && <div className="list-clear-selected" onClick={this.clearSelected}>
+                    <Icon name="cross" size="small"/>
+                </div>}  */}
               </div>
                 {<Portal>
                   <div className={dropClasses}
