@@ -104,7 +104,7 @@ class listView extends Component{
                 <div style={{display: 'flex'}}>
                     <div style={{width: '45%', marginRight: '20px'}}>
                         <h2>Dropdown list  <i style={{fontSize: '14px'}}> выбран № {this.state.select3}</i></h2>
-                        <DropList className="first" getActiveItem={this.getActive3} clearable>
+                        <DropList className="first" selected={this.state.select3}  getActiveItem={this.getActive3}>
                                 <ListItem><Icon name="search" />Первый</ListItem>
                                 <ListItem>Второй<Badge variant="success" style={{marginLeft: '10px'}}>OK</Badge></ListItem>
                                 <ListItem>Третий</ListItem>
@@ -114,7 +114,7 @@ class listView extends Component{
                                 <ListItem>Седьмой</ListItem>
                         </DropList>
                         <br /><i style={{fontSize: '14px'}}> выбран № {this.state.select4}</i>
-                        <DropList className="second" selected="3" getActiveItem={this.getActive4} clearable>
+                        <DropList className="second" selected={this.state.select4} getActiveItem={this.getActive4} clearable>
                                 <ListItem><Icon name="search" />Найти</ListItem>
                                 <ListItem><Icon name="settings"/>Настройки</ListItem>
                                 <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
@@ -122,7 +122,7 @@ class listView extends Component{
                                 <ListItem>Просто пункт с текстом</ListItem>
                         </DropList>
                         <br /><i style={{fontSize: '14px'}}> выбран № {this.state.select5}</i>
-                        <DropList className="third" selected="1" getActiveItem={this.getActive5} clearable>   
+                        <DropList className="third" selected={this.state.select5} getActiveItem={this.getActive5} clearable>   
                             {custom}
                         </DropList>
                     </div>
