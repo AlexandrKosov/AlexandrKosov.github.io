@@ -27,7 +27,6 @@ class DropList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            selected: props.selected?props.selected:null,
             isOpen: false,
             truePos: {},
             
@@ -54,13 +53,14 @@ class DropList extends Component {
     };
 
     componentDidMount(){
-        const { getActiveItem } = this.props;
+        const { getActiveItem, selected } = this.props;
         const { current: dropHead } = this.dropHeadRef;
         const {current: dropdown} = this.dropdownRef;
 
-        if(this.state.selected){
-            getActiveItem(this.state.selected);
-        } 
+        // if(this.state.selected){
+        //     getActiveItem(this.state.selected);
+        // } 
+        
         setTimeout(()=>{
             let head = dropHead.getBoundingClientRect();
             let drop = dropdown.getBoundingClientRect();
@@ -117,28 +117,39 @@ class DropList extends Component {
     };
 
     setActiveItem = (selectedIndex) => {
-        const { className, children, ...attrs } = this.props;
-        const { selected } = this.state;
+        const { className, children, selected, ...attrs } = this.props;
+        //const { selected } = this.state;
         if (selected !== selectedIndex) {
-          this.setState({
-            selected: selectedIndex,
-          });
-          this.current = (React.cloneElement(children[selectedIndex]));
+        //   this.setState({
+        //     selected: selectedIndex,
+        //   });
+            this.current = (React.cloneElement(children[selectedIndex]));
+            return selectedIndex;
         }
     }
     
     changeActiveItem = (activeIndex) =>{
         const { children, getActiveItem } = this.props;
-        
         if(!children[activeIndex].props.disabled){
-            this.setActiveItem(activeIndex);
-            getActiveItem(activeIndex);
+            // this.setActiveItem(activeIndex);
+            // getActiveItem(activeIndex);
+            getActiveItem(this.setActiveItem(activeIndex));
         }
     };
 
+    componentDidUpdate(prevProps) {
+        if(prevProps.selected !== this.props.selected) {
+          // У this.props.myProp изменилось значение
+          // Поэтому мы можем выполнять любые операции для которых
+          // нужны новые значения и/или выполнять сайд-эффекты
+          // вроде AJAX вызовов с новым значением - this.props.myProp
+          return true
+        }return false
+      }
+
     renderItems = () => {
-        const { className, children, ...attrs } = this.props;
-        const { selected } = this.state;
+        const { className, children, selected, ...attrs } = this.props;
+       //const {  } = this.state;
         return children.map((child, index)=>(
             <ListItem
                 key={index}
@@ -155,21 +166,22 @@ class DropList extends Component {
 
     clearSelected = () => {
         const { getActiveItem } = this.props;
-        this.setState({
-            selected: null,
-          });
+        // this.setState({
+        //     selected: null,
+        //   });
           this.current = null;
           getActiveItem(null);
     }
 
     render() {
-        const { className, children, getActiveItem, onChangeActiveItem, clearable, ...attrs } = this.props;
-        const { isOpen, selected, truePos } = this.state;
+        const { className, children, getActiveItem, onChangeActiveItem, clearable, selected, ...attrs } = this.props;
+        const { isOpen, truePos } = this.state;
         const classes = classNames(
           'drop-list',
           className
         );
         const dropClasses = classNames("dropdown-list",isOpen?'':'hidden');
+        console.log('_sel:',selected);
         return (
             <React.Fragment>
 
@@ -180,7 +192,8 @@ class DropList extends Component {
                 <div className="dropdown-arrow" onClick={this.dropListClick}>    
                     {isOpen?<Icon name="dropdown-up" />:<Icon name="dropdown" />}
                 </div>    
-                {((selected!==null) && clearable) && <div className="list-clear-selected" onClick={this.clearSelected}>
+                
+                { (selected!==null || selected!==undefined)  && clearable && <div className="list-clear-selected" onClick={this.clearSelected}>
                     <Icon name="cross" size="small"/>
                 </div>} 
               </div>

@@ -13,8 +13,8 @@ class listView extends Component{
         select1: null,
         select2: null,
         select3: null,
-        select4: null,
-        select5: null
+        select4: 3,
+        select5: 1
     };
 
     customData = [
@@ -103,7 +103,7 @@ class listView extends Component{
                         <ListItem>Седьмой</ListItem>
                 </DropList>
                 <br /><i style={{fontSize: '14px'}}> выбран № {this.state.select4}</i>
-                <DropList className="second" selected="3" getActiveItem={this.getActive4} clearable>
+                <DropList className="second" selected={this.state.select4} getActiveItem={this.getActive4} clearable>
                         <ListItem><Icon name="search" />Найти</ListItem>
                         <ListItem><Icon name="settings"/>Настройки</ListItem>
                         <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
@@ -111,7 +111,7 @@ class listView extends Component{
                         <ListItem>Просто пункт с текстом</ListItem>
                 </DropList>
                  <br /><i style={{fontSize: '14px'}}> выбран № {this.state.select5}</i>
-                <DropList className="third" selected="1" getActiveItem={this.getActive5} clearable>   
+                <DropList className="third" selected={this.state.select5} getActiveItem={this.getActive5} clearable>   
                     {custom}
                 </DropList>
 
