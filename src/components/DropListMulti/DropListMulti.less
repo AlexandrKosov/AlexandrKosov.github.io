@@ -80,33 +80,35 @@ label.list-item {
     }   
 }
 
-.dropdown-list-multiple .list-item {
-
-    &::before {
-        content: '';
-        width: 16px;
-        height: 16px;
-        margin-right: 8px;
-        border: 1px solid #ccc;
-    }
-
-   &.active {
-       &::before{
-          background: url(/src/components/DropListMulti/icons/check.svg) center center no-repeat; 
-          opacity: 0.6;
-       } 
-       &::hover {
-        &::before{
-            opacity: 0.8;
-         }
-       }
-       &:active {
-        &::before{
-            opacity: 1;
-         }
-       }
-   }
-   &_check-all {
-       //-
-   }
-} 
+.dropdown-list-multiple {
+    & .list-item {
+        
+        &::before {
+            content: '';
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            border: 1px solid #ccc;
+        }
+        &.active {
+            background: #fff;
+            &::before{
+                background: url(/src/components/DropListMulti/icons/check.svg) center center no-repeat; 
+                opacity: 0.6;
+            } 
+            &::hover {
+            &::before{
+                opacity: 0.8;
+                }
+            }
+            &:active {
+            &::before{
+                opacity: 1;
+                }
+            }
+        }
+        &_check-all {
+            //-
+        }
+    } 
+}
