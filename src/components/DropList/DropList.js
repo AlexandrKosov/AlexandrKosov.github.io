@@ -53,14 +53,21 @@ class DropList extends Component {
     };
 
     componentDidMount(){
-        const { getActiveItem, selected } = this.props;
+        const { getActiveItem, selected, children } = this.props;
         const { current: dropHead } = this.dropHeadRef;
         const {current: dropdown} = this.dropdownRef;
 
         // if(this.state.selected){
         //     getActiveItem(this.state.selected);
         // } 
-        
+        if(selected){
+           // getActiveItem(selected);
+
+           this.setActiveItem(selected);
+           this.current = (React.cloneElement(children[selected]));
+           getActiveItem(selected);
+        }
+            
         setTimeout(()=>{
             let head = dropHead.getBoundingClientRect();
             let drop = dropdown.getBoundingClientRect();
@@ -70,6 +77,16 @@ class DropList extends Component {
             document.addEventListener('click', this.handleClickOutside, false);
         },0); 
     }
+
+    // componentDidUpdate(prevProps) {
+    //     if(prevProps.selected !== this.props.selected) {
+    //         getActiveItem(this.setActiveItem(activeIndex));
+    //       // У this.props.myProp изменилось значение
+    //       // Поэтому мы можем выполнять любые операции для которых
+    //       // нужны новые значения и/или выполнять сайд-эффекты
+    //       // вроде AJAX вызовов с новым значением - this.props.myProp
+    //     }
+    // }
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.updateDimensions);
@@ -136,16 +153,6 @@ class DropList extends Component {
             getActiveItem(this.setActiveItem(activeIndex));
         }
     };
-
-    componentDidUpdate(prevProps) {
-        if(prevProps.selected !== this.props.selected) {
-          // У this.props.myProp изменилось значение
-          // Поэтому мы можем выполнять любые операции для которых
-          // нужны новые значения и/или выполнять сайд-эффекты
-          // вроде AJAX вызовов с новым значением - this.props.myProp
-          return true
-        }return false
-      }
 
     renderItems = () => {
         const { className, children, selected, ...attrs } = this.props;
