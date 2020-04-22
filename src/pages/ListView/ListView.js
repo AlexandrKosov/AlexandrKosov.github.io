@@ -142,7 +142,7 @@ class listView extends Component{
                             <ListItem>Cinque</ListItem>
                             <ListItem>Sei</ListItem>
                             <ListItem>Sette</ListItem>
-                            <ListItem>Otto</ListItem>
+                            <ListItem disabled>Otto</ListItem>
                         </DropListMulti>
                         
                     </div>

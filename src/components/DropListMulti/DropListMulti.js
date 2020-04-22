@@ -154,8 +154,9 @@ class DropListMulti extends Component {
     }
 
     selectAll = () => {
-        const { className, children, selected,getActiveItem, ...attrs } = this.props;    
-        if(selected.length !== children.length){ //не все выбраны
+        const { className, children, selected,getActiveItem, ...attrs } = this.props;   
+        let notDisabledItems = children.filter((el)=>!el.props.disabled).length;
+        if(selected.length !== notDisabledItems){ //не все выбраны
             let all = [];
             children.map((child, index)=>{
                 if(!child.props.disabled){
@@ -177,10 +178,13 @@ class DropListMulti extends Component {
     }
 
     checkAll(){
-        const { className, children, selected,getActiveItem, ...attrs } = this.props; 
+        const { className, children, selected, getActiveItem, ...attrs } = this.props; 
+
+        let notDisabledItems = children.filter((el)=>!el.props.disabled).length;
+        
         if(selected.length === 0){
             return '';
-        } else if(selected.length !== children.length){ //не все выбраны
+        } else if(selected.length !== notDisabledItems){ //не все выбраны
             return 'partly';
         } else {
             return 'full'
@@ -223,11 +227,9 @@ class DropListMulti extends Component {
                       <div className="list-items-container">
                         {this.renderItems()}
                       </div>
-                      
-
-                      <label className={checkSelectAll} onClick={this.selectAll}>
+                      <div className={checkSelectAll} onClick={this.selectAll}>
                         Выбрать все
-                      </label>
+                      </div>
                   </div>
                 </Portal>}
             </React.Fragment>    
