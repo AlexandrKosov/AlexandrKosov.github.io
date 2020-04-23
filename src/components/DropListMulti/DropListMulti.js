@@ -32,6 +32,7 @@ class DropListMulti extends Component {
             isOpen: false,
             truePos: {},
             trueHeight: {},
+            fullHeight: null,
         };
     }
     current = null;//список выбранных элементов
@@ -49,13 +50,18 @@ class DropListMulti extends Component {
         const { getActiveItem } = this.props;
         const { current: dropHead } = this.dropHeadRef;
         const {current: dropdown} = this.dropdownRef;
-
+        const { fullHeight } = this.state;
+       
         this.updateCurrent(); 
 
         setTimeout(()=>{
             let head = dropHead.getBoundingClientRect();
             let drop = dropdown.getBoundingClientRect();
-            //this.updateDimensions();
+            this.setState((prev)=>{
+                if(drop.height !== prev.fullHeight){
+                    return { fullHeight: drop.height};
+                }
+            });
             this.reCalcPosition(head, drop);
             window.addEventListener("resize", this.updateDimensions);
             document.addEventListener('click', this.handleClickOutside, false);
@@ -76,6 +82,7 @@ class DropListMulti extends Component {
     };
 
     reCalcPosition = (head, drop) => {
+        const { fullHeight } = this.state;
         let checkHeight = this.checkAllRef.current.getBoundingClientRect().height;
 /***
     window.innerHeight - head.bottom  = НИЗ
@@ -83,24 +90,20 @@ class DropListMulti extends Component {
 */
         let maxDropHeight; //максимально допустимая высота выпадалки с учетом высоты экрана и положения на экране
         let trueHeight; //реальная высота для выпадалки 
-        let calc = window.innerHeight - head.bottom - drop.height; //умещается ли внизу?
+        const calc = window.innerHeight - head.bottom - fullHeight;//drop.height; //умещается ли внизу?
         let bottom = (window.innerHeight - head.bottom > head.top); //bool = внизу больше места чем вверху
-        let dropHeight = drop.height; //высота выпадалки
-
-        console.log("height и calc:",dropHeight,calc);
+        //let dropHeight = drop.height; //высота выпадалки
         let truePos = {};
         
         if(calc > 0 ){ //внизу есть место для выпадалки
-            console.log('внизу есть место для выпадалки');
             truePos = {
                 top: head.bottom + 'px',
                 left: head.left + 'px',
                 position: 'absolute',
                 width: head.width + 'px',
             };
-          trueHeight = {maxHeight: 'auto'}
+          trueHeight = {maxHeight: 'none'}
         } else if(bottom) {//нет места внизу для выпадалки, но внизу больше места
-            console.log(bottom,'нет места внизу для выпадалки, но внизу больше места');
             truePos = {
                 top: head.bottom + 'px',
                 left: head.left + 'px',
@@ -110,17 +113,15 @@ class DropListMulti extends Component {
           maxDropHeight = window.innerHeight - head.bottom;
           trueHeight = {maxHeight: maxDropHeight - checkHeight - 2 + 'px'}// -2  = чтобы "отбить" от границы экрана 
         } else {//нет места внизу для выпадалки, места больше вверху
-            console.log('нет места внизу для выпадалки, места больше вверху');
             truePos = {
                 bottom: window.innerHeight - head.top + 'px',
                 left: head.left + 'px',
                 position: 'absolute',
                 width: head.width + 'px',
             };
-            if(head.top > dropHeight){//наверху есть место для выпадалки
-                console.log('top:',head.top, dropHeight);
+            if(head.top > fullHeight){//наверху есть место для выпадалки
                 maxDropHeight = head.top;
-                trueHeight = {maxHeight: 'auto'}
+                trueHeight = {maxHeight: 'none'}
             }else{//наверху тоже не хватает места для выпадалки
                 maxDropHeight = head.top;
                 trueHeight = {maxHeight: maxDropHeight - checkHeight - 2 + 'px'}// -2  = чтобы "отбить" от границы экрана 
