@@ -16,7 +16,8 @@ class listView extends Component{
         select3: null,
         select4: 3,
         select5: 1,
-        select6: [1,5]
+        select6: [1,5],
+        select7: []
     };
 
     customData = [
@@ -60,7 +61,23 @@ class listView extends Component{
     //список с мультивыбором
     getActive6 = (selected) => {
         this.setState({select6: selected});
-    }    
+    }   
+    getActive7 = (selected) => {
+        this.setState({select7: selected});
+    }
+
+    customMultiList(count){
+        let arr = [];
+        for(let i=0;i<count;++i){
+            arr.push((<ListItem disabled={i.disabled} key={i}>
+                     {Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10)}
+                  </ListItem>))
+        };
+        console.log(arr);
+        return arr;
+    };
+
+
     render(){
         const custom = this.customData.map((item)=>{
             return (<ListItem className="list-item-flex" disabled={item.disabled} key={item.text}>
@@ -98,8 +115,6 @@ class listView extends Component{
                         <i style={{fontSize: '14px'}}> выбран № {this.state.select2}</i>
                     </div>    
                 </div>
-
-
 
                 <div style={{display: 'flex'}}>
                     <div style={{width: '45%', marginRight: '20px'}}>
@@ -144,7 +159,10 @@ class listView extends Component{
                             <ListItem>Sette</ListItem>
                             <ListItem disabled>Otto</ListItem>
                         </DropListMulti>
-                        
+                        <div>dropList с мультивыбором и автоматической высотой</div>
+                        <DropListMulti selected={this.state.select7} getActiveItem={this.getActive7} clearable>
+                            {this.customMultiList(20)}
+                        </DropListMulti>
                     </div>
                 </div>
 

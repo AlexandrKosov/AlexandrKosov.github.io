@@ -70,12 +70,29 @@ class DropListMulti extends Component {
         const {current: dropdown} = this.dropdownRef;
         let head = dropHead.getBoundingClientRect();
         let drop = dropdown.getBoundingClientRect();
+        //let maxDropHeight;
+        // console.log('высота выпадалки:',drop.height);
+        // console.log('доступная высота сверху и снизу:', head.top, window.innerHeight - head.bottom );
+        // if (drop.height > window.innerHeight - head.bottom && drop.height > head.top) {
+        //     console.log('рабочая высота:', Math.max(window.innerHeight - head.bottom, head.top) );
+        //     maxDropHeight = Math.max(window.innerHeight - head.bottom, head.top);
+        // } else {maxDropHeight = drop.height}
         this.reCalcPosition(head, drop);
     };
 
     reCalcPosition = (head, drop) => {
+
+let maxDropHeight;
+console.log('высота выпадалки:',drop.height);
+console.log('доступная высота сверху и снизу:', head.top, window.innerHeight - head.bottom );
+if (drop.height > window.innerHeight - head.bottom && drop.height > head.top) {
+    console.log('рабочая высота:', Math.max(window.innerHeight - head.bottom, head.top) );
+    maxDropHeight = Math.max(window.innerHeight - head.bottom, head.top);
+} else {maxDropHeight = drop.height}
+
         let calc = window.innerHeight - head.bottom - drop.height;
         let truePos = {};
+        let trueHeight = {maxHeight: maxDropHeight - 36 + 'px'}// -36 - высота нижнего последнего блока
         if(calc > 0 ){
             truePos = {
             top: head.bottom + 'px',
@@ -90,8 +107,9 @@ class DropListMulti extends Component {
             position: 'absolute',
             width: head.width + 'px',
           }
-        }    
-        this.setState({truePos});
+        }   
+        console.log(trueHeight); 
+        this.setState({truePos, trueHeight});
     };
 
     handleClickOutside = (e) => {
@@ -140,7 +158,6 @@ class DropListMulti extends Component {
     
     renderItems = () => {
         const { className, children, selected, ...attrs } = this.props;
-        console.log(children)
         return children.map((child, index)=>(
             <ListItem
                 key={index}
@@ -193,7 +210,7 @@ class DropListMulti extends Component {
 
     render() {
         const { className, children, getActiveItem, onChangeActiveItem, clearable,selected, ...attrs } = this.props;
-        const { isOpen,truePos } = this.state;
+        const { isOpen,truePos,trueHeight } = this.state;
         const classes = classNames(
           'drop-list',
           className
@@ -224,7 +241,7 @@ class DropListMulti extends Component {
                       style={truePos} 
                       onClick={this.dropListItemClick}
                       >
-                      <div className="list-items-container">
+                      <div className="list-items-container" style={trueHeight}>
                         {this.renderItems()}
                       </div>
                       <div className={checkSelectAll} onClick={this.selectAll}>
