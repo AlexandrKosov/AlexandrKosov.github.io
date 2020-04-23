@@ -78,14 +78,18 @@ class DropListMulti extends Component {
         let checkHeight = this.checkAllRef.current.getBoundingClientRect().height;
 
         let maxDropHeight;
-
+        let trueHeight;
         if (drop.height > window.innerHeight - head.bottom && drop.height > head.top) {
             maxDropHeight = Math.max(window.innerHeight - head.bottom, head.top);
-        } else {maxDropHeight = drop.height}
+            trueHeight = {maxHeight: maxDropHeight - checkHeight - 2 + 'px'}// -2  = чтобы "отбить" от границы экрана
+        } else {
+            maxDropHeight = drop.height;
+            trueHeight: {maxHeight: 'auto'};
+        }
 
         let calc = window.innerHeight - head.bottom - drop.height;
         let truePos = {};
-        let trueHeight = {maxHeight: maxDropHeight - checkHeight - 2 + 'px'}// -2  = чтобы "отбить" от границы экрана
+        
         if(calc > 0 ){
             truePos = {
             top: head.bottom + 'px',
