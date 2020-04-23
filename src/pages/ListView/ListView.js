@@ -65,7 +65,6 @@ class listView extends Component{
     getActive7 = (selected) => {
         this.setState({select7: selected});
     }
-
     customMultiList(count){
         let arr = [];
         for(let i=0;i<count;++i){
@@ -73,7 +72,6 @@ class listView extends Component{
                      {Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10)}
                   </ListItem>))
         };
-        console.log(arr);
         return arr;
     };
 

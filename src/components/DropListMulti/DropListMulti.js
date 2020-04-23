@@ -36,6 +36,7 @@ class DropListMulti extends Component {
     current = null;//список выбранных элементов
     dropHeadRef = React.createRef();
     dropdownRef = React.createRef();
+    checkAllRef = React.createRef();
 
     dropListClick = (e) => {
       this.setState((state)=>{
@@ -70,29 +71,21 @@ class DropListMulti extends Component {
         const {current: dropdown} = this.dropdownRef;
         let head = dropHead.getBoundingClientRect();
         let drop = dropdown.getBoundingClientRect();
-        //let maxDropHeight;
-        // console.log('высота выпадалки:',drop.height);
-        // console.log('доступная высота сверху и снизу:', head.top, window.innerHeight - head.bottom );
-        // if (drop.height > window.innerHeight - head.bottom && drop.height > head.top) {
-        //     console.log('рабочая высота:', Math.max(window.innerHeight - head.bottom, head.top) );
-        //     maxDropHeight = Math.max(window.innerHeight - head.bottom, head.top);
-        // } else {maxDropHeight = drop.height}
         this.reCalcPosition(head, drop);
     };
 
     reCalcPosition = (head, drop) => {
+        let checkHeight = this.checkAllRef.current.getBoundingClientRect().height;
 
-let maxDropHeight;
-console.log('высота выпадалки:',drop.height);
-console.log('доступная высота сверху и снизу:', head.top, window.innerHeight - head.bottom );
-if (drop.height > window.innerHeight - head.bottom && drop.height > head.top) {
-    console.log('рабочая высота:', Math.max(window.innerHeight - head.bottom, head.top) );
-    maxDropHeight = Math.max(window.innerHeight - head.bottom, head.top);
-} else {maxDropHeight = drop.height}
+        let maxDropHeight;
+
+        if (drop.height > window.innerHeight - head.bottom && drop.height > head.top) {
+            maxDropHeight = Math.max(window.innerHeight - head.bottom, head.top);
+        } else {maxDropHeight = drop.height}
 
         let calc = window.innerHeight - head.bottom - drop.height;
         let truePos = {};
-        let trueHeight = {maxHeight: maxDropHeight - 36 + 'px'}// -36 - высота нижнего последнего блока
+        let trueHeight = {maxHeight: maxDropHeight - checkHeight - 2 + 'px'}// -2  = чтобы "отбить" от границы экрана
         if(calc > 0 ){
             truePos = {
             top: head.bottom + 'px',
@@ -108,7 +101,6 @@ if (drop.height > window.innerHeight - head.bottom && drop.height > head.top) {
             width: head.width + 'px',
           }
         }   
-        console.log(trueHeight); 
         this.setState({truePos, trueHeight});
     };
 
@@ -244,7 +236,7 @@ if (drop.height > window.innerHeight - head.bottom && drop.height > head.top) {
                       <div className="list-items-container" style={trueHeight}>
                         {this.renderItems()}
                       </div>
-                      <div className={checkSelectAll} onClick={this.selectAll}>
+                      <div className={checkSelectAll} ref={this.checkAllRef} onClick={this.selectAll}>
                         Выбрать все
                       </div>
                   </div>
