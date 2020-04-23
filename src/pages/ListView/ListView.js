@@ -90,6 +90,22 @@ class listView extends Component{
                 <h1>Списки</h1>
                 <div style={{display: 'flex'}}>
                     <div style={{width: '45%', marginRight: '20px'}}>
+
+
+                    <DropListMulti selected={this.state.select6} getActiveItem={this.getActive6} clearable>
+                            <ListItem disabled>Zero</ListItem>
+                            <ListItem>Uno</ListItem>
+                            <ListItem>Due</ListItem>
+                            <ListItem>Tre</ListItem>
+                            <ListItem >Quattro</ListItem>
+                            <ListItem>Cinque</ListItem>
+                            <ListItem>Sei</ListItem>
+                            <ListItem>Sette</ListItem>
+                            <ListItem disabled>Otto</ListItem>
+                        </DropListMulti>
+
+
+
                         <h3>Обычный список с иконками:</h3>
                         <div style={{width: '300px'}}>
                         {/* атрибут selected отсчитывается с НУЛЯ!!!!  */}

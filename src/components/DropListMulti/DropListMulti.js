@@ -31,6 +31,7 @@ class DropListMulti extends Component {
         this.state = {
             isOpen: false,
             truePos: {},
+            trueHeight: {},
         };
     }
     current = null;//список выбранных элементов
@@ -76,35 +77,55 @@ class DropListMulti extends Component {
 
     reCalcPosition = (head, drop) => {
         let checkHeight = this.checkAllRef.current.getBoundingClientRect().height;
+/***
+    window.innerHeight - head.bottom  = НИЗ
+    head.top  = ВЕРХ
+*/
+        let maxDropHeight; //максимально допустимая высота выпадалки с учетом высоты экрана и положения на экране
+        let trueHeight; //реальная высота для выпадалки 
+        let calc = window.innerHeight - head.bottom - drop.height; //умещается ли внизу?
+        let bottom = (window.innerHeight - head.bottom > head.top); //bool = внизу больше места чем вверху
+        let dropHeight = drop.height; //высота выпадалки
 
-        let maxDropHeight;
-        let trueHeight;
-        if (drop.height > window.innerHeight - head.bottom && drop.height > head.top) {
-            maxDropHeight = Math.max(window.innerHeight - head.bottom, head.top);
-            trueHeight = {maxHeight: maxDropHeight - checkHeight - 2 + 'px'}// -2  = чтобы "отбить" от границы экрана
-        } else {
-            maxDropHeight = drop.height;
-            trueHeight: {maxHeight: 'auto'};
-        }
-
-        let calc = window.innerHeight - head.bottom - drop.height;
+        console.log("height и calc:",dropHeight,calc);
         let truePos = {};
         
-        if(calc > 0 ){
+        if(calc > 0 ){ //внизу есть место для выпадалки
+            console.log('внизу есть место для выпадалки');
             truePos = {
-            top: head.bottom + 'px',
-            left: head.left + 'px',
-            position: 'absolute',
-            width: head.width + 'px',
-          }
-        } else {
+                top: head.bottom + 'px',
+                left: head.left + 'px',
+                position: 'absolute',
+                width: head.width + 'px',
+            };
+          trueHeight = {maxHeight: 'auto'}
+        } else if(bottom) {//нет места внизу для выпадалки, но внизу больше места
+            console.log('нет места внизу для выпадалки, но внизу больше места');
             truePos = {
-            bottom: window.innerHeight - head.top + 'px',
-            left: head.left + 'px',
-            position: 'absolute',
-            width: head.width + 'px',
-          }
-        }   
+                bottom: window.innerHeight - head.top + 'px',
+                left: head.left + 'px',
+                position: 'absolute',
+                width: head.width + 'px',
+            };
+          maxDropHeight = window.innerHeight - head.bottom;
+          trueHeight = {maxHeight: maxDropHeight - checkHeight - 2 + 'px'}// -2  = чтобы "отбить" от границы экрана 
+        } else {//нет места внизу для выпадалки, места больше вверху
+            console.log('нет места внизу для выпадалки, места больше вверху');
+            truePos = {
+                bottom: window.innerHeight - head.top + 'px',
+                left: head.left + 'px',
+                position: 'absolute',
+                width: head.width + 'px',
+            };
+            if(head.top > dropHeight){//наверху есть место для выпадалки
+                console.log('top:',head.top, dropHeight);
+                maxDropHeight = head.top;
+                trueHeight = {maxHeight: 'auto'}
+            }else{//наверху тоже не хватает места для выпадалки
+                maxDropHeight = head.top;
+                trueHeight = {maxHeight: maxDropHeight - checkHeight - 2 + 'px'}// -2  = чтобы "отбить" от границы экрана 
+            }
+        }  
         this.setState({truePos, trueHeight});
     };
 
