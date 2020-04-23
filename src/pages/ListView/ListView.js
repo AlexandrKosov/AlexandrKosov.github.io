@@ -65,18 +65,18 @@ class listView extends Component{
     getActive7 = (selected) => {
         this.setState({select7: selected});
     }
-    customMultiList(count){
+    customMultiListGeneration(count){
         let arr = [];
         for(let i=0;i<count;++i){
-            arr.push((<ListItem disabled={i.disabled} key={i}>
-                     {Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10)}
+            arr.push((<ListItem disabled={i%10==0} key={i}>
+                     Элемент №{i}
                   </ListItem>))
         };
         return arr;
     };
 
-
     render(){
+        const customMultiList = this.customMultiListGeneration(25);
         const custom = this.customData.map((item)=>{
             return (<ListItem className="list-item-flex" disabled={item.disabled} key={item.text}>
                 <Icon name={item.icon} />
@@ -159,7 +159,7 @@ class listView extends Component{
                         </DropListMulti>
                         <div>dropList с мультивыбором и автоматической высотой</div>
                         <DropListMulti selected={this.state.select7} getActiveItem={this.getActive7} clearable>
-                            {this.customMultiList(20)}
+                            {customMultiList}
                         </DropListMulti>
                     </div>
                 </div>
