@@ -100,9 +100,9 @@ class DropListMulti extends Component {
             };
           trueHeight = {maxHeight: 'auto'}
         } else if(bottom) {//нет места внизу для выпадалки, но внизу больше места
-            console.log('нет места внизу для выпадалки, но внизу больше места');
+            console.log(bottom,'нет места внизу для выпадалки, но внизу больше места');
             truePos = {
-                bottom: window.innerHeight - head.top + 'px',
+                top: head.bottom + 'px',
                 left: head.left + 'px',
                 position: 'absolute',
                 width: head.width + 'px',
