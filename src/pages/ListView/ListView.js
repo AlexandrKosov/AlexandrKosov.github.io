@@ -17,7 +17,8 @@ class listView extends Component{
         select4: 3,
         select5: 1,
         select6: [1,5],
-        select7: []
+        select7: [],
+        select8: 1,
     };
 
     customData = [
@@ -65,6 +66,9 @@ class listView extends Component{
     getActive7 = (selected) => {
         this.setState({select7: selected});
     }
+    getActive8 = (selected) => {
+        this.setState({select8: selected});
+    }
     customMultiListGeneration(count){
         let arr = [];
         for(let i=0;i<count;++i){
@@ -87,12 +91,19 @@ class listView extends Component{
 
         return (
            <React.Fragment>
+
+
                 <h1>Списки</h1>
                 <div style={{display: 'flex'}}>
                     <div style={{width: '45%', marginRight: '20px'}}>
-
-
-                    <DropListMulti selected={this.state.select6} getActiveItem={this.getActive6} clearable>
+                        <h3>Длинный выпадающий список:</h3>
+                        <DropList selected={this.state.select8} getActiveItem={this.getActive8} clearable>
+                            {customMultiList}
+                        </DropList>
+                    </div>
+                    <div style={{flex: 1}}>
+                        <h3>Длинный выпадающий список с мультивыбором:</h3>
+                        <DropListMulti selected={this.state.select6} getActiveItem={this.getActive6} clearable>
                             <ListItem disabled>Zero</ListItem>
                             <ListItem>Uno</ListItem>
                             <ListItem>Due</ListItem>
@@ -103,9 +114,10 @@ class listView extends Component{
                             <ListItem>Sette</ListItem>
                             <ListItem disabled>Otto</ListItem>
                         </DropListMulti>
-
-
-
+                    </div>
+                </div>    
+                <div style={{display: 'flex'}}>
+                    <div style={{width: '45%', marginRight: '20px'}}>
                         <h3>Обычный список с иконками:</h3>
                         <div style={{width: '300px'}}>
                         {/* атрибут selected отсчитывается с НУЛЯ!!!!  */}
