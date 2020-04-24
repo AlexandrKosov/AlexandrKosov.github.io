@@ -773,6 +773,12 @@ footer {
   margin-right: 8px;
   border: 1px solid #ccc;
 }
+.dropdown-list-multiple .list-item:active {
+  background: #fff;
+}
+.dropdown-list-multiple .list-item:active::before {
+  opacity: 1;
+}
 .dropdown-list-multiple .list-item.active {
   background: #fff;
 }
@@ -780,11 +786,11 @@ footer {
   background: url(/src/components/DropListMulti/icons/check.svg) center center no-repeat;
   opacity: 0.6;
 }
+.dropdown-list-multiple .list-item.active:hover {
+  background: #eee;
+}
 .dropdown-list-multiple .list-item.active:hover::before {
   opacity: 0.8;
-}
-.dropdown-list-multiple .list-item.active:active::before {
-  opacity: 1;
 }
 .dropdown-list-multiple .list-item_check-all.partly::before {
   background: url(/src/components/DropListMulti/icons/partly.svg) center center no-repeat;
