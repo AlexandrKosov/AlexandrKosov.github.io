@@ -34,7 +34,8 @@ class DropList extends Component {
         this.state = {
             isOpen: false,
             truePos: {},
-            
+            trueHeight: {},
+            fullHeight: null,
         };
     }
     current = null;
@@ -59,16 +60,22 @@ class DropList extends Component {
         const { getActiveItem, selected, children } = this.props;
         const { current: dropHead } = this.dropHeadRef;
         const {current: dropdown} = this.dropdownRef;
+        const { fullHeight } = this.state;
 
         if(selected){
            this.setActiveItem(selected);
            this.current = (React.cloneElement(children[selected]));
            getActiveItem(selected);
         }
-            
+
         setTimeout(()=>{
             let head = dropHead.getBoundingClientRect();
             let drop = dropdown.getBoundingClientRect();
+            this.setState((prev)=>{
+                if(drop.height !== prev.fullHeight){
+                    return { fullHeight: drop.height};
+                }
+            });
             this.reCalcPosition(head, drop);
             window.addEventListener("resize", this.updateDimensions);
             document.addEventListener('click', this.handleClickOutside, false);
@@ -89,24 +96,46 @@ class DropList extends Component {
     };
 
     reCalcPosition = (head, drop) => {
-        let calc = window.innerHeight - head.bottom - drop.height;
+        const { fullHeight } = this.state;
+        let maxDropHeight;
+        let trueHeight;
+        const calc = window.innerHeight - head.bottom - fullHeight;
+        let bottom = (window.innerHeight - head.bottom > head.top);
         let truePos = {};
+        
         if(calc > 0 ){
             truePos = {
-            top: head.bottom + 'px',
-            left: head.left + 'px',
-            position: 'absolute',
-            width: head.width + 'px',
-          }
+                top: head.bottom + 'px',
+                left: head.left + 'px',
+                position: 'absolute',
+                width: head.width + 'px',
+            };
+          trueHeight = {maxHeight: 'none'}
+        } else if(bottom) {
+            truePos = {
+                top: head.bottom + 'px',
+                left: head.left + 'px',
+                position: 'absolute',
+                width: head.width + 'px',
+            };
+          maxDropHeight = window.innerHeight - head.bottom;
+          trueHeight = {maxHeight: maxDropHeight - 2 + 'px'}
         } else {
             truePos = {
-            bottom: window.innerHeight - head.top + 'px',
-            left: head.left + 'px',
-            position: 'absolute',
-            width: head.width + 'px',
-          }
-        }    
-        this.setState({truePos});
+                bottom: window.innerHeight - head.top + 'px',
+                left: head.left + 'px',
+                position: 'absolute',
+                width: head.width + 'px',
+            };
+            if(head.top > fullHeight){
+                maxDropHeight = head.top;
+                trueHeight = {maxHeight: 'none'}
+            }else{
+                maxDropHeight = head.top;
+                trueHeight = {maxHeight: maxDropHeight - 2 + 'px'}
+            }
+        }  
+        this.setState({truePos, trueHeight});
     };
 
     handleClickOutside = (e) => {
@@ -159,7 +188,7 @@ class DropList extends Component {
 
     render() {
         const { className, children, getActiveItem, onChangeActiveItem, clearable, selected, ...attrs } = this.props;
-        const { isOpen, truePos } = this.state;
+        const { isOpen, truePos, trueHeight  } = this.state;
         const classes = classNames(
           'drop-list',
           className
@@ -167,7 +196,6 @@ class DropList extends Component {
         const dropClasses = classNames("dropdown-list",isOpen?'':'hidden');
         return (
             <React.Fragment>
-
               <div className={classes}  ref={this.dropHeadRef}>
                 <div className="list-current-item" onClick={this.dropListClick}>
                   {this.current || '—'}
@@ -184,7 +212,9 @@ class DropList extends Component {
                       ref={this.dropdownRef}
                       style={truePos} 
                       onClick={this.dropListItemClick}>
-                      {this.renderItems()}
+                      <div className="list-items-container" style={trueHeight}>
+                        {this.renderItems()}
+                      </div>
                   </div>
                 </Portal>}
             </React.Fragment>    
