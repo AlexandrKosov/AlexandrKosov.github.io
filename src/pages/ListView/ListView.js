@@ -96,29 +96,21 @@ class listView extends Component{
                 <h1>Списки</h1>
                 <div style={{display: 'flex'}}>
                     <div style={{width: '45%', marginRight: '20px'}}>
-                        <h3>Длинный выпадающий список:</h3>
+                        <h5>Длинный выпадающий список:</h5>
                         <DropList selected={this.state.select8} getActiveItem={this.getActive8} clearable>
                             {customMultiList}
                         </DropList>
                     </div>
                     <div style={{flex: 1}}>
-                        <h3>Длинный выпадающий список с мультивыбором:</h3>
-                        <DropListMulti selected={this.state.select6} getActiveItem={this.getActive6} clearable>
-                            <ListItem disabled>Zero</ListItem>
-                            <ListItem>Uno</ListItem>
-                            <ListItem>Due</ListItem>
-                            <ListItem>Tre</ListItem>
-                            <ListItem >Quattro</ListItem>
-                            <ListItem>Cinque</ListItem>
-                            <ListItem>Sei</ListItem>
-                            <ListItem>Sette</ListItem>
-                            <ListItem disabled>Otto</ListItem>
+                        <h5>Длинный выпадающий список с мультивыбором и автоматической высотой:</h5>
+                        <DropListMulti selected={this.state.select7} getActiveItem={this.getActive7} clearable>
+                            {customMultiList}
                         </DropListMulti>
                     </div>
                 </div>    
                 <div style={{display: 'flex'}}>
                     <div style={{width: '45%', marginRight: '20px'}}>
-                        <h3>Обычный список с иконками:</h3>
+                        <h5>Обычный список с иконками:</h5>
                         <div style={{width: '300px'}}>
                         {/* атрибут selected отсчитывается с НУЛЯ!!!!  */}
                             <List selected={this.state.select1} getActiveItem={this.getActive}>
@@ -132,7 +124,7 @@ class listView extends Component{
                         <i style={{fontSize: '14px'}}> выбран № {this.state.select1}</i>
                     </div>
                     <div>    
-                        <h3>Кастомный список:</h3>
+                        <h5>Кастомный список:</h5>
                         <div style={{width: '300px'}}>
                             <List selected={this.state.select2} getActiveItem={this.getActive2}>
                                 {custom}
@@ -144,7 +136,7 @@ class listView extends Component{
 
                 <div style={{display: 'flex'}}>
                     <div style={{width: '45%', marginRight: '20px'}}>
-                        <h2>Dropdown list  <i style={{fontSize: '14px'}}> выбран № {this.state.select3}</i></h2>
+                        <h5>Dropdown list  <i style={{fontSize: '14px'}}> выбран № {this.state.select3}</i></h5>
                         <DropList className="first" selected={this.state.select3}  getActiveItem={this.getActive3}>
                                 <ListItem><Icon name="search" />Первый</ListItem>
                                 <ListItem>Второй<Badge variant="success" style={{marginLeft: '10px'}}>OK</Badge></ListItem>
@@ -167,8 +159,8 @@ class listView extends Component{
                             {custom}
                         </DropList>
                     </div>
-                    <div>
-                        <h2>Dropdown list Multiselect  </h2>
+                    <div style={{flex: 1}}>
+                        <h5>Dropdown list Multiselect</h5>
                         <div>
                             <i style={{fontSize: '14px'}}>
                                 Выбранные: {this.state.select6.map((item, index)=>{return (<span key={item}>{item}, </span>)})}
@@ -184,10 +176,6 @@ class listView extends Component{
                             <ListItem>Sei</ListItem>
                             <ListItem>Sette</ListItem>
                             <ListItem disabled>Otto</ListItem>
-                        </DropListMulti>
-                        <div>dropList с мультивыбором и автоматической высотой</div>
-                        <DropListMulti selected={this.state.select7} getActiveItem={this.getActive7} clearable>
-                            {customMultiList}
                         </DropListMulti>
                     </div>
                 </div>
