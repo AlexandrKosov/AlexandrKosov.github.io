@@ -71,6 +71,11 @@ class App extends Component{
                                    Списки элементов
                                 </NavLink>
                             </li>
+							<li className="list-group-item">
+                                <NavLink to={routesMap.tooltips} activeClassName={styles.active}>
+                                  Тултипы
+                                </NavLink>
+                            </li>
                         </ul>
 {/*-------------------------------/MENU------------------------*/}						
                     </div>
