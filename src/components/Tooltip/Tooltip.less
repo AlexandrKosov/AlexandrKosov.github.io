@@ -1,23 +1,25 @@
 .tooltip-wrapper {
-    position: relative;
-    display: inline-block;
+    // position: relative;
+    // display: inline-block;
 }
 .tooltip-element {
     position: absolute;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
-
+    padding: 6px 12px;
     opacity: 1;
     visibility: visible;
 
-    top: 190px;
-    left: 425px;
-    
+
+
     &.hidden {
-        opacity: 0;
-        visibility: hidden;
-        top: -10000px !important;
+        // opacity: 0;
+        // visibility: hidden;
+        // top: -10000px !important;
     }
 }
 .tooltip-target-element {
     cursor: pointer;
+    // display: inline-block;
+    // position: relative;
+    border: 1px solid red;
 }

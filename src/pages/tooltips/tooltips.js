@@ -17,9 +17,11 @@ class Tooltips extends Component{
         return (
            <React.Fragment>
                 <h1>Тултипы (всплывающие подсказки)</h1>
+				<p>
+                    Скажи <Tooltip content="парарарирам">слово</Tooltip> 
+                    {/* <Tooltip content={(<div><Icon name="star" size='small' />проверка<Badge variant="secondary">New</Badge></div>)}>«друг»</Tooltip> и проходи. */}
 				
-				Скажи <Tooltip content="парарарирам">слово</Tooltip> 
-                <Tooltip content={(<div><Icon name="star" size='small' />проверка<Badge variant="secondary">New</Badge></div>)}>«друг»</Tooltip> и проходи.
+                </p>
 				
             </React.Fragment>
        )

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Portal from '~c/portal';
 
 import './Tooltip.less';
+import { setTimeout } from 'timers';
 
 class Tooltip extends Component {
 	static propTypes = {
@@ -13,15 +14,14 @@ class Tooltip extends Component {
 			PropTypes.object,
 			PropTypes.node
 		  ]).isRequired,
-		style: PropTypes.objectOf(PropTypes.string)
 	};
 	
 	static defaultProps = {
-		style: {}
 	};
 	
 	state = {
-		visible: false
+		visible: false,
+		truePos: {}
 	};
 
     targetRef = React.createRef();
@@ -31,15 +31,38 @@ class Tooltip extends Component {
         const { current: targetObj } = this.targetRef;
 		const {current: tooltipObj } = this.tooltipRef;
 
-
-		let target = targetObj.getBoundingClientRect();
-		let tooltip = tooltipObj.getBoundingClientRect();
-
-		console.log(target, tooltip);
-
-
-
+		setTimeout(()=>{
+			let target = targetObj.getBoundingClientRect();
+			let tooltip = tooltipObj.getBoundingClientRect();
+		
+			this.reCalcPosition(target, tooltip);
+		},0);
+		
 	}
+
+//target = то, на чем вызывается тултип; tooltip = сам тултип;
+	reCalcPosition = (target, tooltip) => {
+
+        const calc = window.innerHeight - target.bottom - tooltip.height;//умещается ли внизу?
+		
+        let truePos = {};
+        if(calc > 0 ){
+            truePos = {
+                top: target.bottom + 'px',
+                left: target.left + (target.right - target.left)/2 + 'px'
+            };
+        } else {
+            truePos = {
+                bottom: target.top + 'px',
+                left: target.left + (target.right - target.left)/2 + 'px'
+			}
+        }  
+        this.setState({truePos});
+    };
+
+
+
+
 
 	show = () => {
 		this.setState({visible: true});
@@ -50,8 +73,8 @@ class Tooltip extends Component {
 	}
 
 	render() {
-		const { children, content, style } = this.props;
-		const { visible = true } = this.state;
+		const { children, content } = this.props;
+		const { visible, truePos } = this.state;
 
 		const classes = classNames(
 			'tooltip-element',
@@ -60,7 +83,7 @@ class Tooltip extends Component {
 		
 		return (
 			<span className="tooltip-wrapper">
-				{<Portal><span style={style} className={classes} ref={this.tooltipRef}>{content}</span></Portal> }
+				{<Portal><span style={truePos} className={classes} ref={this.tooltipRef}>{content}</span></Portal> }
 				<span
 					ref={this.targetRef}
 					className="tooltip-target-element"
