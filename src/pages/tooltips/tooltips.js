@@ -15,6 +15,12 @@ class Tooltips extends Component{
 
 
     render(){
+        const leftTop = {
+            background: 'red',
+            position: 'absolute',
+            left: '10px',
+            top: '10px'
+        }
         const rightTop = {
             background: 'red',
             position: 'absolute',
@@ -40,13 +46,6 @@ class Tooltips extends Component{
         return (
            <React.Fragment>
                 <h1>Тултипы (всплывающие подсказки)</h1>
-				<p>
-                    Скажи <Tooltip content="парарарирам">слово</Tooltip> 
-                    {/* <Tooltip content={(<div><Icon name="star" size='small' />
-                        проверка<Badge variant="secondary">New</Badge></div>)}>«друг»
-                    </Tooltip> 
-                    и проходи. */}
-                </p>
                 <div style={{
                     position: 'relative',
                     width: '100%',
@@ -54,10 +53,12 @@ class Tooltips extends Component{
                     border: '1px dashed lightgreen',
                 }} >
                 
-<Tooltip content={(<div><Icon name="star" size='small' />
+{/* <Tooltip content={(<div><Icon name="star" size='small' />
                         проверка<Badge variant="secondary">New</Badge></div>)}>
                         <span style={rightTop}>right-top</span>
-                        </Tooltip> 
+                        </Tooltip>  */}
+ <Tooltip content={lorem}><button style={leftTop}>right-bottom</button></Tooltip> 
+ <Tooltip content={ipsum}><button style={rightTop}>left-bottom</button></Tooltip> 
  <Tooltip content={lorem}><button style={rightBottom}>right-bottom</button></Tooltip> 
  <Tooltip content={ipsum}><button style={leftBottom}>left-bottom</button></Tooltip> 
 

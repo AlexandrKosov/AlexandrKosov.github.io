@@ -25,14 +25,23 @@ class Tooltip extends Component {
 	state = {
 		visible: false,
 		truePos: {},
+		trianglePos: {},
 		position: null
 	};
 
-    targetRef = React.createRef();
+	triangleRef = React.createRef();
     tooltipRef = React.createRef();
 
 //target = то, на чем вызывается тултип; tooltip = сам тултип;
-	reCalcPosition = (target, tooltip) => {
+	reCalcPosition = (target) => {
+
+		const {current: tooltipObj } = this.tooltipRef;
+		const {current: triangleObj } = this.triangleRef;
+		
+		let triangle = triangleObj.getBoundingClientRect();
+		let tooltip = tooltipObj.getBoundingClientRect();
+
+		
 
 		let left = target.left + (target.right - target.left)/2  - (tooltip.right - tooltip.left)/2;
 		if (left > (window.innerWidth - tooltip.width)) {left=window.innerWidth - tooltip.width - horizMargin};
@@ -41,11 +50,16 @@ class Tooltip extends Component {
 
         const calc = window.innerHeight - target.bottom - tooltip.height - sizeTriangle;
 		let truePos = {};
+		let trianglePos = {};
 		let position= '';
         if(calc > 0 ){
             truePos = {
 				top: target.bottom + sizeTriangle + 'px',
 				left
+			};
+			trianglePos = {
+				top: target.bottom + sizeTriangle + 'px',
+				left: target.left + (target.right - target.left)/2 - triangle.width/2 + 'px'
 			};
         } else {
 			position = 'position-up';
@@ -53,43 +67,46 @@ class Tooltip extends Component {
 				top: target.bottom - (target.height + tooltip.height + sizeTriangle) + 'px',
 				left			
 			};
+			trianglePos = {
+				top: target.top - sizeTriangle + 'px',
+				left: target.left + (target.right - target.left)/2 - triangle.width/2 + 'px'
+			};
         }  
-        this.setState({position, truePos});
+        this.setState({position, truePos, trianglePos});
     };
 
 
 	show = (e) => {
 		e.persist();
-		//const { current: targetObj } = this.targetRef;
-		const {current: tooltipObj } = this.tooltipRef;
-			//let target = targetObj.getBoundingClientRect();
-			let target = e.target.getBoundingClientRect();
-		
-			let tooltip = tooltipObj.getBoundingClientRect();
-			this.reCalcPosition(target, tooltip);
+		let target = e.target.getBoundingClientRect();
+			this.reCalcPosition(target);{}
 		this.setState({visible: true});
 	}
 
 	hide = (e) => {
 		setTimeout(()=>{
 			this.setState({visible: false});
-		},100);
-		
+		},500);
 	}
 
 	render() {
 		const { children, content } = this.props;
-		const { visible, truePos, position } = this.state;
+		const { visible, truePos, trianglePos, position } = this.state;
 		const classes = classNames(
 			'tooltip-element',
 			visible?'':'hidden',
-			position
+			
 		);
 		return (
 			<span className="tooltip-wrapper">
-				{<Portal><span style={truePos} className={classes} ref={this.tooltipRef}>{content}</span></Portal> }
+				{<Portal>
+					<span style={truePos} className={classes} ref={this.tooltipRef} >
+						{content}
+					</span>
+					<div style={trianglePos} className={classNames("tooltip-triangle",position,visible?'':'hidden',)} ref={this.triangleRef}></div>
+				</Portal> }
 				<span
-					ref={this.targetRef}
+					// ref={this.targetRef}
 					className="tooltip-target-element"
 					onMouseEnter={this.show}
 					onMouseLeave={this.hide}
@@ -97,6 +114,5 @@ class Tooltip extends Component {
 			</span>
 		)
 	}
-	
 }
 export default Tooltip;

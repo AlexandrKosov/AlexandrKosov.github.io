@@ -9,6 +9,15 @@
     opacity: 1;
     visibility: visible;
     background: #fff;
+    
+    &.hidden {
+        opacity: 0;
+        visibility: hidden;
+        top: -10000px !important;
+    }
+}
+.tooltip-triangle {
+    position: absolute;
     .triangle();
     &.hidden {
         opacity: 0;
@@ -16,8 +25,8 @@
         top: -10000px !important;
     }
     &.position-up {
-      .triangleUp();  
-    }
+        .triangleUp();  
+      }
 }
 .tooltip-target-element {
     cursor: pointer;
