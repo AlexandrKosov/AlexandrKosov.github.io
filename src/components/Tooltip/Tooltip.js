@@ -38,29 +38,24 @@ class Tooltip extends Component {
 	// 	// 	this.reCalcPosition(target, tooltip);
 	// 	//setTimeout(()=>{},0);
 	// }
-	
+
 //target = то, на чем вызывается тултип; tooltip = сам тултип;
 	reCalcPosition = (target, tooltip) => {
-
         const calc = window.innerHeight - target.bottom - tooltip.height - 10;//умещается ли внизу? (10пикс на стрелку)
-		
         let truePos = {};
         if(calc > 0 ){
             truePos = {
                 top: target.bottom + 10 + 'px',
                 left: target.left + (target.right - target.left)/2  - (tooltip.right - tooltip.left)/2 + 'px'
-            };
+			};
         } else {
             truePos = {
-                bottom: target.top - 10 + 'px',
+				top: target.bottom - (target.height + tooltip.height + 10) + 'px',
                 left: target.left + (target.right - target.left)/2  - (tooltip.right - tooltip.left)/2 + 'px'
-			}
+			};
         }  
         this.setState({truePos});
     };
-
-
-
 
 
 	show = (e) => {
@@ -82,7 +77,6 @@ class Tooltip extends Component {
 	render() {
 		const { children, content } = this.props;
 		const { visible, truePos } = this.state;
-
 		const classes = classNames(
 			'tooltip-element',
 			visible?'':'hidden'
