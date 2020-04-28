@@ -27,34 +27,33 @@ class Tooltip extends Component {
     targetRef = React.createRef();
     tooltipRef = React.createRef();
 
-	componentDidMount(){
-        const { current: targetObj } = this.targetRef;
-		const {current: tooltipObj } = this.tooltipRef;
+	// componentDidMount(){
+    //     // const { current: targetObj } = this.targetRef;
+	// 	// const {current: tooltipObj } = this.tooltipRef;
 
-		setTimeout(()=>{
-			let target = targetObj.getBoundingClientRect();
-			let tooltip = tooltipObj.getBoundingClientRect();
 		
-			this.reCalcPosition(target, tooltip);
-		},0);
+	// 	// 	let target = targetObj.getBoundingClientRect();
+	// 	// 	let tooltip = tooltipObj.getBoundingClientRect();
 		
-	}
-
+	// 	// 	this.reCalcPosition(target, tooltip);
+	// 	//setTimeout(()=>{},0);
+	// }
+	
 //target = то, на чем вызывается тултип; tooltip = сам тултип;
 	reCalcPosition = (target, tooltip) => {
 
-        const calc = window.innerHeight - target.bottom - tooltip.height;//умещается ли внизу?
+        const calc = window.innerHeight - target.bottom - tooltip.height - 10;//умещается ли внизу? (10пикс на стрелку)
 		
         let truePos = {};
         if(calc > 0 ){
             truePos = {
-                top: target.bottom + 'px',
-                left: target.left + (target.right - target.left)/2 + 'px'
+                top: target.bottom + 10 + 'px',
+                left: target.left + (target.right - target.left)/2  - (tooltip.right - tooltip.left)/2 + 'px'
             };
         } else {
             truePos = {
-                bottom: target.top + 'px',
-                left: target.left + (target.right - target.left)/2 + 'px'
+                bottom: target.top - 10 + 'px',
+                left: target.left + (target.right - target.left)/2  - (tooltip.right - tooltip.left)/2 + 'px'
 			}
         }  
         this.setState({truePos});
@@ -64,11 +63,19 @@ class Tooltip extends Component {
 
 
 
-	show = () => {
+	show = (e) => {
+		e.persist();
+		console.log(e);
+		//const { current: targetObj } = this.targetRef;
+		const {current: tooltipObj } = this.tooltipRef;
+			//let target = targetObj.getBoundingClientRect();
+			let target = e.target.getBoundingClientRect();
+			let tooltip = tooltipObj.getBoundingClientRect();
+			this.reCalcPosition(target, tooltip);
 		this.setState({visible: true});
 	}
 
-	hide = () => {
+	hide = (e) => {
 		this.setState({visible: false});
 	}
 
