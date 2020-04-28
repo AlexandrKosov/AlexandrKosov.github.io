@@ -21,7 +21,8 @@ class Tooltip extends Component {
 	
 	state = {
 		visible: false,
-		truePos: {}
+		truePos: {},
+		position: null
 	};
 
     targetRef = React.createRef();
@@ -42,19 +43,21 @@ class Tooltip extends Component {
 //target = то, на чем вызывается тултип; tooltip = сам тултип;
 	reCalcPosition = (target, tooltip) => {
         const calc = window.innerHeight - target.bottom - tooltip.height - 10;//умещается ли внизу? (10пикс на стрелку)
-        let truePos = {};
+		let truePos = {};
+		let position= '';
         if(calc > 0 ){
             truePos = {
                 top: target.bottom + 10 + 'px',
                 left: target.left + (target.right - target.left)/2  - (tooltip.right - tooltip.left)/2 + 'px'
 			};
         } else {
+			position = 'position-up';
             truePos = {
 				top: target.bottom - (target.height + tooltip.height + 10) + 'px',
                 left: target.left + (target.right - target.left)/2  - (tooltip.right - tooltip.left)/2 + 'px'
 			};
         }  
-        this.setState({truePos});
+        this.setState({position, truePos});
     };
 
 
@@ -76,10 +79,11 @@ class Tooltip extends Component {
 
 	render() {
 		const { children, content } = this.props;
-		const { visible, truePos } = this.state;
+		const { visible, truePos, position } = this.state;
 		const classes = classNames(
 			'tooltip-element',
-			visible?'':'hidden'
+			visible?'':'hidden',
+			position
 		);
 		
 		return (
