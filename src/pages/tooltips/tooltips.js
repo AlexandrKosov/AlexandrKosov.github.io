@@ -16,25 +16,21 @@ class Tooltips extends Component{
 
     render(){
         const leftTop = {
-            background: 'red',
             position: 'absolute',
             left: '10px',
             top: '10px'
         }
         const rightTop = {
-            background: 'red',
             position: 'absolute',
             right: '10px',
             top: '10px'
         }
         const rightBottom = {
-            background: 'red',
             position: 'absolute',
             right: '10px',
             bottom: '10px'
         } 
         const leftBottom = {
-            background: 'red',
             position: 'absolute',
             left: '10px',
             bottom: '10px'
@@ -50,17 +46,21 @@ class Tooltips extends Component{
                     position: 'relative',
                     width: '100%',
                     height: "500px",
-                    border: '1px dashed lightgreen',
+                    padding: '80px 100px'
                 }} >
+                Тултипы сделаны таким образом, что внутри может располагаться не только какой-то текст, а еще и react-компонент. 
+                То есть туда можно поместить разнообразную верстку.
+                Тултип автоматически рассчитывает, где ему "выпадать", сверху, или снизу. Четыре примера-кнопки по краям демонстрируют это.
+
                 
 {/* <Tooltip content={(<div><Icon name="star" size='small' />
                         проверка<Badge variant="secondary">New</Badge></div>)}>
                         <span style={rightTop}>right-top</span>
                         </Tooltip>  */}
- <Tooltip content={lorem}><button style={leftTop}>right-bottom</button></Tooltip> 
- <Tooltip content={ipsum}><button style={rightTop}>left-bottom</button></Tooltip> 
- <Tooltip content={lorem}><button style={rightBottom}>right-bottom</button></Tooltip> 
- <Tooltip content={ipsum}><button style={leftBottom}>left-bottom</button></Tooltip> 
+ <Tooltip content={lorem}><Button style={leftTop} variant="primary">right-bottom</Button></Tooltip> 
+ <Tooltip content={ipsum}><Button style={rightTop} variant="success">left-bottom</Button></Tooltip> 
+ <Tooltip content={lorem}><Button style={rightBottom} variant="danger">right-bottom</Button></Tooltip> 
+ <Tooltip content={ipsum}><Button style={leftBottom}variant="warning">left-bottom</Button></Tooltip> 
 
 
                 </div>
