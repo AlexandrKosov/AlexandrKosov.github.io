@@ -55,7 +55,7 @@ class ListItem extends Component {
     return (
       <Tag className={classes} 
       {...attrs}
-      active={active}
+      active={active.toString()}
       onClick={()=>onChangeActiveItem(index)}
       >
         {children}
