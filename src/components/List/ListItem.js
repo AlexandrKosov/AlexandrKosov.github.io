@@ -34,9 +34,6 @@ class ListItem extends Component {
       index,
       onChangeActiveItem,
       ...attrs} = this.props;
-    if(active){
-      onChangeActiveItem(index)
-    }
   }
 
   render() {
@@ -54,9 +51,11 @@ class ListItem extends Component {
       { disabled },
       { active },
     );
+
     return (
       <Tag className={classes} 
       {...attrs}
+      active={active}
       onClick={()=>onChangeActiveItem(index)}
       >
         {children}

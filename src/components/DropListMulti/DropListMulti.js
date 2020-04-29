@@ -180,7 +180,8 @@ class DropListMulti extends Component {
             <ListItem
                 key={index}
                 index={index}
-                active={selected.includes(index)}
+                //className={classNames(child.props.className, selected.includes(index)?'active':'')}
+                active={selected.includes(index)?true:false}
                 disabled={child.props.disabled}
                 onChangeActiveItem={this.changeActiveItem} >
                 {child.props.children}
