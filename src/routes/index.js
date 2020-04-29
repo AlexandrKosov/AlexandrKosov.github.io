@@ -8,6 +8,7 @@ import Buttons from '~p/buttons';
 import Tags from '~p/tags';
 import Badges from '~p/badges';
 import listView from '~p/listView';
+import Tooltips from '~p/tooltips';
 
 let routes = [
     {
@@ -57,6 +58,12 @@ let routes = [
         name: 'listView',
         url: '/list',
         component: listView,
+        exact: true
+    },
+	{
+        name: 'tooltips',
+        url: '/tooltips',
+        component: Tooltips,
         exact: true
     },
     {
