@@ -22,6 +22,15 @@ footer {
 .main {
   flex: 1 1 auto;
 }
+blockquote {
+  font-style: italic;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+  font-weight: 500;
+}
 
 .icon {
   display: inline-block;
@@ -91,7 +100,6 @@ footer {
 }
 .button:active,
 .button.active {
-  top: 1px;
   border: none;
   box-shadow: inset 0px 2px 1px 0px rgba(0, 0, 0, 0.5), inset 0 0px 2px 0px rgba(0, 0, 0, 0.3);
 }
@@ -809,5 +817,82 @@ footer {
 }
 .list-items-container {
   overflow-y: auto;
+}
+
+.tooltip-element {
+  position: absolute;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  opacity: 1;
+  visibility: visible;
+  background: #fff;
+}
+.tooltip-element.hidden {
+  opacity: 0;
+  visibility: hidden;
+  top: -10000px !important;
+}
+.tooltip-triangle {
+  position: absolute;
+}
+.tooltip-triangle:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 0 6px 11px 6px;
+  border-color: transparent transparent #ccc transparent;
+  border-style: solid;
+  bottom: auto;
+  top: -11px;
+  left: calc(50% - 6px);
+}
+.tooltip-triangle:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 0 5px 10px 5px;
+  border-color: transparent transparent #fff transparent;
+  border-style: solid;
+  bottom: auto;
+  top: -10px;
+  left: calc(50% - 5px);
+}
+.tooltip-triangle.hidden {
+  opacity: 0;
+  visibility: hidden;
+  top: -10000px !important;
+}
+.tooltip-triangle.position-up:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 11px 6px 0 6px;
+  border-color: #ccc transparent transparent transparent;
+  border-style: solid;
+  top: auto;
+  bottom: -11px;
+  left: calc(50% - 6px);
+}
+.tooltip-triangle.position-up:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 10px 5px 0 5px;
+  border-color: #fff transparent transparent transparent;
+  border-style: solid;
+  top: auto;
+  bottom: -10px;
+  left: calc(50% - 5px);
+}
+.tooltip-target-element {
+  cursor: pointer;
 }
 
