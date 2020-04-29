@@ -146,9 +146,11 @@ class DropListMulti extends Component {
         const { children, selected } = this.props;
         let names = [];
         let selArr =arr? arr : selected;
-        for(let i=0;i<selArr.length; ++i){
-            names.push(children[selArr[i]].props.children);
-        }
+        children.forEach((el, i)=>{
+            if(selArr.includes(i)){
+                names.push(el.props.children);
+            }
+        });
         this.current = [...names];
     }
 

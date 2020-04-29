@@ -163,7 +163,7 @@ class listView extends Component{
                         <h5>Dropdown list Multiselect</h5>
                         <div>
                             <i style={{fontSize: '14px'}}>
-                                Выбранные: {this.state.select6.map((item, index)=>{return (<span key={item}>{item}, </span>)})}
+                                Выбранные: {this.state.select6.sort().map((item, index)=>{return (<span key={item}>{item}, </span>)})}
                             </i>
                         </div>
                         <DropListMulti selected={this.state.select6} getActiveItem={this.getActive6} clearable>
