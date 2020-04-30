@@ -11,23 +11,49 @@
     z-index: 99;
     overflow: visible;
 
+    &::before,&::after {
+        position:absolute;
+        content: '';
+    }
+
+    & .split-sensitive {
+
+
+    }
     .splitter-horizontal > & {
         width: 100%;
         cursor: n-resize;
         height: 6px;
-        & .ui-split-sensitive {
+        & .split-sensitive {
             height: 6px;
             top: -3px;
+        }
+        &::before {
+            width: 100%;
+            height: 1px;
+            background: #ccc; 
+            left: 0;
+            right: 0;
+            top: 4px;
+         }
+         &::after {
+             
         }
     }
     .splitter-vertical > & {
         height: 100%;
         width: 6px;
         cursor: w-resize;
-        & .ui-split-sensitive {
+        & .split-sensitive {
             width: 6px;
             left: -3px;
         }
+                    &::before {
+
+            }
+            &::after {
+
+            }
     }
 }
 .split-sensitive {

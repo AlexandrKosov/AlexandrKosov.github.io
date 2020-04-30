@@ -10,7 +10,7 @@ class Splitters extends Component {
      
         return (
            <React.Fragment>
-              <Splitter>
+              <Splitter horizontal>
                 <SplitterZone>
                     Трам-тарарам!
                 </SplitterZone>

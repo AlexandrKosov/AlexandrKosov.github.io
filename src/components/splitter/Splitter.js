@@ -18,15 +18,23 @@ class Splitter extends Component {
 	};
 
 	render() {
-		const { children } = this.props;
+		const { children, horizontal=null, vertical=null  } = this.props;
 console.log(children);
+		const classes = classNames(
+			"splitter",
+			horizontal?'splitter-horizontal':null,
+			vertical?'splitter-vertical':null,
+		);
+
 		return (
 			<div className="splitter-container">
-				<SplitterZone>{children[0].props.children}</SplitterZone>
-				<div className="ui-split-handler">
-					<div className="ui-split-sensitive"></div>
+				<div className={classes}>
+					<SplitterZone>{children[0].props.children}</SplitterZone>
+					<div className="split-handler">
+						<div className="split-sensitive"></div>
+					</div>
+					<SplitterZone>{children[1].props.children}</SplitterZone>
 				</div>
-				<SplitterZone>{children[1].props.children}</SplitterZone>
 			</div>
 		)
 	}
