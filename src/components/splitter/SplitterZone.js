@@ -16,8 +16,12 @@ class SplitterZone extends Component {
 	};
 
 	render() {
+        const {children} = this.props;
 		return (
 			<React.Fragment>
+                <div className="splitter-zone">
+                    {children}
+                </div>
 			</React.Fragment>
 		)
 	}
