@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import Portal from '~c/portal';
 
 import './Tooltip.less';
-import { setTimeout } from 'timers';
 
 const sizeTriangle = 10;
 const horizMargin = 4;
