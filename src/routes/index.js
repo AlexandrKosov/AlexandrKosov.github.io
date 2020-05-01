@@ -9,6 +9,7 @@ import Tags from '~p/tags';
 import Badges from '~p/badges';
 import listView from '~p/listView';
 import Tooltips from '~p/tooltips';
+import Inputs from '~p/inputs';
 
 let routes = [
     {
@@ -66,6 +67,12 @@ let routes = [
         component: Tooltips,
         exact: true
     },
+	{
+        name: 'inputs',
+        url: '/inputs',
+        component: Inputs,
+        exact: true
+    },	
     {
         url: '**',
         component: Page404
