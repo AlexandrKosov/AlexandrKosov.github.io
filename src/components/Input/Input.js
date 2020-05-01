@@ -5,10 +5,10 @@ import classNames from 'classnames';
 
 import './Input.less';
 
-const Input () => {
+const Input = () => {
 	
 	return (
-		<input type="text"  />
+		<input type="text" />
 	)
 }
 
