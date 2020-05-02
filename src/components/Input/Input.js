@@ -33,17 +33,23 @@ class Input extends Component {
 	}
 
 	onChangeHandler = (e) => {
-		const { current: multi } = this.multiRef;
-		// console.log(e.target, multi);
-		// e.target.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;'); 
-		multi.style.height = 'auto'; 
-		multi.style.height = (multi.scrollHeight) + 'px'; 
-		// this.style.height = 'auto'; 
-		// this.style.height = (this.scrollHeight) + 'px'; 
+		const { name, className, error, label, clearable, multiline, maxHeight, ...attrs } = this.props;
+		if (multiline){
+			const { current: multi } = this.multiRef;
+
+			multi.style.height = 'auto'; 
+			multi.style.height = (multi.scrollHeight) + 'px'; 
+			if(multi.style.height>=maxHeight){
+				multi.style.height = maxHeight;
+				multi.style.overflowY = 'auto';
+			}else{
+				multi.style.overflowY = 'hidden';
+			}
+		}
 	}
 	
 	render() {
-		const { name, className, error, label, clearable, multiline, ...attrs } = this.props;
+		const { name, className, error, label, clearable, multiline, maxHeight, ...attrs } = this.props;
 		const classes = classNames(
 			'text-field',
 			className,
@@ -54,6 +60,7 @@ class Input extends Component {
 	
 		if(multiline) {
 			//onChangeHandler
+			console.log(maxHeight);
 		}
 	
 		if(attrs.type!=='text' && multiline) throw new Error('Не текстовое поле не может быть многострочным');
@@ -73,6 +80,7 @@ class Input extends Component {
 					ref={this.multiRef}
 					id={name}
 					className={classes}
+					style={{maxHeight:maxHeight}}
 					{...attrs}
 					onChange={this.onChangeHandler}
 					>

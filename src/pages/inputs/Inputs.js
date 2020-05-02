@@ -25,6 +25,7 @@ class Inputs extends Component {
 				<Input type="text" 
 							multiline
 							//rows="5"
+							maxHeight="200px"
 							clearable
 							name="multi"
 							defaultValue={multiText}
