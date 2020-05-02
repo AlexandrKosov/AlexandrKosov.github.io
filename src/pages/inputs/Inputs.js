@@ -24,7 +24,7 @@ class Inputs extends Component {
 				<h4>Multiline text field</h4>
 				<Input type="text" 
 							multiline
-							rows="5"
+							//rows="5"
 							clearable
 							name="multi"
 							defaultValue={multiText}
