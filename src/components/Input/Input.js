@@ -28,11 +28,18 @@ class Input extends Component {
 		if(multi){
 			multi.style.overflowY = 'hidden';
 			multi.style.height = 'auto'; 
-			multi.style.height = (multi.scrollHeight) + 'px'; 
+			multi.style.height = (multi.scrollHeight) + 'px';
+			window.addEventListener("resize", this.updateTextareaSize);			
 		}
 	}
+	componentWillUnmount() {
+        window.removeEventListener("resize", this.updateTextareaSize);
+    }
 
 	onChangeHandler = (e) => {
+		this.updateTextareaSize();
+	}
+	updateTextareaSize = () => {
 		const { name, className, error, label, clearable, multiline, maxHeight, ...attrs } = this.props;
 		if (multiline){
 			const { current: multi } = this.multiRef;
