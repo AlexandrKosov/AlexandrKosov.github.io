@@ -33,7 +33,7 @@ class Inputs extends Component {
 
 				
 				<h2><span>1. Base Input type text:</span></h2>
-    <Input multiline name="text" type="text" />
+    <Input name="text" type="text" />
 
     <h2><span>2. Input type number (with label):</span></h2>
     <Input name="number" label="select number" type="number" />
