@@ -7,8 +7,8 @@ import './Input.less';
 import Icon from '~c/Icon';
 
 //const Input = ({name, className, error, label, clearable, multiline, ...attrs}) => {
-const paddingRightwithoutScroll = '24px';	
-const paddingRightwithScroll = '40px';	
+const paddingRightwithoutScroll = 24;	
+const paddingRightwithScroll = 40;	
 
 class Input extends Component {
 	static propTypes = {
@@ -30,8 +30,10 @@ class Input extends Component {
 		multiline:false, 
 		maxHeight:''
 	};
-	multiRef = React.createRef();
 
+	multiRef = React.createRef();
+	clearRef = React.createRef();
+	
 	componentDidMount() {	
 		const { current: multi } = this.multiRef;
 		if(multi){
@@ -52,6 +54,7 @@ class Input extends Component {
 		const { name, className, error, label, clearable, multiline, maxHeight, ...attrs } = this.props;
 		if (multiline){
 			const { current: multi } = this.multiRef;
+			const { current: clear } = this.clearRef;
 
 			multi.style.height = 'auto'; 
 			multi.style.height = (multi.scrollHeight) + 'px'; 
@@ -59,11 +62,14 @@ class Input extends Component {
 				multi.style.height = maxHeight;
 				multi.style.overflowY = 'auto';
 				if(clearable) {
-					multi.style.paddingRight=paddingRightwithScroll;
+					multi.style.paddingRight=paddingRightwithScroll + 'px';
+					clear.style.right = (paddingRightwithScroll - paddingRightwithoutScroll) + 'px';//
+					console.log();
 				}
 			}else{
 				multi.style.overflowY = 'hidden';
-				multi.style.paddingRight=paddingRightwithoutScroll;
+				multi.style.paddingRight=paddingRightwithoutScroll + 'px';
+				clear.style.right = 0;
 			}
 		}
 	}
@@ -106,9 +112,6 @@ class Input extends Component {
 						>
 							{attrs.value}
 						</textarea>
-						// <div className="inner-textarea" {...attrs}>
-						// 	{attrs.value}
-						// </div>	
 					}
 					{clearable && <div className="text-field-clear" onClick={this.clearField} ref={this.clearRef}>
 						<Icon name="cross" size="small"/>
