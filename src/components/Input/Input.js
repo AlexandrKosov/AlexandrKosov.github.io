@@ -6,7 +6,6 @@ import './Input.less';
 
 import Icon from '~c/Icon';
 
-//const Input = ({name, className, error, label, clearable, multiline, ...attrs}) => {
 const paddingRightwithoutScroll = 24;	
 const paddingRightwithScroll = 40;	
 
@@ -21,7 +20,6 @@ class Input extends Component {
 		maxHeight:PropTypes.string,
 		value: PropTypes.string.isRequired,
 		onChange: PropTypes.func.isRequired
-		//type: PropTypes.oneOf(['text', 'password']),....
 	};
 	
 	static defaultProps = {
@@ -31,7 +29,6 @@ class Input extends Component {
 		clearable:false, 
 		multiline:false, 
 		maxHeight:'',
-		//onChange: ()=> {}
 	};
 
 	multiRef = React.createRef();
@@ -67,8 +64,7 @@ class Input extends Component {
 				multi.style.overflowY = 'auto';
 				if(clearable) {
 					multi.style.paddingRight=paddingRightwithScroll + 'px';
-					clear.style.right = (paddingRightwithScroll - paddingRightwithoutScroll) + 'px';//
-					console.log();
+					clear.style.right = (paddingRightwithScroll - paddingRightwithoutScroll) + 'px';
 				}
 			}else{
 				multi.style.overflowY = 'hidden';
@@ -78,7 +74,6 @@ class Input extends Component {
 		}
 	}
 	clearField = () => {
-		///очистить поле. нужно передавать функцию снаружи
 		this.props.onClear();
 	};
 
@@ -118,7 +113,6 @@ class Input extends Component {
 						{...attrs}
 						onChange={this.onChangeHandler}
 						>
-							
 						</textarea>
 					}
 					{clearable && <div className="text-field-clear" onClick={this.clearField} ref={this.clearRef}>
