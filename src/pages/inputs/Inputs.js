@@ -47,15 +47,6 @@ class Inputs extends Component {
 							onClear={()=>{this.setState({multi:''})}}
 							 />
 {this.state.multi}
-				
-				<h2><span>1. Base Input type text:</span></h2>
-    <Input name="text" type="text" />
-
-    <h2><span>2. Input type number (with label):</span></h2>
-    <Input name="number" label="select number" type="number" />
-
-    <h2><span>3. Input type password (with error):</span></h2>
-    <Input name="password" error="wrong password" type="password" />
 
 
 			</React.Fragment>
