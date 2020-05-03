@@ -18,7 +18,9 @@ class Input extends Component {
 		error: PropTypes.string,
 		clearable:PropTypes.bool, 
 		multiline:PropTypes.bool, 
-		maxHeight:PropTypes.string
+		maxHeight:PropTypes.string,
+		value: PropTypes.string.isRequired,
+		onChange: PropTypes.func.isRequired
 		//type: PropTypes.oneOf(['text', 'password']),....
 	};
 	
@@ -28,7 +30,8 @@ class Input extends Component {
 		error: '',
 		clearable:false, 
 		multiline:false, 
-		maxHeight:''
+		maxHeight:'',
+		//onChange: ()=> {}
 	};
 
 	multiRef = React.createRef();
@@ -49,6 +52,7 @@ class Input extends Component {
 
 	onChangeHandler = (e) => {
 		this.updateTextareaSize();
+		this.props.onChange(e.target.value);
 	}
 	updateTextareaSize = () => {
 		const { name, className, error, label, clearable, multiline, maxHeight, ...attrs } = this.props;
@@ -75,10 +79,11 @@ class Input extends Component {
 	}
 	clearField = () => {
 		///очистить поле. нужно передавать функцию снаружи
+		this.props.onClear();
 	};
 
 	render() {
-		const { name, className, error, label, clearable, multiline, maxHeight, ...attrs } = this.props;
+		const { name, className, error, label, clearable, onClear, onChange,  multiline, maxHeight, value, ...attrs } = this.props;
 		const classes = classNames(
 			'text-field',
 			className,
@@ -98,6 +103,8 @@ class Input extends Component {
 					<input name={name}
 						id={name}
 						className={classes}
+						value={value}
+						onChange={this.onChangeHandler}
 						{...attrs} />
 					}
 				{/* //----------------------------------------- */}
@@ -107,10 +114,11 @@ class Input extends Component {
 						id={name}
 						className={classes}
 						style={{maxHeight:maxHeight}}
+						value={value}
 						{...attrs}
 						onChange={this.onChangeHandler}
 						>
-							{attrs.value}
+							
 						</textarea>
 					}
 					{clearable && <div className="text-field-clear" onClick={this.clearField} ref={this.clearRef}>
