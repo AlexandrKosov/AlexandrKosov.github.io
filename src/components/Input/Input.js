@@ -46,7 +46,7 @@ class Input extends Component {
 
 			multi.style.height = 'auto'; 
 			multi.style.height = (multi.scrollHeight) + 'px'; 
-			if(multi.style.height>=maxHeight){
+			if(parseInt(multi.style.height) >= parseInt(maxHeight)){
 				multi.style.height = maxHeight;
 				multi.style.overflowY = 'auto';
 			}else{
