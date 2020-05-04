@@ -13,9 +13,10 @@ class Inputs extends Component {
 		
 	};
 	
-	getWord = (word) => {
+	getWord = (wrd) => {
+		let word = wrd.toLocaleLowerCase('ru-RU');
 		this.setState({word});
-		if(word!=='' && word!=="Друг"){
+		if(word!=='' && word!=="Друг".toLocaleLowerCase('ru-RU')){
 			this.setState({wordError: 'Неправильное слово, нужно набрать другое.'});
 		}else{
 			this.setState({wordError: null});

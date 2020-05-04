@@ -9,7 +9,12 @@
     width: 100%;
     padding: 0 8px;
     height: 28px;
-    &:hover {}
+    line-height: 26px;
+    border: 1px solid #ccc;
+    transition: all 0.5s ease-out;
+    &:hover {
+        border: 1px solid #aaa;
+    }
     &:active {
         outline: none;
     }
@@ -31,8 +36,8 @@
 .text-field-multiline {
     width: 100%;
     min-height: 28px;
-    height: auto;
-    resize: none;   //vertical;
+    height: 28px;
+    resize: none;
 }
 .text-field-clearable {
     padding-right: 24px;
@@ -40,7 +45,7 @@
 .text-field-clear {
     display: flex;
     position: absolute;
-    bottom: 0px;
+    bottom: 2px;
     right: 0px;
     cursor: pointer;
     width: 24px;
