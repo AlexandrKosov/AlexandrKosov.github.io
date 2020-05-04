@@ -31,6 +31,10 @@ class Input extends Component {
 		maxHeight:'',
 	};
 
+	// state = {
+	// 	text: '' //промежуточное значение в текстовом поле
+	// }
+
 	multiRef = React.createRef();
 	clearRef = React.createRef();
 	
@@ -40,7 +44,7 @@ class Input extends Component {
 			multi.style.overflowY = 'hidden';
 			multi.style.height = 'auto'; 
 			multi.style.height = (multi.scrollHeight) + 'px';
-			window.addEventListener("resize", this.updateTextareaSize);			
+			window.addEventListener("resize", this.updateTextareaSize);		
 		}
 	}
 	componentWillUnmount() {
@@ -74,6 +78,16 @@ class Input extends Component {
 		}
 	}
 	clearField = () => {
+		const { multiline } = this.props;
+		if (multiline){
+			const { current: multi } = this.multiRef;
+			multi.value = '';
+			this.updateTextareaSize();
+		};
+
+		
+
+
 		this.props.onClear();
 	};
 
@@ -86,7 +100,7 @@ class Input extends Component {
 			multiline?'text-field-multiline':'',
 			clearable?'text-field-clearable':''
 		);
-		
+
 		if(attrs.type!=='text' && multiline) throw new Error('Не текстовое поле не может быть многострочным');
 		return (
 			<React.Fragment>
