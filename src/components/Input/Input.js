@@ -45,8 +45,6 @@ class Input extends Component {
 			multi.style.height = 'auto'; 
 			multi.style.height = (multi.scrollHeight) + 'px';
 			window.addEventListener("resize", this.updateTextareaSize);	
-			
-			console.log(multi.value.length);
 			this.setState({showClearBtn:multi.value.length})
 		}
 	}
@@ -54,7 +52,6 @@ class Input extends Component {
 	componentDidUpdate(){
 		const { current: multi } = this.multiRef;
 		if(multi){
-			console.log(multi.value.length);
 			if(multi.value.length!==this.state.showClearBtn){
 				this.setState({showClearBtn:multi.value.length})
 			}
@@ -107,9 +104,6 @@ class Input extends Component {
 		const { name, className, error, label, clearable, onClear, onChange,  multiline, maxHeight, value, ...attrs } = this.props;
 		if (multiline){
 			const { current: multi } = this.multiRef;
-			//console.log(multi);
-			//return multi.value && clearable;
-			console.log('bool:',this.state.showClearBtn);
 			return clearable && this.state.showClearBtn!==0
 		}else{
 			
