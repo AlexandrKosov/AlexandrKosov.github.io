@@ -8,12 +8,18 @@ class Inputs extends Component {
 	
 	state = {
 		word: '',
+		wordError:'',
 		multi: 'Тултипы сделаны таким образом, что внутри может располагаться не только какой-то текст, а еще и react-компонент. То есть туда можно поместить разнообразную верстку. Тултип автоматически рассчитывает, где ему "выпадать", сверху, или снизу. Четыре примера-кнопки по краям демонстрируют это. Этот тултип демонстрирует как раз кастомный контент выпадающей подсказки: заголовок, бейдж, цитату, автора цитаты. и кастомный текст.',
 		
 	};
 	
 	getWord = (word) => {
-		this.setState({word})
+		this.setState({word});
+		if(word!=='' && word!=="Друг"){
+			this.setState({wordError: 'Неправильное слово, нужно набрать другое.'});
+		}else{
+			this.setState({wordError: null});
+		}
 	}
 	getMulti = (text) => {
 		this.setState({multi:text});
@@ -33,9 +39,10 @@ class Inputs extends Component {
 							onChange={this.getWord}
 							onClear={()=>{this.setState({word:''})}}
 							placeholder="Скажи слово друг и проходи" 
-							error="Сообщение об ошибке!" />
-				</div>
-				{this.state.word}
+							error={this.state.wordError}/>
+				
+			</div>
+			<div>	
 				<h4>Multiline text field</h4>
 				<Input type="text" 
 							multiline
@@ -46,8 +53,8 @@ class Inputs extends Component {
 							onChange={this.getMulti}
 							onClear={()=>{this.setState({multi:''})}}
 							 />
-{this.state.multi}
 
+			</div>
 
 			</React.Fragment>
 		)
