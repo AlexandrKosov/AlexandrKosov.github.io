@@ -76,7 +76,12 @@ class App extends Component{
                                   Тултипы
                                 </NavLink>
                             </li>
-							<li className="list-group-item">
+                            <li className="list-group-item">
+                                <NavLink to={routesMap.inputs} activeClassName={styles.active}>
+                                  Поля ввода
+                                </NavLink>
+                            </li>
+                            <li className="list-group-item">
                                 <NavLink to={routesMap.splitters} activeClassName={styles.active}>
                                   Сплиттеры
                                 </NavLink>

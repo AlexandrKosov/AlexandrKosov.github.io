@@ -9,6 +9,7 @@ import Tags from '~p/tags';
 import Badges from '~p/badges';
 import listView from '~p/listView';
 import Tooltips from '~p/tooltips';
+import Inputs from '~p/inputs';
 import Splitters from '~p/splitters';
 
 let routes = [
@@ -66,8 +67,13 @@ let routes = [
         url: '/tooltips',
         component: Tooltips,
         exact: true
-    },
 	{
+        name: 'inputs',
+        url: '/inputs',
+        component: Inputs,
+        exact: true
+    },
+    {
         name: 'splitters',
         url: '/splitters',
         component: Splitters,

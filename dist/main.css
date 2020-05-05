@@ -896,3 +896,64 @@ cite {
   cursor: pointer;
 }
 
+.text-field-wrapper {
+  position: relative;
+}
+.text-field {
+  width: 100%;
+  padding: 0 8px;
+  height: 28px;
+  border: 1px solid #ccc;
+  transition: all 0.5s ease-out;
+}
+.text-field:hover {
+  border: 1px solid #aaa;
+}
+.text-field:active {
+  outline: none;
+}
+.text-field:focus {
+  outline: none;
+}
+.text-field.error {
+  border: 1px solid red;
+  background: rgba(255, 0, 0, 0.1);
+}
+.text-field-required {
+  font-size: 18px;
+  color: red;
+}
+.text-field-error {
+  color: red;
+}
+.text-field-multiline {
+  width: 100%;
+  min-height: 28px;
+  height: 28px;
+  resize: none;
+}
+.text-field-clearable {
+  padding-right: 24px;
+}
+.text-field-clear {
+  display: flex;
+  position: absolute;
+  bottom: 2px;
+  right: 0px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  padding: 6px;
+  opacity: 0.4;
+  transition: opacity 0.5s ease-out;
+}
+.text-field-multiline + .text-field-clear {
+  bottom: 6px;
+}
+.text-field-clear:hover {
+  opacity: 0.7;
+}
+.text-field-clear:active {
+  opacity: 1;
+}
+
