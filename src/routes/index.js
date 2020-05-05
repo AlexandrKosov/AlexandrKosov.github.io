@@ -67,6 +67,7 @@ let routes = [
         url: '/tooltips',
         component: Tooltips,
         exact: true
+    },        
 	{
         name: 'inputs',
         url: '/inputs',
