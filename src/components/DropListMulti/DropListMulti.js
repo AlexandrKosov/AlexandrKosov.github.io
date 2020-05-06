@@ -53,8 +53,7 @@ class DropListMulti extends Component {
         const { fullHeight } = this.state;
        
         this.updateCurrent(); 
-
-        setTimeout(()=>{
+        window.addEventListener('load', (event)=>{
             let head = dropHead.getBoundingClientRect();
             let drop = dropdown.getBoundingClientRect();
             this.setState((prev)=>{
@@ -65,7 +64,7 @@ class DropListMulti extends Component {
             this.reCalcPosition(head, drop);
             window.addEventListener("resize", this.updateDimensions);
             document.addEventListener('click', this.handleClickOutside, false);
-        },0); 
+        })    
     }
 
     componentWillUnmount() {

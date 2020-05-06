@@ -60,19 +60,20 @@ class Modal extends Component {
     const { current: draggable } = this.draggableRef;
     const modal = draggable.parentNode;
     const overlay = modal.parentNode;
-    setTimeout(()=>{
-      let rect = modal.getBoundingClientRect();
-   
-        let startY = (overlay.getBoundingClientRect().height - modal.getBoundingClientRect().height)/2;
-        modal.style.top = startY + 'px';
 
-        if (this.state.width !== rect.width) {
-          this.setState({width: rect.width});
-        }
-        if (this.state.height !== rect.height) {
-          this.setState({height: rect.height});
-        }
-    },0);
+    window.addEventListener('load', (event)=>{
+      let rect = modal.getBoundingClientRect();
+
+      let startY = (overlay.getBoundingClientRect().height - modal.getBoundingClientRect().height)/2;
+      modal.style.top = startY + 'px';
+
+      if (this.state.width !== rect.width) {
+        this.setState({width: rect.width});
+      }
+      if (this.state.height !== rect.height) {
+        this.setState({height: rect.height});
+      } 
+    });
   }
 
   onmousedown = (event) => {
