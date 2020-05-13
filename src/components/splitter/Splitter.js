@@ -34,8 +34,6 @@ class Splitter extends Component {
 		const { current: ghost } = this.ghostRef;
 		// const { current: first } = this.firstRef;
 		// const { current: second } = this.secondRef;
-		console.log(event.target, first, horizontal, vertical);
-
 		const first = ReactDOM.findDOMNode(this.firstRef.current);
 		const second = ReactDOM.findDOMNode(this.secondRef.current);
 
@@ -61,9 +59,6 @@ class Splitter extends Component {
 					first.style.height = ghost.getBoundingClientRect().top - splitter.getBoundingClientRect().top - 3 + 'px';
 					//second.style.height = splitter.getBoundingClientRect().height - ghost.getBoundingClientRect().top - 3 + 'px';
 					//handler.style.top = 0;
-
-					console.log(second.style);
-
 					ghost.style.display = "none";
 
 					splitter.removeEventListener('mousemove', onMouseMove); 
