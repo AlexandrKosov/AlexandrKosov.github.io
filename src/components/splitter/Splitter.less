@@ -12,7 +12,7 @@
     position: relative;
     display: flex;
     align-items: stretch;
-    //overflow: hidden;
+    overflow: hidden;
     white-space: nowrap;
 }
 .splitter-horizontal {
@@ -75,21 +75,16 @@
 }
 .splitter-zone {
     position: relative;
-    //overflow: hidden;
+    overflow: hidden;
+    //overflow-y: auto;
     display: block;
-    display: table-cell;
-
-
+    white-space: normal;
     &_flexible {
         flex: 1 1 0px;
-        background: #eda;
     }
     &_fixed {
         flex: 0 1 auto;
-        background: #dae;
     }
-    // &:first-child {flex: 1 1 0px;}
-    // &:last-child {flex: 0 1 auto;}
 }
 .split-handler-ghost {
     position: absolute;
@@ -98,6 +93,12 @@
     height: 1px !important;
     margin-top: 3px !important;
     opacity: .6;
-    cursor: w-resize;
     display: none;
+    user-select: none;
+    .splitter-horizontal > & {
+        cursor: h-resize;
+    }
+    .splitter-vertical > & {
+        cursor: w-resize;
+    }
 }

@@ -53,20 +53,21 @@ class Splitter extends Component {
 
 				function onMouseMove(event) {
 					moveAt(event.clientX, event.clientY);
+					splitter.style.userSelect = "none";
 				}
 
 				splitter.addEventListener('mousemove', onMouseMove);
 				splitter.onmouseup = function() {
-					first.style.height = ghost.getBoundingClientRect().top - splitter.getBoundingClientRect().top - 3 + 'px';	
-					
-					second.style.height = splitter.getBoundingClientRect().height - ghost.getBoundingClientRect().top - 3 + 'px';
-					handler.style.top = 0;//ghost.getBoundingClientRect().top - splitter.getBoundingClientRect().top - 3 + 'px';	
+					first.style.height = ghost.getBoundingClientRect().top - splitter.getBoundingClientRect().top - 3 + 'px';
+					//second.style.height = splitter.getBoundingClientRect().height - ghost.getBoundingClientRect().top - 3 + 'px';
+					//handler.style.top = 0;
 
 					console.log(second.style);
 
 					ghost.style.display = "none";
 
 					splitter.removeEventListener('mousemove', onMouseMove); 
+					splitter.style.userSelect = "auto";
 					splitter.onmouseup = null;
 					handler.onmouseup = null;
 				};
