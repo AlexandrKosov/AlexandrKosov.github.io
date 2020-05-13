@@ -11,10 +11,10 @@ class Splitters extends Component {
         return (
            <React.Fragment>
               <Splitter horizontal>
-                <SplitterZone style={{height: '300px'}}>
+                <SplitterZone>
                     Трам-тарарам!
                 </SplitterZone>
-                <SplitterZone minHeight="200" >
+                <SplitterZone minHeight="200" style={{height: '300px'}} >
                     Тыдыщ-тыщ-тыщ!
                 </SplitterZone>
               </Splitter>      

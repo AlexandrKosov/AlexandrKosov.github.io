@@ -16,7 +16,7 @@ class SplitterZone extends Component {
 	};
 
 	render() {
-		const {children, className, ...attrs} = this.props;
+		const {children, className, minHeight, ...attrs} = this.props;
 		
 		const classes = classNames(
 			"splitter-zone",
