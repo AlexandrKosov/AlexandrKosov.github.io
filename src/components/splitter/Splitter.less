@@ -8,6 +8,14 @@
 }
 .splitter {
     height: 100%;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    //overflow: hidden;
+    white-space: nowrap;
+}
+.splitter-horizontal {
+    flex-direction: column;
 }
 .split-handler {
     position: relative;
@@ -64,3 +72,17 @@
     height: 100%;
     width: 100%;
 }
+.splitter-zone {
+    position: relative;
+    //overflow: hidden;
+    display: block;
+    &_flexible {
+        flex: 1 1 0px;
+    }
+    &_fixed {
+        flex: 0 1 auto;
+    }
+    // &:first-child {flex: 1 1 0px;}
+    // &:last-child {flex: 0 1 auto;}
+}
+
