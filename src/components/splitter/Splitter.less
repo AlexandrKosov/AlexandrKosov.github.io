@@ -5,6 +5,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    border: 1px dotted #ddd;
 }
 .splitter {
     height: 100%;
@@ -34,9 +35,9 @@
     .splitter-horizontal > & {
         width: 100%;
         cursor: n-resize;
-        height: 6px;
+        height: 7px;
         & .split-sensitive {
-            height: 6px;
+            height: 7px;
             top: -3px;
         }
         &::before {
@@ -45,7 +46,7 @@
             background: #ccc; 
             left: 0;
             right: 0;
-            top: 4px;
+            top: 3px;
          }
          &::after {
              
@@ -53,10 +54,10 @@
     }
     .splitter-vertical > & {
         height: 100%;
-        width: 6px;
+        width: 7px;
         cursor: w-resize;
         & .split-sensitive {
-            width: 6px;
+            width: 7px;
             left: -3px;
         }
         &::before {
@@ -76,6 +77,9 @@
     position: relative;
     //overflow: hidden;
     display: block;
+    display: table-cell;
+
+
     &_flexible {
         flex: 1 1 0px;
         background: #eda;
@@ -94,5 +98,6 @@
     height: 1px !important;
     margin-top: 3px !important;
     opacity: .6;
-   // display: none;
+    cursor: w-resize;
+    display: none;
 }

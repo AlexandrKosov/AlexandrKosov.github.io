@@ -6,6 +6,8 @@ import './Splitter.less';
 import SplitterZone from '~c/splitter/SplitterZone';
 import Portal from '~c/portal';
 
+import ReactDOM from 'react-dom';
+
 class Splitter extends Component {
 	static propTypes = {
 	
@@ -30,9 +32,13 @@ class Splitter extends Component {
 		const { current: splitter } = this.splitterRef;
 		const { current: handler } = this.handlerRef;
 		const { current: ghost } = this.ghostRef;
-		const { current: first } = this.firstRef;
-		const { current: second } = this.secondRef;
+		// const { current: first } = this.firstRef;
+		// const { current: second } = this.secondRef;
 		console.log(event.target, first, horizontal, vertical);
+
+		const first = ReactDOM.findDOMNode(this.firstRef.current);
+		const second = ReactDOM.findDOMNode(this.secondRef.current);
+
 		if(event.button == 0){
 			//для вертикального положения сплиттера
 			if(horizontal) {
@@ -52,12 +58,16 @@ class Splitter extends Component {
 				splitter.addEventListener('mousemove', onMouseMove);
 				splitter.onmouseup = function() {
 					first.style.height = ghost.getBoundingClientRect().top - splitter.getBoundingClientRect().top - 3 + 'px';	
-					handler.style.top = ghost.getBoundingClientRect().top - splitter.getBoundingClientRect().top + 'px';
+					
 					second.style.height = splitter.getBoundingClientRect().height - ghost.getBoundingClientRect().top - 3 + 'px';
+					handler.style.top = 0;//ghost.getBoundingClientRect().top - splitter.getBoundingClientRect().top - 3 + 'px';	
+
+					console.log(second.style);
 
 					ghost.style.display = "none";
 
 					splitter.removeEventListener('mousemove', onMouseMove); 
+					splitter.onmouseup = null;
 					handler.onmouseup = null;
 				};
 
@@ -74,7 +84,7 @@ class Splitter extends Component {
 
 	firstZone = () => {
 		const { children } = this.props;
-		return (<SplitterZone ref={this.firstRef} className="splitter-zone_flexible" {...children[0].props}>
+		return (<SplitterZone ref={this.firstRef} className="splitter-zone_fixed" style={{}} {...children[0].props}>
 			{children[0].props.children}
 		</SplitterZone>)
 
@@ -82,7 +92,7 @@ class Splitter extends Component {
 
 	lastZone = () => {
 	const { children } = this.props;
-		return (<SplitterZone ref={this.secondRef} className="splitter-zone_fixed" {...children[1].props}>
+		return (<SplitterZone ref={this.secondRef} className="splitter-zone_flexible" style={{}} {...children[1].props}>
 			{children[1].props.children}
 		</SplitterZone>)
 	}
@@ -96,16 +106,13 @@ class Splitter extends Component {
 			horizontal?'splitter-horizontal':null,
 			vertical?'splitter-vertical':null,
 		);
-		console.log("1",children[0]);
 		return (
 			<React.Fragment>
 				<div className="splitter-container">
 					<div className={classes} ref={this.splitterRef}>
 						{this.firstZone()}
-						{/* <SplitterZone ref={this.firstRef} className="splitter-zone_flexible">{children[0].props.children}</SplitterZone> */}
 						<div className="split-handler" onMouseDown={this.onmousedown} ref={this.handlerRef} style={{top: '0'}}></div>
 						{this.lastZone()}
-						{/* <SplitterZone ref={this.secondRef} className="splitter-zone_fixed">{children[1].props.children}</SplitterZone> */}
 					</div>
 				</div>
 				{<Portal>
