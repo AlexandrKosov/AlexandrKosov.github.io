@@ -32,7 +32,7 @@ class Splitter extends Component {
 		const { current: ghost } = this.ghostRef;
 		const { current: first } = this.firstRef;
 		const { current: second } = this.secondRef;
-		console.log(event.target, this.firstRef.current, horizontal, vertical);
+		console.log(event.target, first, horizontal, vertical);
 		if(event.button == 0){
 			//для вертикального положения сплиттера
 			if(horizontal) {
@@ -51,12 +51,12 @@ class Splitter extends Component {
 
 				splitter.addEventListener('mousemove', onMouseMove);
 				splitter.onmouseup = function() {
-					
-ghost.style.display = "none";
 					first.style.height = ghost.getBoundingClientRect().top - splitter.getBoundingClientRect().top - 3 + 'px';	
 					handler.style.top = ghost.getBoundingClientRect().top - splitter.getBoundingClientRect().top + 'px';
 					second.style.height = splitter.getBoundingClientRect().height - ghost.getBoundingClientRect().top - 3 + 'px';
-					
+
+					ghost.style.display = "none";
+
 					splitter.removeEventListener('mousemove', onMouseMove); 
 					handler.onmouseup = null;
 				};
@@ -82,7 +82,7 @@ ghost.style.display = "none";
 
 	lastZone = () => {
 	const { children } = this.props;
-		return (<SplitterZone ref={this.firstRef} className="splitter-zone_fixed" {...children[1].props}>
+		return (<SplitterZone ref={this.secondRef} className="splitter-zone_fixed" {...children[1].props}>
 			{children[1].props.children}
 		</SplitterZone>)
 	}
