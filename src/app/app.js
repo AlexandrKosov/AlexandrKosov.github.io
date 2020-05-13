@@ -26,7 +26,7 @@ class App extends Component{
             </header>
             <div className="container main"> 
             {/* d-flex align-items-stretch */}
-                <div className="row">
+                <div className="row" style={{height: '100%'}}>
                     <div className="col col-3">
 {/*-------------------------------MENU------------------------*/}
                         <ul className="list-group">
