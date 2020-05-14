@@ -61,7 +61,9 @@
             left: -3px;
         }
         &::before {
-
+            background:#ccc;
+            height: 100% !important;
+            width: 1px;
         }
         &::after {
 
@@ -90,15 +92,27 @@
     position: absolute;
     z-index: 2000;
     background: #565A66;
-    height: 1px !important;
-    margin-top: 3px !important;
+    height: 1px;
+    margin-top: 3px;
     opacity: .6;
     display: none;
     user-select: none;
-    .splitter-horizontal > & {
-        cursor: h-resize;
+    // .splitter-horizontal > & {
+    //     cursor: h-resize;
+    // }
+    // .splitter-vertical > & {
+    //     height: 100% !important;
+    //     width: 1px !important;
+    //     cursor: w-resize;
+    // }
+    &.vertical {
+        height: 100%;
+    margin-top: 0;
+    width: 1px;
+    margin-left: 3px;
+    opacity: .6;
+    display: none;
+    user-select: none;        
     }
-    .splitter-vertical > & {
-        cursor: w-resize;
-    }
+
 }

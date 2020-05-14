@@ -69,7 +69,32 @@ class Splitter extends Component {
 
 			}//для горизонтального положения сплиттера
 			else if(vertical){
+				ghost.style.top = handler.getBoundingClientRect().top + 'px';
+				ghost.style.left = handler.getBoundingClientRect().left + 'px';
+				ghost.style.height = handler.getBoundingClientRect().height + 'px';
+				ghost.style.display = "block";
 
+				function moveAt(x, y) {
+					ghost.style.left = x + 'px';	
+				}
+
+				function onMouseMove(event) {
+					moveAt(event.clientX, event.clientY);
+					splitter.style.userSelect = "none";
+				}
+
+				splitter.addEventListener('mousemove', onMouseMove);
+				splitter.onmouseup = function() {
+					first.style.width = ghost.getBoundingClientRect().left - splitter.getBoundingClientRect().left - 3 + 'px';
+					//second.style.height = splitter.getBoundingClientRect().height - ghost.getBoundingClientRect().top - 3 + 'px';
+					//handler.style.top = 0;
+					ghost.style.display = "none";
+
+					splitter.removeEventListener('mousemove', onMouseMove); 
+					splitter.style.userSelect = "auto";
+					splitter.onmouseup = null;
+					handler.onmouseup = null;
+				};
 			}
 		}
 	};
@@ -102,6 +127,10 @@ class Splitter extends Component {
 			horizontal?'splitter-horizontal':null,
 			vertical?'splitter-vertical':null,
 		);
+		const ghostClasses = classNames(
+			"split-handler-ghost",
+			vertical?'vertical':null,
+		);
 		return (
 			<React.Fragment>
 				<div className="splitter-container">
@@ -112,7 +141,7 @@ class Splitter extends Component {
 					</div>
 				</div>
 				{<Portal>
-					<div ref={this.ghostRef} className="split-handler-ghost"></div>
+					<div ref={this.ghostRef} className={ghostClasses}></div>
 				</Portal>}
 			  </React.Fragment>
 		)
