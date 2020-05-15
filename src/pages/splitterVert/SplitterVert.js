@@ -13,7 +13,7 @@ class SplitterVert extends Component{
            return (
               <React.Fragment>
                  <Splitter vertical>
-                   <SplitterZone minWidth="200px" width="50%">
+                   <SplitterZone minWidth="200px" maxWidth="350px">
                        <div className="fill-container" style={{overflowY:'auto', padding: '16px'}}>
                            {text1}
                        </div>
