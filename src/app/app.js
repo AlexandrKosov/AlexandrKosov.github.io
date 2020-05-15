@@ -91,6 +91,12 @@ class App extends Component{
                                   Сплиттер вертик.
                                 </NavLink>
                             </li>
+							<li className="list-group-item">
+                                <NavLink to={routesMap.accordions} activeClassName={styles.active}>
+                                  Аккордеон
+                                </NavLink>
+                            </li>
+							
                         </ul>
 {/*-------------------------------/MENU------------------------*/}						
                     </div>

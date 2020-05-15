@@ -12,6 +12,7 @@ import Tooltips from '~p/tooltips';
 import Inputs from '~p/inputs';
 import Splitters from '~p/splitters';
 import SplitterVert from '~p/splitterVert';
+import Accordions from '~p/accordions';
 
 let routes = [
     {
@@ -85,6 +86,12 @@ let routes = [
         name: 'splitterVert',
         url: '/splitter-vert',
         component: SplitterVert,
+        exact: true
+    },
+	{
+        name: 'accordions',
+        url: '/accordions',
+        component: Accordions,
         exact: true
     },
     {
