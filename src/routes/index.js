@@ -1,5 +1,5 @@
 import Page404 from '~p/error404';
-import Work from '~p/Work';
+import Home from '~p/Home';
 
 import Dialogs from '~p/dialogs';
 import TabsView from '~p/TabsView';
@@ -11,12 +11,13 @@ import listView from '~p/listView';
 import Tooltips from '~p/tooltips';
 import Inputs from '~p/inputs';
 import Splitters from '~p/splitters';
+import SplitterVert from '~p/splitterVert';
 
 let routes = [
     {
         name: 'home',
         url: '/',
-        component: Work,
+        component: Home,
         exact: true
     },
 	
@@ -78,6 +79,12 @@ let routes = [
         name: 'splitters',
         url: '/splitters',
         component: Splitters,
+        exact: true
+    },
+	{
+        name: 'splitterVert',
+        url: '/splitter-vert',
+        component: SplitterVert,
         exact: true
     },
     {
