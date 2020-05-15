@@ -26,7 +26,7 @@ class App extends Component{
             </header>
             <div className="container main"> 
             {/* d-flex align-items-stretch */}
-                <div className="row">
+                <div className="row" style={{height: '100%'}}>
                     <div className="col col-3">
 {/*-------------------------------MENU------------------------*/}
                         <ul className="list-group">
@@ -83,7 +83,12 @@ class App extends Component{
                             </li>
                             <li className="list-group-item">
                                 <NavLink to={routesMap.splitters} activeClassName={styles.active}>
-                                  Сплиттеры
+                                  Сплиттер гориз.
+                                </NavLink>
+                            </li>
+							<li className="list-group-item">
+                                <NavLink to={routesMap.splitterVert} activeClassName={styles.active}>
+                                  Сплиттер вертик.
                                 </NavLink>
                             </li>
                         </ul>
