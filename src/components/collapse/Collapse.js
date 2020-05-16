@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './Accordion.less';
+import './Collapse.less';
 
-class Accordion extends Component {
+class Collapse extends Component {
 	static propTypes = {
 	
 	};
@@ -20,9 +20,9 @@ class Accordion extends Component {
 		
 		return (
 			<React.Fragment>
-				!!!
+				Collapse
 			</React.Fragment>
 		)
 	}
 }
-export default Accordion;
+export default Collapse;

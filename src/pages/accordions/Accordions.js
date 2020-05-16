@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Accordion from '~c/accordion';
+import Collapse from '~c/collapse';
 
 class Accordions extends Component{
 
@@ -8,7 +8,7 @@ class Accordions extends Component{
         return (
            <React.Fragment>
                 <h1>Аккордеон</h1>
-				<Accordion />
+				<Collapse />
             </React.Fragment>
        )
     }
