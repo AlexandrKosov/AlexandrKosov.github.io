@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import CollapsePanel from './CollapsePanel';
 import './Collapse.less';
 
-class Collapse extends Component {
+class CollapsePanel extends Component {
 	static propTypes = {
 	
 	};
@@ -13,19 +12,17 @@ class Collapse extends Component {
 	};
 	
 	state = {
-		isOpen: false
+	
 	};
 
 	render() {
-		const {children, ...attrs} = this.props;
-		console.log(children);
+		const {header, children, ...attrs} = this.props;
 		return (
 			<React.Fragment>
-				{children.map((child)=>React.cloneElement(child))
-				}
+				<header>{header}</header>
+				<section>{children}</section>
 			</React.Fragment>
 		)
 	}
 }
-export default Collapse;
-Collapse.Panel = CollapsePanel;
+export default CollapsePanel;
