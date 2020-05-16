@@ -61,7 +61,7 @@ class Modal extends Component {
     const modal = draggable.parentNode;
     const overlay = modal.parentNode;
 
-    window.addEventListener('load', (event)=>{
+    setTimeout(()=>{
       let rect = modal.getBoundingClientRect();
 
       let startY = (overlay.getBoundingClientRect().height - modal.getBoundingClientRect().height)/2;
@@ -73,7 +73,7 @@ class Modal extends Component {
       if (this.state.height !== rect.height) {
         this.setState({height: rect.height});
       } 
-    });
+    },0);
   }
 
   onmousedown = (event) => {
