@@ -68,7 +68,7 @@ class DropList extends Component {
            getActiveItem(selected);
         }
 
-        window.addEventListener('load', (event)=>{
+        setTimeout(()=>{
             let head = dropHead.getBoundingClientRect();
             let drop = dropdown.getBoundingClientRect();
             this.setState((prev)=>{
@@ -79,7 +79,7 @@ class DropList extends Component {
             this.reCalcPosition(head, drop);
             window.addEventListener("resize", this.updateDimensions);
             document.addEventListener('click', this.handleClickOutside, false);
-        })
+        },0);    
     }
 
     componentWillUnmount() {
