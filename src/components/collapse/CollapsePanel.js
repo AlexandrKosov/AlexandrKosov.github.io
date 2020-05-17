@@ -18,10 +18,10 @@ class CollapsePanel extends Component {
 	render() {
 		const {header, children, ...attrs} = this.props;
 		return (
-			<React.Fragment>
-				<header>{header}</header>
-				<section>{children}</section>
-			</React.Fragment>
+			<div className="cos-collapse__item">
+				<header className="cos-collapse__header" role="button">{header}</header>
+				<section className="cos-collapse__content">{children}</section>
+			</div>
 		)
 	}
 }

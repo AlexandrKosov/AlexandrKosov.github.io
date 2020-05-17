@@ -17,12 +17,16 @@ class Collapse extends Component {
 	};
 
 	render() {
-		const {children, ...attrs} = this.props;
-		console.log(children);
+		const {children, className, ...attrs} = this.props;
+		const classes = classNames(
+			"cos-collapse",
+			className
+		);
 		return (
 			<React.Fragment>
-				{children.map((child)=>React.cloneElement(child))
-				}
+				<div className={classes}>
+				{children.map((child)=>React.cloneElement(child))}
+				</div>
 			</React.Fragment>
 		)
 	}
