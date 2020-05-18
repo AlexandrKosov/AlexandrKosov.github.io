@@ -15,17 +15,9 @@ class CollapsePanel extends Component {
 		isOpen: this.props.open
 	};
 	changePanelView = (e) => {
-		console.log("e:",e);
-		// this.setState((prev)=>{
-		// 	console.log(prev.isOpen);
-		// 	isOpen: !this.state.isOpen;
-		// });
 		this.setState((state)=>{
 			return {isOpen: !state.isOpen}
-		  });
-		setTimeout(()=>{
-			console.log(this.state.isOpen);
-		},0);
+		});
 	};
 
 	render() {
