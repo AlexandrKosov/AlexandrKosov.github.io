@@ -10,15 +10,23 @@ class CollapsePanel extends Component {
 	
 	static defaultProps = {
 	};
-	
+
 	state = {
-	
+		isOpen: false
 	};
 
 	render() {
-		const {header, children, ...attrs} = this.props;
+		const {header, children, className, open, ...attrs} = this.props;
+console.log(this.props.open);
+		const classes = classNames(
+			"cos-collapse__item",
+			className,
+			open?'open':''
+		);
+
+
 		return (
-			<div className="cos-collapse__item">
+			<div className={classes}>
 				<header className="cos-collapse__header" role="button">{header}</header>
 				<section className="cos-collapse__content">{children}</section>
 			</div>
