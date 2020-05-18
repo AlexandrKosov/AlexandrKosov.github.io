@@ -18,23 +18,23 @@ class CollapsePanel extends Component {
 	contentRef = React.createRef();
 
 	componentDidMount () {
-		const { current: content } = this.contentRef;
-		const {isOpen} = this.state;
-		if(content && isOpen){
-			content.style.height = 'auto'; 
-			content.style.height = (content.scrollHeight) + 'px';
-		}				
+		// const { current: content } = this.contentRef;
+		// const {isOpen} = this.state;
+		// if(content && isOpen){
+		// 	content.style.height = 'auto'; 
+		// 	content.style.height = (content.scrollHeight) + 'px';
+		// }				
 	};
 
 	changePanelView = (e) => {
-		const { current: content } = this.contentRef;
-		const {isOpen} = this.state;
-		if(content && !isOpen ){
-			content.style.height = 'auto'; 
-			content.style.height = (content.scrollHeight) + 'px';
-		} else {
-			content.style.height = 0;
-		}	
+		// const { current: content } = this.contentRef;
+		// const {isOpen} = this.state;
+		// if(content && !isOpen ){
+		// 	content.style.height = 'auto'; 
+		// 	content.style.height = (content.scrollHeight) + 'px';
+		// } else {
+		// 	content.style.height = 0;
+		// }	
 
 		this.setState((state)=>{
 			return {isOpen: !state.isOpen}
@@ -49,7 +49,11 @@ console.log(this.props.open);
 			className,
 			this.state.isOpen?'open':''
 		);
-
+		const contentClasses = classNames(
+			'cos-collapse__content',
+			// className,
+			// this.state.isOpen?'open':'closed'
+		);
 
 		return (
 			<div className={classes}>
@@ -58,7 +62,7 @@ console.log(this.props.open);
 						onClick={(e)=>this.changePanelView(e)}>
 					{header}
 				</header>
-				<section className="cos-collapse__content" ref={this.contentRef}>{children}</section>
+				<section className={contentClasses} ref={this.contentRef}>{children}</section>
 			</div>
 		)
 	}

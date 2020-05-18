@@ -6,14 +6,14 @@
     font-size: 14px;
     line-height: 1.5;
     border: 1px solid #ddd;
-    border-bottom: 0;
     border-radius: 3px;
     &__item {
-
-
-        // &:not(:last-child){
-
-        // }
+        border-bottom: 1px solid #ddd;
+        border-top: 1px solid #ddd;
+        margin-top: -1px;
+        &:last-child {
+            border-bottom: 0;
+        }
     }
     &__header {
         position: relative;
@@ -41,28 +41,22 @@
         &::before {
            transform: rotate(90deg); 
         }
-
     }
 
     &__content {
         position: relative;
         overflow: hidden;
         color:#333;
-        background-color: #fff;
-        height: 0;
-        transition: height .3s ease-out;
+        max-height: 0;
+        margin-top: -1px;
+        transition: max-height .5s ease-out;
         & > * {
             padding: 8px 16px;
         }
     }
-    // &__item &__content {
-    //     height: 0;
-    //     overflow: hidden;
-    //     //transition: height 0.3s ease;
-    // }    
     &__item.open &__content {
-        border-bottom: 1px solid #ddd;
         height: auto;
-        //transition: height 0.5s ease;
+        max-height: 100vw;
+        transition: max-height .5s ease-out;
     }
 }
