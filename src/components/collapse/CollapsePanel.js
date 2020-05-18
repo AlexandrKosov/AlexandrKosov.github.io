@@ -12,7 +12,20 @@ class CollapsePanel extends Component {
 	};
 
 	state = {
-		isOpen: false
+		isOpen: this.props.open
+	};
+	changePanelView = (e) => {
+		console.log("e:",e);
+		// this.setState((prev)=>{
+		// 	console.log(prev.isOpen);
+		// 	isOpen: !this.state.isOpen;
+		// });
+		this.setState((state)=>{
+			return {isOpen: !state.isOpen}
+		  });
+		setTimeout(()=>{
+			console.log(this.state.isOpen);
+		},0);
 	};
 
 	render() {
@@ -21,13 +34,17 @@ console.log(this.props.open);
 		const classes = classNames(
 			"cos-collapse__item",
 			className,
-			open?'open':''
+			this.state.isOpen?'open':''
 		);
 
 
 		return (
 			<div className={classes}>
-				<header className="cos-collapse__header" role="button">{header}</header>
+				<header className="cos-collapse__header" 
+						role="button"
+						onClick={(e)=>this.changePanelView(e)}>
+					{header}
+				</header>
 				<section className="cos-collapse__content">{children}</section>
 			</div>
 		)

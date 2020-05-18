@@ -23,7 +23,7 @@ class Collapse extends Component {
 		return (
 			<React.Fragment>
 				<div className={classes}>
-					{children.map((child, index)=>{
+					{children.map((child)=>{
 						return React.cloneElement(child, {open:defaultActiveKey.includes(child.key)})
 
 					})}
