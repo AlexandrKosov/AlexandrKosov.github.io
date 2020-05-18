@@ -29,7 +29,7 @@ class Accordions extends Component{
                     <p>{text}</p>
                     </Panel>
                     <Panel header={<React.Fragment><Icon name="settings" /> Lorem Ipsum <Badge variant="danger">New</Badge></React.Fragment>} key="3">
-                    <p>
+                    <div>
                         <Button variant="primary">Primary</Button>
                         <Button variant="secondary">Secondary</Button>
                         <Button variant="success">Success</Button>
@@ -39,14 +39,14 @@ class Accordions extends Component{
                         <Button variant="light">Light</Button>
                         <Button variant="dark">Dark</Button>
                         <Button variant="link">Link</Button>
-                    </p>
+                    </div>
                     </Panel>
                     <Panel header={<React.Fragment><Icon name="star" /> Dolor sit amet <Badge pill variant="info">New</Badge></React.Fragment>} key="4">
-                    <p>
+                    <div>
                         <Tag label="какой-то тег" size="large" />
                         <Tag label="с иконкой" icon="star" size="large"/>
                         <Tag label="с кнопкой Закрыть" withClose size="large"/>
-                    </p>
+                    </div>
                     </Panel>
                     
                 </Collapse>

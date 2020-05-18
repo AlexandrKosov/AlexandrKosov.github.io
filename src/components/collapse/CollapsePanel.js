@@ -44,7 +44,6 @@ class CollapsePanel extends Component {
 
 	render() {
 		const {header, children, className, open, ...attrs} = this.props;
-console.log(this.props.open);
 		const classes = classNames(
 			"cos-collapse__item",
 			className,
