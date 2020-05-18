@@ -9,10 +9,11 @@
     border-bottom: 0;
     border-radius: 3px;
     &__item {
-        
-        &:not(:last-child){
 
-        }
+
+        // &:not(:last-child){
+
+        // }
     }
     &__header {
         position: relative;
@@ -22,7 +23,6 @@
         background: #f6f6f6;
         line-height: 1.5;
         cursor: pointer;
-        transition: all .5s;
         border-bottom: 1px solid #DDD;
         user-select: none;
         &::before {
@@ -50,18 +50,19 @@
         color:#333;
         background-color: #fff;
         height: 0;
-        transition: height .5s ease;
+        transition: height .3s ease-out;
         & > * {
             padding: 8px 16px;
         }
     }
-    &__item &__content {
-        height: 0;
-        overflow: hidden;
-        transition: height 0.2s ease;
-    }    
+    // &__item &__content {
+    //     height: 0;
+    //     overflow: hidden;
+    //     //transition: height 0.3s ease;
+    // }    
     &__item.open &__content {
         border-bottom: 1px solid #ddd;
         height: auto;
+        //transition: height 0.5s ease;
     }
 }

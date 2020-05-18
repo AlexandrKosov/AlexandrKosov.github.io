@@ -14,7 +14,28 @@ class CollapsePanel extends Component {
 	state = {
 		isOpen: this.props.open
 	};
+
+	contentRef = React.createRef();
+
+	componentDidMount () {
+		const { current: content } = this.contentRef;
+		const {isOpen} = this.state;
+		if(content && isOpen){
+			content.style.height = 'auto'; 
+			content.style.height = (content.scrollHeight) + 'px';
+		}				
+	};
+
 	changePanelView = (e) => {
+		const { current: content } = this.contentRef;
+		const {isOpen} = this.state;
+		if(content && !isOpen ){
+			content.style.height = 'auto'; 
+			content.style.height = (content.scrollHeight) + 'px';
+		} else {
+			content.style.height = 0;
+		}	
+
 		this.setState((state)=>{
 			return {isOpen: !state.isOpen}
 		});
@@ -37,7 +58,7 @@ console.log(this.props.open);
 						onClick={(e)=>this.changePanelView(e)}>
 					{header}
 				</header>
-				<section className="cos-collapse__content">{children}</section>
+				<section className="cos-collapse__content" ref={this.contentRef}>{children}</section>
 			</div>
 		)
 	}
