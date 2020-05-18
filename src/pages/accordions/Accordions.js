@@ -21,7 +21,7 @@ class Accordions extends Component{
         return (
            <React.Fragment>
                 <h1>Выпадающие блоки</h1>
-				<Collapse defaultActiveKey={['1']} onChange={this.callback}>
+				<Collapse defaultActiveKey={['1','3']} onChange={this.callback}>
                     <Panel header="This is panel header 1" key="1">
                     <p>{text}</p>
                     </Panel>
