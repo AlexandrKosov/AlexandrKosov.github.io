@@ -20,12 +20,12 @@ class Accordions extends Component{
         
         return (
            <React.Fragment>
-                <h1>Аккордеон</h1>
+                <h1>Выпадающие блоки</h1>
 				<Collapse defaultActiveKey={['1']} onChange={this.callback}>
                     <Panel header="This is panel header 1" key="1">
                     <p>{text}</p>
                     </Panel>
-                    <Panel header="This is panel header 2" key="2">
+                    <Panel header={<strong><i>Заголовок выпадающего блока</i></strong>} key="2">
                     <p>{text}</p>
                     </Panel>
                     <Panel header={<React.Fragment><Icon name="settings" /> Lorem Ipsum <Badge variant="danger">New</Badge></React.Fragment>} key="3">
