@@ -3,7 +3,7 @@ import Collapse from '~c/collapse';
 
 import Button from '~c/Button';
 import Icon from '~c/Icon';
-import Tag from '~c/Tag';
+import Tag from '~c/tag';
 import Badge from '~c/Badge';
 const { Panel } = Collapse;
 
@@ -43,9 +43,9 @@ class Accordions extends Component{
                     </Panel>
                     <Panel header={<React.Fragment><Icon name="star" /> Dolor sit amet <Badge pill variant="info">New</Badge></React.Fragment>} key="4">
                     <p>
-                    <Tag label="какой-то тег" size="large" />
-                    <Tag label="с иконкой" icon="star" size="large"/>
-                    <Tag label="с кнопкой Закрыть" withClose size="large"/>
+                        <Tag label="какой-то тег" size="large" />
+                        <Tag label="с иконкой" icon="star" size="large"/>
+                        <Tag label="с кнопкой Закрыть" withClose size="large"/>
                     </p>
                     </Panel>
                     

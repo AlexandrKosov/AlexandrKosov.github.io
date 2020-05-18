@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './Collapse.less';
+import ReactDOM from 'react-dom';
 
 class CollapsePanel extends Component {
 	static propTypes = {
@@ -18,24 +19,24 @@ class CollapsePanel extends Component {
 	contentRef = React.createRef();
 
 	componentDidMount () {
-		// const { current: content } = this.contentRef;
-		// const {isOpen} = this.state;
-		// if(content && isOpen){
-		// 	content.style.height = 'auto'; 
-		// 	content.style.height = (content.scrollHeight) + 'px';
-		// }				
+					
 	};
 
-	changePanelView = (e) => {
-		// const { current: content } = this.contentRef;
-		// const {isOpen} = this.state;
-		// if(content && !isOpen ){
-		// 	content.style.height = 'auto'; 
-		// 	content.style.height = (content.scrollHeight) + 'px';
-		// } else {
-		// 	content.style.height = 0;
-		// }	
+	componentDidUpdate() {
+		const { current: content } = this.contentRef;
+		const domNode = ReactDOM.findDOMNode(content);
+		console.log(domNode);
+		domNode.addEventListener("transitionend", this.setOverflow, false);
+	};
 
+	setOverflow = () => {
+		const { current: content } = this.contentRef;
+		content.style.overflow = "auto";
+	}
+
+	changePanelView = (e) => {	
+		const { current: content } = this.contentRef;
+		content.style.overflow = "hidden";
 		this.setState((state)=>{
 			return {isOpen: !state.isOpen}
 		});
@@ -51,8 +52,6 @@ console.log(this.props.open);
 		);
 		const contentClasses = classNames(
 			'cos-collapse__content',
-			// className,
-			// this.state.isOpen?'open':'closed'
 		);
 
 		return (
