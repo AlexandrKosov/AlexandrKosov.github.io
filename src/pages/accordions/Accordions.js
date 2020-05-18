@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import Collapse from '~c/collapse';
 
+const { Panel } = Collapse;
+
 import Button from '~c/Button';
 import Icon from '~c/Icon';
 import Tag from '~c/tag';
 import Badge from '~c/Badge';
-const { Panel } = Collapse;
+import List from '~c/List';
+import ListItem from '~c/List/ListItem';
 
 const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
@@ -39,6 +42,14 @@ class Accordions extends Component{
                         <Button variant="light">Light</Button>
                         <Button variant="dark">Dark</Button>
                         <Button variant="link">Link</Button>
+                        <hr />
+                        <List>
+                            <ListItem><Icon name="search" />Найти</ListItem>
+                            <ListItem><Icon name="settings"/>Настройки</ListItem>
+                            <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
+                            <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
+                            <ListItem>Просто пункт с текстом</ListItem>
+                        </List>
                     </div>
                     </Panel>
                     <Panel header={<React.Fragment><Icon name="star" /> Dolor sit amet <Badge pill variant="info">New</Badge></React.Fragment>} key="4">
@@ -46,6 +57,14 @@ class Accordions extends Component{
                         <Tag label="какой-то тег" size="large" />
                         <Tag label="с иконкой" icon="star" size="large"/>
                         <Tag label="с кнопкой Закрыть" withClose size="large"/>
+                        <hr />
+                        <List>
+                            <ListItem><Icon name="search" />Найти</ListItem>
+                            <ListItem><Icon name="settings"/>Настройки</ListItem>
+                            <ListItem disabled><Icon name="delete"/>Удалить</ListItem>
+                            <ListItem><Icon name="star" />Пункт со звёздочкой</ListItem>
+                            <ListItem>Просто пункт с текстом</ListItem>
+                        </List>
                     </div>
                     </Panel>
                     
