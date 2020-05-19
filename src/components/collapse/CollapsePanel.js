@@ -15,13 +15,23 @@ class CollapsePanel extends Component {
 	};
 
 	state = {
-		isOpen: this.props.open
+		isOpen: this.props.open,
+		height: null
 	};
 
 	contentRef = React.createRef();
 
 	componentDidMount () {
-					
+		const { current: content } = this.contentRef;
+		if(this.state.isOpen){
+			if (this.props.maxHeight > content.scrollHeight){
+				content.style.height = content.scrollHeight + 'px';
+			}else{
+				content.style.height = this.props.maxHeight + 'px';
+				content.style.overflow = "auto";
+			}
+			this.setState({height: content.style.height});	
+		}
 	};
 
 	componentDidUpdate() {
@@ -31,10 +41,10 @@ class CollapsePanel extends Component {
 	};
 
 	setOverflow = () => {
-		const { current: content } = this.contentRef;
-		if (this.state.isOpen){
-			content.style.overflow = "auto";
-		}	
+		// const { current: content } = this.contentRef;
+		// if (this.state.isOpen){
+		// 	content.style.overflow = "auto";
+		// }	
 	}
 
 	changePanelView = (e) => {	
@@ -77,13 +87,6 @@ class CollapsePanel extends Component {
 	console.log('beginExit:',content.style.height);
 
 	content.style.height  = this.state.height;
-	// if (this.props.maxHeight > content.scrollHeight){
-	// 	content.style.height = content.scrollHeight + 'px';
-	// }else{
-	// 	content.style.height = this.props.maxHeight + 'px';
-	// 	content.style.overflow = "auto";
-	// }
-
 	this.setState({message: 'Begin Exit...'});
  }
  onExitingHandler() {
@@ -110,7 +113,6 @@ class CollapsePanel extends Component {
 			'cos-collapse__content',
 			this.state.isOpen?'collapse-enter-done':'collapse-exit-done'
 		);
-		console.log("m",maxHeight);
 		return (
 			<div className={classes}>
 				<header className="cos-collapse__header" 
@@ -120,7 +122,6 @@ class CollapsePanel extends Component {
 				</header>
 				<CSSTransition
 					in={this.state.isOpen}
-					// timeout={5000}
 					timeout={{ enter: 300, exit: 300 }}
 					classNames="collapse"
 					onEnter = {() =>  this.onEnterHandler()}
@@ -130,9 +131,6 @@ class CollapsePanel extends Component {
 					onExit={() =>  this.onExitHandler()}
 					onExiting={() =>  this.onExitingHandler()}
 					onExited={() =>  this.onExitedHandler()}
-					//unmountOnExit
-					// onEnter={() => setShowButton(false)}
-					// onExited={() => setShowButton(true)}
 				>
 					<section className={contentClasses} 
 							ref={this.contentRef} 
