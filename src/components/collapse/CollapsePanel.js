@@ -48,7 +48,8 @@ class CollapsePanel extends Component {
   // Begin Enter(expand): Do anything!
   onEnterHandler()  {
 	this.setState({message: 'Begin Enter...'});
-	this.contentRef.current.style.height = '0px';
+	const { current: content } = this.contentRef;
+	content.style.height = '0px';
  }
 
  onEnteredHandler ()  {
@@ -63,22 +64,39 @@ class CollapsePanel extends Component {
  }
 
  onEnteringHandler() {
+	const { current: content } = this.contentRef;
+	content.style.height = content.scrollHeight + 'px';
 	this.setState({message: 'Entering... (Wait timeout!)'});
  }
 
  // Begin Exit(Collapse): Do anything!
  onExitHandler() {
-	this.setState({message: 'Begin Exit...'});
 	const { current: content } = this.contentRef;
-	content.style.height = '0px';
- }
 
+	console.log("--",this.props.maxHeight, content.scrollHeight);
+	console.log('beginExit:',content.style.height);
+
+	content.style.height  = 'auto';
+	if (this.props.maxHeight > content.scrollHeight){
+		content.style.height = content.scrollHeight + 'px';
+	}else{
+		content.style.height = this.props.maxHeight + 'px';
+		content.style.overflow = "auto";
+	}
+
+	this.setState({message: 'Begin Exit...'});
+ }
  onExitingHandler() {
 	this.setState({message: 'Exiting... (Wait timeout!)'});
+	const { current: content } = this.contentRef;
+	content.style.height = 0 + 'px';
+	content.style.overflow = "hidden";
  }
 
  onExitedHandler() {
 	this.setState({message: 'OK Exited! COLLAPSED'});
+	const { current: content } = this.contentRef;
+	content.style.height = '0px';
  }
 //--------------------------------------------------------------------------------------------
 	render() {
@@ -102,7 +120,8 @@ class CollapsePanel extends Component {
 				</header>
 				<CSSTransition
 					in={this.state.isOpen}
-					timeout={300}
+					// timeout={5000}
+					timeout={{ enter: 300, exit: 5000 }}
 					classNames="collapse"
 					onEnter = {() =>  this.onEnterHandler()}
 					onEntering = {() =>  this.onEnteringHandler()}
@@ -117,7 +136,7 @@ class CollapsePanel extends Component {
 				>
 					<section className={contentClasses} 
 							ref={this.contentRef} 
-							style={{maxHeight:maxHeight, overflow: 'auto'}}
+							style={{maxHeight:maxHeight}}
 							>{children}</section>
 			</CSSTransition>
 			</div>
