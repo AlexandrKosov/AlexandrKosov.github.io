@@ -25,12 +25,14 @@ class CollapsePanel extends Component {
 	componentDidUpdate() {
 		const { current: content } = this.contentRef;
 		const domNode = ReactDOM.findDOMNode(content);
-		domNode.addEventListener("transitionend", this.setOverflow, false);
+		domNode.addEventListener("transitionend", this.setOverflow);
 	};
 
 	setOverflow = () => {
 		const { current: content } = this.contentRef;
-		content.style.overflow = "auto";
+		if (this.state.isOpen){
+			content.style.overflow = "auto";
+		}	
 	}
 
 	changePanelView = (e) => {	
@@ -56,7 +58,7 @@ class CollapsePanel extends Component {
 			<div className={classes}>
 				<header className="cos-collapse__header" 
 						role="button"
-						onClick={(e)=>this.changePanelView(e)}>
+						onClick={this.changePanelView}>
 					{header}
 				</header>
 				<section className={contentClasses} ref={this.contentRef}>{children}</section>
