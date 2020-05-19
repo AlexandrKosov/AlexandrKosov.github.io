@@ -93,7 +93,7 @@ class App extends Component{
                             </li>
 							<li className="list-group-item">
                                 <NavLink to={routesMap.accordions} activeClassName={styles.active}>
-                                  Аккордеон
+                                  Collapse
                                 </NavLink>
                             </li>
 							
