@@ -25,7 +25,6 @@ class CollapsePanel extends Component {
 	componentDidUpdate() {
 		const { current: content } = this.contentRef;
 		const domNode = ReactDOM.findDOMNode(content);
-		console.log(domNode);
 		domNode.addEventListener("transitionend", this.setOverflow, false);
 	};
 

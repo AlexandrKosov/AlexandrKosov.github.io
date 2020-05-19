@@ -15,7 +15,6 @@ class Collapse extends Component {
 
 	render() {
 		const {children, className,defaultActiveKey, ...attrs} = this.props;
-		console.log('collapse:',this.props);
 		const classes = classNames(
 			"cos-collapse",
 			className
