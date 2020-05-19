@@ -60,7 +60,7 @@ class CollapsePanel extends Component {
 		content.style.height = this.props.maxHeight + 'px';
 		content.style.overflow = "auto";
 	}
-	this.setState({message: `OK Entered! OPEN ${content.style.height}`});
+	this.setState({height: content.style.height, message: `OK Entered! OPEN ${content.style.height}`});
  }
 
  onEnteringHandler() {
@@ -73,30 +73,30 @@ class CollapsePanel extends Component {
  onExitHandler() {
 	const { current: content } = this.contentRef;
 
-	console.log("--",this.props.maxHeight, content.scrollHeight);
+	console.log("--",this.props.maxHeight, content.scrollHeight, this.state.height);
 	console.log('beginExit:',content.style.height);
 
-	content.style.height  = 'auto';
-	if (this.props.maxHeight > content.scrollHeight){
-		content.style.height = content.scrollHeight + 'px';
-	}else{
-		content.style.height = this.props.maxHeight + 'px';
-		content.style.overflow = "auto";
-	}
+	content.style.height  = this.state.height;
+	// if (this.props.maxHeight > content.scrollHeight){
+	// 	content.style.height = content.scrollHeight + 'px';
+	// }else{
+	// 	content.style.height = this.props.maxHeight + 'px';
+	// 	content.style.overflow = "auto";
+	// }
 
 	this.setState({message: 'Begin Exit...'});
  }
  onExitingHandler() {
 	this.setState({message: 'Exiting... (Wait timeout!)'});
 	const { current: content } = this.contentRef;
-	content.style.height = 0 + 'px';
-	content.style.overflow = "hidden";
+	content.style.height  = '0px';
+	// content.style.overflow = "hidden";
  }
 
  onExitedHandler() {
 	this.setState({message: 'OK Exited! COLLAPSED'});
-	const { current: content } = this.contentRef;
-	content.style.height = '0px';
+	// const { current: content } = this.contentRef;
+	// content.style.height = '0px';
  }
 //--------------------------------------------------------------------------------------------
 	render() {
@@ -121,7 +121,7 @@ class CollapsePanel extends Component {
 				<CSSTransition
 					in={this.state.isOpen}
 					// timeout={5000}
-					timeout={{ enter: 300, exit: 5000 }}
+					timeout={{ enter: 300, exit: 300 }}
 					classNames="collapse"
 					onEnter = {() =>  this.onEnterHandler()}
 					onEntering = {() =>  this.onEnteringHandler()}
