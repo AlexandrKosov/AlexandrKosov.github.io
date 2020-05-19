@@ -14,7 +14,7 @@ class Collapse extends Component {
 	};
 
 	render() {
-		const {children, className,defaultActiveKey, ...attrs} = this.props;
+		const {children, className,defaultActiveKey,panelMaxHeight, ...attrs} = this.props;
 		const classes = classNames(
 			"cos-collapse",
 			className
@@ -23,7 +23,7 @@ class Collapse extends Component {
 			<React.Fragment>
 				<div className={classes}>
 					{children.map((child)=>{
-						return React.cloneElement(child, {open:defaultActiveKey.includes(child.key)})
+						return React.cloneElement(child, {open:defaultActiveKey.includes(child.key), maxHeight: panelMaxHeight})
 
 					})}
 				</div>
