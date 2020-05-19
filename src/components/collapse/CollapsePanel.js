@@ -8,10 +8,11 @@ import {CSSTransition} from 'react-transition-group';
 
 class CollapsePanel extends Component {
 	static propTypes = {
-	
+		maxHeight: PropTypes.number
 	};
 	
 	static defaultProps = {
+
 	};
 
 	state = {
@@ -22,30 +23,27 @@ class CollapsePanel extends Component {
 	contentRef = React.createRef();
 
 	componentDidMount () {
+		const {maxHeight = undefined} = this.props;
 		const { current: content } = this.contentRef;
 		if(this.state.isOpen){
-			if (this.props.maxHeight > content.scrollHeight){
-				content.style.height = content.scrollHeight + 'px';
+			if(maxHeight){
+				if (maxHeight > content.scrollHeight){
+					content.style.height = content.scrollHeight + 'px';
+				}else{
+					content.style.height = maxHeight + 'px';
+					content.style.overflow = "auto";
+				}
 			}else{
-				content.style.height = this.props.maxHeight + 'px';
-				content.style.overflow = "auto";
+				content.style.height = content.scrollHeight + 'px';
 			}
 			this.setState({height: content.style.height});	
 		}
+		
 	};
 
-	componentDidUpdate() {
-		// const { current: content } = this.contentRef;
-		// const domNode = ReactDOM.findDOMNode(content);
-		// domNode.addEventListener("transitionend", this.setOverflow);
-	};
-
-	setOverflow = () => {
-		// const { current: content } = this.contentRef;
-		// if (this.state.isOpen){
-		// 	content.style.overflow = "auto";
-		// }	
-	}
+	// componentDidUpdate() {
+	// 	console.log('componentDidUpdate');
+	// };
 
 	changePanelView = (e) => {	
 		const { current: content } = this.contentRef;
@@ -55,52 +53,37 @@ class CollapsePanel extends Component {
 		});
 	};
 //--------------------------------------------------------------------------------------------
-  // Begin Enter(expand): Do anything!
-  onEnterHandler()  {
-	this.setState({message: 'Begin Enter...'});
-	const { current: content } = this.contentRef;
-	content.style.height = '0px';
- }
-
- onEnteredHandler ()  {
-	const { current: content } = this.contentRef;
-	if (this.props.maxHeight > content.scrollHeight){
-		content.style.height = content.scrollHeight + 'px';
-	}else{
-		content.style.height = this.props.maxHeight + 'px';
-		content.style.overflow = "auto";
+	onEnterHandler()  {
+		const { current: content } = this.contentRef;
+		content.style.height = '0px';
 	}
-	this.setState({height: content.style.height, message: `OK Entered! OPEN ${content.style.height}`});
- }
 
- onEnteringHandler() {
-	const { current: content } = this.contentRef;
-	content.style.height = content.scrollHeight + 'px';
-	this.setState({message: 'Entering... (Wait timeout!)'});
- }
+	onEnteredHandler ()  {
+		const { current: content } = this.contentRef;
+		if (this.props.maxHeight > content.scrollHeight){
+			content.style.height = content.scrollHeight + 'px';
+		}else{
+			content.style.height = this.props.maxHeight + 'px';
+			content.style.overflow = "auto";
+		}
+	}
 
- // Begin Exit(Collapse): Do anything!
- onExitHandler() {
-	const { current: content } = this.contentRef;
+	onEnteringHandler() {
+		const { current: content } = this.contentRef;
+		content.style.height = content.scrollHeight + 'px';
+	}
 
-	console.log("--",this.props.maxHeight, content.scrollHeight, this.state.height);
-	console.log('beginExit:',content.style.height);
+	onExitHandler() {
+		const { current: content } = this.contentRef;
+		content.style.height  = this.state.height;
+	}
+	onExitingHandler() {
+		const { current: content } = this.contentRef;
+		content.style.height  = '0px';
+	}
 
-	content.style.height  = this.state.height;
-	this.setState({message: 'Begin Exit...'});
- }
- onExitingHandler() {
-	this.setState({message: 'Exiting... (Wait timeout!)'});
-	const { current: content } = this.contentRef;
-	content.style.height  = '0px';
-	// content.style.overflow = "hidden";
- }
-
- onExitedHandler() {
-	this.setState({message: 'OK Exited! COLLAPSED'});
-	// const { current: content } = this.contentRef;
-	// content.style.height = '0px';
- }
+	onExitedHandler() {
+	}
 //--------------------------------------------------------------------------------------------
 	render() {
 		const {header, children, className, open, maxHeight, style, ...attrs} = this.props;
