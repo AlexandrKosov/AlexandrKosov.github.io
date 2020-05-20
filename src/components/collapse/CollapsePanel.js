@@ -97,7 +97,7 @@ class CollapsePanel extends Component {
 			this.state.isOpen?'collapse-enter-done':'collapse-exit-done'
 		);
 		return (
-			<div className={classes}>
+			<section className={classes}>
 				<header className="cos-collapse__header" 
 						role="button"
 						onClick={this.changePanelView}>
@@ -115,12 +115,12 @@ class CollapsePanel extends Component {
 					onExiting={() =>  this.onExitingHandler()}
 					onExited={() =>  this.onExitedHandler()}
 				>
-					<section className={contentClasses} 
+					<div className={contentClasses} 
 							ref={this.contentRef} 
 							style={{maxHeight:maxHeight}}
-							>{children}</section>
+							>{children}</div>
 			</CSSTransition>
-			</div>
+			</section>
 		)
 	}
 }
