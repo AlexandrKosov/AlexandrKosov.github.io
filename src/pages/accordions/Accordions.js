@@ -71,12 +71,12 @@ class Accordions extends Component{
                     
                 </Collapse>
                 <hr />
-                <h5>Без ограничения выпадалки по высоте</h5>
-                <Collapse defaultActiveKey={['2']} onChange={this.callback}>
+                <h5>Без ограничения выпадалки по высоте с Disabled-блоком</h5>
+                <Collapse defaultActiveKey={[]} onChange={this.callback}>
                     <Panel header="В этой панели длинный текст" key="1">
                     <p>{longText}</p>
                     </Panel>
-                    <Panel header="В этой панели не длинный текст" key="2">
+                    <Panel header="В этой панели не длинный текст" disabled key="2">
                     <p>{text}</p>
                     </Panel>
                 </Collapse>    

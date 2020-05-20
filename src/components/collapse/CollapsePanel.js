@@ -45,12 +45,14 @@ class CollapsePanel extends Component {
 	// 	console.log('componentDidUpdate');
 	// };
 
-	changePanelView = (e) => {	
-		const { current: content } = this.contentRef;
-		content.style.overflow = "hidden";
-		this.setState((state)=>{
-			return {isOpen: !state.isOpen}
-		});
+	changePanelView = (e) => {
+		if (!this.props.disabled){
+			const { current: content } = this.contentRef;
+			content.style.overflow = "hidden";
+			this.setState((state)=>{
+				return {isOpen: !state.isOpen}
+			});
+		}
 	};
 //--------------------------------------------------------------------------------------------
 	onEnterHandler()  {
@@ -86,11 +88,13 @@ class CollapsePanel extends Component {
 	}
 //--------------------------------------------------------------------------------------------
 	render() {
-		const {header, children, className, open, maxHeight, style, ...attrs} = this.props;
+		const {header, children, className, open, maxHeight, style, disabled, ...attrs} = this.props;
+		console.log('dis:',disabled);
 		const classes = classNames(
 			"cos-collapse__item",
 			className,
-			this.state.isOpen?'open':''
+			!disabled && this.state.isOpen?'open':'',
+			disabled?'cos-collapse__item_disabled':''
 		);
 		const contentClasses = classNames(
 			'cos-collapse__content',
