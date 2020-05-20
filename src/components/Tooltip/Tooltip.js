@@ -7,6 +7,7 @@ import './Tooltip.less';
 
 const sizeTriangle = 10;
 const horizMargin = 4;
+const scrollWidth = 16; //на случай существования вертикальной прокрутки, чтобы тултип не выходил за нее с появлением гориз. прокрутки
 
 class Tooltip extends Component {
 	static propTypes = {
@@ -33,17 +34,18 @@ class Tooltip extends Component {
 
 //target = то, на чем вызывается тултип; tooltip = сам тултип;
 	reCalcPosition = (target) => {
-
 		const {current: tooltipObj } = this.tooltipRef;
 		const {current: triangleObj } = this.triangleRef;
 		
 		let triangle = triangleObj.getBoundingClientRect();
 		let tooltip = tooltipObj.getBoundingClientRect();
 
-		
-
+//target = то, на чем вызывается тултип; tooltip = сам тултип;
+//left = позиция левого угла тултипа
 		let left = target.left + (target.right - target.left)/2  - (tooltip.right - tooltip.left)/2;
-		if (left > (window.innerWidth - tooltip.width)) {left=window.innerWidth - tooltip.width - horizMargin};
+		if (left > (window.innerWidth - tooltip.width)) {
+			left = window.innerWidth - tooltip.width - horizMargin - scrollWidth;
+		};
 		if(left < 0) left = horizMargin;
 		left+='px';
 
@@ -53,21 +55,21 @@ class Tooltip extends Component {
 		let position= '';
         if(calc > 0 ){
             truePos = {
-				top: target.bottom + sizeTriangle + 'px',
+				top: target.bottom + sizeTriangle + window.pageYOffset + 'px',
 				left
 			};
 			trianglePos = {
-				top: target.bottom + sizeTriangle + 'px',
+				top: target.bottom + sizeTriangle + window.pageYOffset + 'px',
 				left: target.left + (target.right - target.left)/2 - triangle.width/2 + 'px'
 			};
         } else {
 			position = 'position-up';
             truePos = {
-				top: target.bottom - (target.height + tooltip.height + sizeTriangle) + 'px',
+				top: target.bottom - (target.height + tooltip.height + sizeTriangle) + window.pageYOffset + 'px',
 				left			
 			};
 			trianglePos = {
-				top: target.top - sizeTriangle + 'px',
+				top: target.top - sizeTriangle + window.pageYOffset + 'px',
 				left: target.left + (target.right - target.left)/2 - triangle.width/2 + 'px'
 			};
         }  
@@ -78,7 +80,7 @@ class Tooltip extends Component {
 	show = (e) => {
 		e.persist();
 		let target = e.target.getBoundingClientRect();
-			this.reCalcPosition(target);{}
+		this.reCalcPosition(target);
 		this.setState({visible: true});
 	}
 
