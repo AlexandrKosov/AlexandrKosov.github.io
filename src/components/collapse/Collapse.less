@@ -17,6 +17,11 @@
             border-bottom: 0;
         }
     }
+    &__item_disabled &__header {
+            opacity: .3;
+            user-select: none;
+            cursor: not-allowed;
+    }
     &__header {
         position: relative;
         padding: 8px 16px;
@@ -59,21 +64,21 @@
 }
 
 //.collapse-
-.collapse-enter {
+.expand-enter {
     height:0;
     display: block;
     transition: height 300ms ease-in;
 }
-// .collapse-enter-done{
+// .expand--done{
 // }
-// .collapse-enter-active{
+// .expand-active{
 // }
 
-.collapse-exit{
+.collapse-enter {
     transition: height 300ms ease-in;
 }
-// .collapse-exit-active{
+// .collapse-active{
 // }
-.collapse-exit-done{
+.collapse-done{ 
     height: 0;
 }
