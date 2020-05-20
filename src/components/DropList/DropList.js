@@ -105,7 +105,7 @@ class DropList extends Component {
         
         if(calc > 0 ){
             truePos = {
-                top: head.bottom + 'px',
+                top: head.bottom + window.pageYOffset + 'px',
                 left: head.left + 'px',
                 position: 'absolute',
                 width: head.width + 'px',
@@ -113,7 +113,7 @@ class DropList extends Component {
           trueHeight = {maxHeight: 'none'}
         } else if(bottom) {
             truePos = {
-                top: head.bottom + 'px',
+                top: head.bottom + window.pageYOffset + 'px',
                 left: head.left + 'px',
                 position: 'absolute',
                 width: head.width + 'px',
@@ -122,7 +122,7 @@ class DropList extends Component {
           trueHeight = {maxHeight: maxDropHeight - 2 + 'px'}
         } else {
             truePos = {
-                bottom: window.innerHeight - head.top + 'px',
+                bottom: window.innerHeight - head.top - window.pageYOffset + 'px',
                 left: head.left + 'px',
                 position: 'absolute',
                 width: head.width + 'px',

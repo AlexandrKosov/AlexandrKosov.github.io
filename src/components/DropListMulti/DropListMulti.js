@@ -97,7 +97,7 @@ class DropListMulti extends Component {
         
         if(calc > 0 ){ //внизу есть место для выпадалки
             truePos = {
-                top: head.bottom + 'px',
+                top: head.bottom + window.pageYOffset + 'px',
                 left: head.left + 'px',
                 position: 'absolute',
                 width: head.width + 'px',
@@ -105,7 +105,7 @@ class DropListMulti extends Component {
           trueHeight = {maxHeight: 'none'}
         } else if(bottom) {//нет места внизу для выпадалки, но внизу больше места
             truePos = {
-                top: head.bottom + 'px',
+                top: head.bottom + window.pageYOffset + 'px',
                 left: head.left + 'px',
                 position: 'absolute',
                 width: head.width + 'px',
@@ -114,7 +114,7 @@ class DropListMulti extends Component {
           trueHeight = {maxHeight: maxDropHeight - checkHeight - 2 + 'px'}// -2  = чтобы "отбить" от границы экрана 
         } else {//нет места внизу для выпадалки, места больше вверху
             truePos = {
-                bottom: window.innerHeight - head.top + 'px',
+                bottom: window.innerHeight - head.top - window.pageYOffset + 'px',
                 left: head.left + 'px',
                 position: 'absolute',
                 width: head.width + 'px',
