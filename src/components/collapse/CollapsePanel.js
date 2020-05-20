@@ -94,7 +94,7 @@ class CollapsePanel extends Component {
 		);
 		const contentClasses = classNames(
 			'cos-collapse__content',
-			this.state.isOpen?'collapse-enter-done':'collapse-exit-done'
+			this.state.isOpen?'expand-done':'collapse-done'
 		);
 		return (
 			<section className={classes}>
@@ -103,10 +103,20 @@ class CollapsePanel extends Component {
 						onClick={this.changePanelView}>
 					{header} {this.state.message}
 				</header>
-				<CSSTransition
+				<CSSTransition 
 					in={this.state.isOpen}
 					timeout={{ enter: 300, exit: 300 }}
-					classNames="collapse"
+					classNames={{
+						appear: 'appear-enter',
+						appearActive: 'active-appear',
+						appearDone: 'done-appear',
+						enter: 'expand-enter',
+						enterActive: 'expand-active',
+						enterDone: 'expand-done',
+						exit: 'collapse-enter',
+						exitActive: 'collapse-active',
+						exitDone: 'collapse-done',
+					   }}
 					onEnter = {() =>  this.onEnterHandler()}
 					onEntering = {() =>  this.onEnteringHandler()}
 					onEntered={() =>  this.onEnteredHandler()}
