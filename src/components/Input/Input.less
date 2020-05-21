@@ -20,6 +20,11 @@
     &:focus {
         outline: none;
     }
+    &:not(.text-field-multiline) {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 .text-field.error {
     border: 1px solid red;
