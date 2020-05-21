@@ -6,8 +6,8 @@ import './Input.less';
 
 import Icon from '~c/Icon';
 
-const paddingRightwithoutScroll = 24;	
-const paddingRightwithScroll = 40;	
+const paddingRightWithoutScroll = 24;	
+const paddingRightWithScroll = 40;	
 
 class Input extends Component {
 	static propTypes = {
@@ -78,12 +78,12 @@ class Input extends Component {
 				multi.style.height = maxHeight;
 				multi.style.overflowY = 'auto';
 				if(clearable) {
-					multi.style.paddingRight=paddingRightwithScroll + 'px';
-					clear.style.right = (paddingRightwithScroll - paddingRightwithoutScroll) + 'px';
+					multi.style.paddingRight=paddingRightWithScroll + 'px';
+					clear.style.right = (paddingRightWithScroll - paddingRightWithoutScroll) + 'px';
 				}
 			}else{
 				multi.style.overflowY = 'hidden';
-				multi.style.paddingRight=paddingRightwithoutScroll + 'px';
+				multi.style.paddingRight=paddingRightWithoutScroll + 'px';
 				if(clear) {
 					clear.style.right = 0;
 				}
