@@ -42,14 +42,8 @@ class Input extends Component {
 		const { current: multi } = this.multiRef;
 		if(multi){
 			multi.style.overflowY = 'hidden';
-// if(this.countRows() <= 1){
-// 	multi.style.height = '28px'
-// }else{
-// 	multi.style.height = 'auto'; 
-// 	multi.style.height = (multi.scrollHeight) + 'px';
-// }
-multi.style.height = 'auto'; 
-multi.style.height = (multi.scrollHeight) + 'px';
+			multi.style.height = 'auto'; 
+			multi.style.height = (multi.scrollHeight) + 'px';
 			window.addEventListener("resize", this.updateTextareaSize);	
 			this.setState({showClearBtn:multi.value.length});
 		}
@@ -58,12 +52,6 @@ multi.style.height = (multi.scrollHeight) + 'px';
 	componentDidUpdate(){
 		const { current: multi } = this.multiRef;
 		if(multi){
-			// if(this.countRows() <= 1){
-			// 	multi.style.height = '28px'
-			// }else{
-			// 	multi.style.height = 'auto'; 
-			// 	multi.style.height = (multi.scrollHeight) + 'px';
-			// }
 			if(multi.value.length!==this.state.showClearBtn){
 				this.setState({showClearBtn:multi.value.length});
 			}
@@ -73,32 +61,6 @@ multi.style.height = (multi.scrollHeight) + 'px';
 	componentWillUnmount() {
         window.removeEventListener("resize", this.updateTextareaSize);
     }
-
-
-	countRows() {
-		//var ta = document.getElementById('ta');
-		const { current: multi } = this.multiRef;
-		if (!multi.value) {return 1;}
-		var div = document.createElement('div');
-		div.style.width = multi.scrollWidth + 'px';
-		div.style.height = '20px';
-		div.style.overflow = 'hidden';
-		div.style.position = 'absolute';
-		div.style.top = '0px';
-		div.style.left = '0px';
-		
-		document.body.appendChild(div);
-		var rows=0, arr = multi.value.split('\n');
-		for(var i=0; i<arr.length; ++i) {
-			div.innerHTML = '<span>' + arr[i] + '</span>';
-			rows += div.firstChild.getClientRects().length;
-		}
-		document.body.removeChild(div);
-		console.log("rows:",rows);
-		return rows;
-	}
-
-
 
 	onChangeHandler = (e) => {
 		this.updateTextareaSize();
