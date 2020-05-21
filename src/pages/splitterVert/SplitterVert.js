@@ -50,6 +50,7 @@ class SplitterVert extends Component{
                         value={this.state.word}
                         onChange={this.getWord}
                         error={this.state.wordError}
+                        onClear={()=>{this.setState({word:''})}}
                         placeholder="Введите что-нибудь"/>
                 <Input type="text" 
                         name="word2"
@@ -60,6 +61,7 @@ class SplitterVert extends Component{
                         value={this.state.word2}
                         onChange={this.getWord2}
                         error={this.state.wordError2}
+                        onClear={()=>{this.setState({word2:''})}}
                         placeholder="Введите что-нибудь ещё"/>        
                 <h6>Заголовок 2</h6>
                 <Input type="text" 
