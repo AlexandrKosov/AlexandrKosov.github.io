@@ -42,18 +42,30 @@ class Input extends Component {
 		const { current: multi } = this.multiRef;
 		if(multi){
 			multi.style.overflowY = 'hidden';
-			multi.style.height = 'auto'; 
-			multi.style.height = (multi.scrollHeight) + 'px';
+// if(this.countRows() <= 1){
+// 	multi.style.height = '28px'
+// }else{
+// 	multi.style.height = 'auto'; 
+// 	multi.style.height = (multi.scrollHeight) + 'px';
+// }
+multi.style.height = 'auto'; 
+multi.style.height = (multi.scrollHeight) + 'px';
 			window.addEventListener("resize", this.updateTextareaSize);	
-			this.setState({showClearBtn:multi.value.length})
+			this.setState({showClearBtn:multi.value.length});
 		}
 	}
 
 	componentDidUpdate(){
 		const { current: multi } = this.multiRef;
 		if(multi){
+			// if(this.countRows() <= 1){
+			// 	multi.style.height = '28px'
+			// }else{
+			// 	multi.style.height = 'auto'; 
+			// 	multi.style.height = (multi.scrollHeight) + 'px';
+			// }
 			if(multi.value.length!==this.state.showClearBtn){
-				this.setState({showClearBtn:multi.value.length})
+				this.setState({showClearBtn:multi.value.length});
 			}
 		}
 	}
@@ -61,6 +73,32 @@ class Input extends Component {
 	componentWillUnmount() {
         window.removeEventListener("resize", this.updateTextareaSize);
     }
+
+
+	countRows() {
+		//var ta = document.getElementById('ta');
+		const { current: multi } = this.multiRef;
+		if (!multi.value) {return 1;}
+		var div = document.createElement('div');
+		div.style.width = multi.scrollWidth + 'px';
+		div.style.height = '20px';
+		div.style.overflow = 'hidden';
+		div.style.position = 'absolute';
+		div.style.top = '0px';
+		div.style.left = '0px';
+		
+		document.body.appendChild(div);
+		var rows=0, arr = multi.value.split('\n');
+		for(var i=0; i<arr.length; ++i) {
+			div.innerHTML = '<span>' + arr[i] + '</span>';
+			rows += div.firstChild.getClientRects().length;
+		}
+		document.body.removeChild(div);
+		console.log("rows:",rows);
+		return rows;
+	}
+
+
 
 	onChangeHandler = (e) => {
 		this.updateTextareaSize();
@@ -139,15 +177,15 @@ class Input extends Component {
 					}
 				{/* //----------------------------------------- */}
 					{attrs.type==='text' && multiline && 
-						<textarea name={name}
-						ref={this.multiRef}
-						id={name}
-						className={classes}
-						style={{maxHeight:maxHeight}}
-						value={value}
-						{...attrs}
-						onChange={this.onChangeHandler}
-						>
+						<textarea name={name} 
+							rows={1}
+							ref={this.multiRef}
+							id={name}
+							className={classes}
+							style={{maxHeight:maxHeight}}
+							value={value}
+							{...attrs}
+							onChange={this.onChangeHandler}>
 						</textarea>
 					}
 					{ this.showCrest() && <div className="text-field-clear" onClick={this.clearField} ref={this.clearRef}>
