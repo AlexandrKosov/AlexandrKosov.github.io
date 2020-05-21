@@ -52,6 +52,7 @@ class Input extends Component {
 	componentDidUpdate(){
 		const { current: multi } = this.multiRef;
 		if(multi){
+			this.updateTextareaSize();
 			if(multi.value.length!==this.state.showClearBtn){
 				this.setState({showClearBtn:multi.value.length});
 			}
@@ -74,6 +75,7 @@ class Input extends Component {
 
 			multi.style.height = 'auto'; 
 			multi.style.height = (multi.scrollHeight) + 'px'; 
+
 			if(parseInt(multi.style.height) >= parseInt(maxHeight)){
 				multi.style.height = maxHeight;
 				multi.style.overflowY = 'auto';
