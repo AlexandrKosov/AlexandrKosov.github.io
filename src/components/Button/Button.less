@@ -75,8 +75,14 @@
             text-decoration: underline;
         }
     }
-
-    & > .icon{
+    & .button-inner {
+        position: relative;
+    }
+    &:active .button-inner,
+    &.active .button-inner {
+        top: 1px;
+    }
+    & .button-inner .icon {
         margin-right: 6px;
     }
     & + & {

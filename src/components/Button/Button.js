@@ -45,8 +45,10 @@ const Button = ({
                 onClick={actionClick}
                 {...attrs}
         >
-            {Ico}
-            {children}
+            <span className="button-inner">
+                {Ico}
+                {children}
+            </span>
         </button>
     )
 };
