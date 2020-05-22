@@ -179,15 +179,14 @@ class DropListMulti extends Component {
     renderItems = () => {
         const { className, children, selected, ...attrs } = this.props;
         return React.Children.map(children, (child, index)=>(
-            <ListItem
-                key={index}
-                index={index}
-                //className={classNames(child.props.className, selected.includes(index)?'active':'')}
-                active={selected.includes(index)?true:false}
-                disabled={child.props.disabled}
-                onChangeActiveItem={this.changeActiveItem} >
-                {child.props.children}
-            </ListItem>
+            React.cloneElement(child,{
+                key: index,
+                index: index,
+                active: selected.includes(index)?true:false,
+                disabled: child.props.disabled,
+                className: classNames(child.props.className),
+                onChangeActiveItem: this.changeActiveItem
+            })
         ));
     }
 
