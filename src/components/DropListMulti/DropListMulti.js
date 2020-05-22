@@ -178,7 +178,7 @@ class DropListMulti extends Component {
     
     renderItems = () => {
         const { className, children, selected, ...attrs } = this.props;
-        return children.map((child, index)=>(
+        return React.Children.map(children, (child, index)=>(
             <ListItem
                 key={index}
                 index={index}
