@@ -118,7 +118,7 @@ class SplitterVert extends Component{
                                         <td>Пять</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">Вышел зайчик погулять</td>
+                                        <td colSpan="2">Вышел зайчик погулять</td>
                                     </tr>
                                 </tbody>
                             </table>
