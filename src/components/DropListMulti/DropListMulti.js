@@ -245,7 +245,7 @@ class DropListMulti extends Component {
             <React.Fragment>
 
               <div className={classes}  ref={this.dropHeadRef}>
-                <div className="list-selected-items" onClick={this.dropListClick}>
+                <div className="list-selected-items" onClick={this.dropListClick} title={(this.current && this.current.length)? this.current.join(', ') :''}>
                   {(this.current && this.current.length)? this.current.join(', ') :'—'}
                 </div>
                 <div className="dropdown-arrow" onClick={this.dropListClick}>    
