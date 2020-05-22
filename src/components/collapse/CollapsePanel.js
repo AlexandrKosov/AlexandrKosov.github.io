@@ -42,7 +42,7 @@ class CollapsePanel extends Component {
 	};
 
 	// componentDidUpdate() {
-	// 	console.log('componentDidUpdate');
+	// 	
 	// };
 
 	changePanelView = (e) => {
@@ -89,7 +89,6 @@ class CollapsePanel extends Component {
 //--------------------------------------------------------------------------------------------
 	render() {
 		const {header, children, className, open, maxHeight, style, disabled, ...attrs} = this.props;
-		console.log('dis:',disabled);
 		const classes = classNames(
 			"cos-collapse__item",
 			className,
