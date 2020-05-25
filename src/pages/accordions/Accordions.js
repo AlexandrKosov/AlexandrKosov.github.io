@@ -76,7 +76,7 @@ class Accordions extends Component{
                     <Panel header="В этой панели длинный текст" key="1">
                     <p>{longText}</p>
                     </Panel>
-                    <Panel header="В этой панели не длинный текст" disabled key="2">
+                    <Panel header="Disabled-панель" disabled key="2">
                     <p>{text}</p>
                     </Panel>
                 </Collapse>    
