@@ -96,7 +96,11 @@ class App extends Component{
                                   Collapse
                                 </NavLink>
                             </li>
-							
+							<li className="list-group-item">
+                                <NavLink to={routesMap.UploadFiles} activeClassName={styles.active}>
+                                  Загрузка файлов
+                                </NavLink>
+                            </li>
                         </ul>
 {/*-------------------------------/MENU------------------------*/}						
                     </div>

@@ -13,6 +13,7 @@ import Inputs from '~p/inputs';
 import Splitters from '~p/splitters';
 import SplitterVert from '~p/splitterVert';
 import Accordions from '~p/accordions';
+import UploadFiles from '~p/UploadFiles';
 
 let routes = [
     {
@@ -92,6 +93,12 @@ let routes = [
         name: 'accordions',
         url: '/accordions',
         component: Accordions,
+        exact: true
+    },
+	{
+        name: 'UploadFiles',
+        url: '/upload-files',
+        component: UploadFiles,
         exact: true
     },
     {
