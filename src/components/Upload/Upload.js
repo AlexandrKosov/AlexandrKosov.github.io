@@ -14,28 +14,58 @@ class Upload extends Component {
 	};
 
 	state = {
+    fileList: []
 	}
 
     fileInput = React.createRef();
   
   handleSubmit=(event)=> {
 	event.preventDefault();
-	console.log(this.fileInput.current.files)
-    alert(
-      `Selected file - ${this.fileInput.current.files[0].name}`
-    );
+  console.log(this.fileInput.current.files)
+  console.log("prev",this.state.fileList);
+  console.log("new:",...this.fileInput.current.files);
+    this.setState((prev)=>{
+      let arr = [...prev.fileList, ...this.fileInput.current.files];
+     //
+      console.log('arr:',arr);
+      return {fileList: arr}
+    })
   }
 
+  onDelete = (i) => {
+    console.log('deleting:',i);
+    this.setState((prev)=>{
+        const idx = prev.fileList.findIndex((item, index)=>index===i);
+        console.log('ind',idx);
+        const fileList = [
+          ...prev.fileList.slice(0,idx),
+          ...prev.fileList.slice(idx+1)
+        ];
+        return { fileList }
+    });
+   
+    return i
+  } 
+
   render() {
+    const {fileList} = this.state;
+    let list = fileList.map((item,i)=>{
+      console.log(item, i);
+      return (
+        <div key={i}>
+            {item.name} 
+            &nbsp;<span onClick={()=>this.onDelete(i)}>delete</span>
+        </div>
+      )}
+    )
     return (
-      <form onSubmit={this.handleSubmit}>
+      <React.Fragment>
         <label>
           Upload file:
-          <input type="file" ref={this.fileInput} multiple/>
+          <input type="file" ref={this.fileInput} onChange={this.handleSubmit} multiple/>
         </label>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+        <div>{list}</div> 
+      </React.Fragment>
     );
   }
 }
