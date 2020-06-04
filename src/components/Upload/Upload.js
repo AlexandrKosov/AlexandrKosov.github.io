@@ -25,7 +25,11 @@ class Upload extends Component {
   console.log("prev",this.state.fileList);
   console.log("new:",...this.fileInput.current.files);
     this.setState((prev)=>{
-      let arr = [...prev.fileList, ...this.fileInput.current.files];
+      let arr = [...prev.fileList, ...this.fileInput.current.files].sort((a,b)=>{
+        if(a.name>b.name) return 1
+        else if(a.name<b.name) return -1
+        else return 0
+      });
      //
       console.log('arr:',arr);
       return {fileList: arr}
@@ -62,7 +66,7 @@ class Upload extends Component {
       <React.Fragment>
         <label>
           Upload file:
-          <input type="file" ref={this.fileInput} onChange={this.handleSubmit} multiple/>
+          <input type="file" ref={this.fileInput} onChange={this.handleSubmit} multiple style={{display:'none'}}/>
         </label>
         <div>{list}</div> 
       </React.Fragment>
