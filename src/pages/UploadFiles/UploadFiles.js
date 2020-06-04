@@ -3,16 +3,19 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Upload from '~c/Upload';
+import Button from '~c/Button';
 
 class UploadFiles extends Component {
 	
 
 	render() {
 		return (
-			<React.Fragment>
 			
-				<Upload />
-			</React.Fragment>
+			
+				<Upload>
+					<Button>Upload</Button>
+				</Upload>	
+			
 		)
 	}
 	
