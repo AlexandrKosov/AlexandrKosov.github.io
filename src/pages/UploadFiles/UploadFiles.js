@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import InputFile from '~c/InputFile';
+import Upload from '~c/Upload';
 
 class UploadFiles extends Component {
 	
@@ -11,7 +11,7 @@ class UploadFiles extends Component {
 		return (
 			<React.Fragment>
 			
-				<InputFile />
+				<Upload />
 			</React.Fragment>
 		)
 	}
