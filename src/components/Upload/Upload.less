@@ -1,6 +1,13 @@
 .upload-container {
     display: block;
     width: 100%;
+    outline: 1px dashed #5d5d5d;
+    outline-offset: -1px;
+    &.dragover {
+        background-color: #fafafa;
+        outline-offset: -3px;
+    }
+
     & input[type="file"]{
         width: 0.1px;
         height: 0.1px;

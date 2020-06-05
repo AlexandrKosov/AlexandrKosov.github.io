@@ -31,6 +31,27 @@ class Upload extends Component {
     })
   }
 
+  onDrop = (event) => {
+    const dropZone = ReactDOM.findDOMNode(this.uploadContainerRef.current);
+    event.preventDefault();
+    dropZone.classList.remove('dragover');
+    console.log(event);
+    let files = event.dataTransfer.files;// [...event.dataTransfer.files];
+  //  let files = event.originalEvent.dataTransfer.files;
+    //sendFiles(files);
+    console.log("files:",files);
+  
+    //this.addToFileList(files);
+    this.setState((prev)=>{
+      let arr = [...prev.fileList, ...files].sort((a,b)=>{
+        if(a.name>b.name) return 1
+        else if(a.name<b.name) return -1
+        else return 0
+      });
+      console.log('arr:',arr);
+      return {fileList: arr}
+    })
+  }
 
   fileInputRef = React.createRef();
   uploadContainerRef = React.createRef();
@@ -38,41 +59,29 @@ class Upload extends Component {
   componentDidMount(){
    // const { current: dropZone } = this.uploadContainerRef;
     const dropZone = ReactDOM.findDOMNode(this.uploadContainerRef.current);
-
+console.log('dropZone',dropZone);
 dropZone.addEventListener("drag", function(event) {event.preventDefault()});
 dropZone.addEventListener("dragstart", function(event) {event.preventDefault()});
 dropZone.addEventListener("dragend", function(event) {event.preventDefault()});
 dropZone.addEventListener("dragover", function(event) {
   event.preventDefault();
-  //dropZone.addClass('dragover');
+  dropZone.classList.add('dragover');
 
 });
 dropZone.addEventListener("dragenter", function(event) {
   event.preventDefault();
-  //dropZone.addClass('dragover');
+  dropZone.classList.add('dragover');
 });
-dropZone.addEventListener("dragleave", function(event) {
-  event.preventDefault();
+dropZone.addEventListener("dragleave", function(e) {
+  e.preventDefault();
   let dx = e.pageX - dropZone.offset().left;
   let dy = e.pageY - dropZone.offset().top;
   if ((dx < 0) || (dx > dropZone.width()) || (dy < 0) || (dy > dropZone.height())) {
-       dropZone.removeClass('dragover');
+       dropZone.classList.remove('dragover');
   };
 });
 
-dropZone.addEventListener("drop", function(event) {
-  event.preventDefault();
- // dropZone.removeClass('dragover');
- console.log(event);
- let files = event.dataTransfer.files;
-//  let files = event.originalEvent.dataTransfer.files;
-  //sendFiles(files);
-  console.log("files:",files);
-
-  this.addToFileList(...files);
-
-
-});
+dropZone.addEventListener("drop", this.onDrop);
 
 // dropZone.addEventListener('dragover', function() {
 //  // dropZone.addClass('dragover');
@@ -185,7 +194,7 @@ dropZone.addEventListener("drop", function(event) {
       <React.Fragment>
         <label className="upload-container" ref={this.uploadContainerRef}  {...attrs} >
           <input type="file" ref={this.fileInputRef} onChange={this.handleSubmit} multiple />
-          <div className={classes} ></div>
+          <div className={classes} >Нажмите для добавления файлов, или перетащите файлы мышью</div>
           {/* {children} */}
           {/* {ch} */}
         </label>
