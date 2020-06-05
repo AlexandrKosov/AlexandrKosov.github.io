@@ -25,4 +25,30 @@
     background: #f5f5f5;
     padding: 0 16px;
     line-height: 26px;
+    user-select: none;
+    cursor: pointer;
+}
+.upload-list-files {
+    display: block;
+    position: relative;
+    border: 1px solid #ddd;
+    &:empty {
+        border: none;
+    }
+    &__item {
+        display: flex;
+        font-size: 12px;
+        padding: 3px 8px;
+        border-bottom: 1px solid #ddd;
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+    &__name {
+        flex: 1;
+    }
+    &__remove {
+        flex: none;
+        cursor: pointer;
+    }
 }

@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import ReactDOM from 'react-dom';
 import './Upload.less';
 
+import Icon from '~c/Icon';
+
 class Upload extends Component {
 	static propTypes = {
     children: PropTypes.node,
@@ -95,9 +97,9 @@ class Upload extends Component {
     const {fileList} = this.state;
     let list = fileList.map((item,i)=>{
       return (
-        <div key={i}>
-            {i}: {item.name} 
-            &nbsp;<span onClick={()=>this.onDelete(i)}>delete</span>
+        <div key={i} className="upload-list-files__item">
+            <div className="upload-list-files__name">{item.name} </div>
+            <span className="upload-list-files__remove" onClick={()=>this.onDelete(i)}><Icon name="delete" /></span>
         </div>
       )}
     );
