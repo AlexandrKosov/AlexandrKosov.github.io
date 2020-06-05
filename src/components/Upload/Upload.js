@@ -28,7 +28,6 @@ class Upload extends Component {
         else if(a.name<b.name) return -1
         else return 0
       });
-      console.log('arr:',arr);
       return {fileList: arr}
     })
   }
@@ -37,7 +36,6 @@ class Upload extends Component {
     const dropZone = ReactDOM.findDOMNode(this.uploadContainerRef.current);
     event.preventDefault();
     dropZone.classList.remove('dragover');
-    console.log(event);
     let files = event.dataTransfer.files;
 
     this.addToFileList(files);
