@@ -43,7 +43,36 @@ cite {
     bottom: 0;
 }
 
-
+.boxy {
+    flex-direction: row;
+    flex-wrap: wrap;
+    & .list-group-item {
+        width: 160px;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 12px 12px 0;
+        position: relative;
+        & a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right:0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 2px 2px 0px #ccc;
+            &:active {
+                box-shadow: 1px 1px 0px #aaa;
+            }
+        }
+    }
+    & .list-group-item+.list-group-item {
+        border-top-width: 1px;
+    }
+}
 
 
 
