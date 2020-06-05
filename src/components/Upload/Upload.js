@@ -61,24 +61,28 @@ class Upload extends Component {
       //console.log(item, i);
       return (
         <div key={i}>
-            {item.name} 
+            {i}: {item.name} 
             &nbsp;<span onClick={()=>this.onDelete(i)}>delete</span>
         </div>
       )}
     );
+    const classes = classNames(
+			"upload",
+			className,
+		);
     //console.log("children:",this.props.children, children);
 
-    let ch = React.Children.map(children, child => {
-      return React.cloneElement(child, {onClick:(e)=>this.handleSubmit(e)})
-    })
+    // let ch = React.Children.map(children, child => {
+    //   return React.cloneElement(child, {onClick:(e)=>this.handleSubmit(e)})
+    // })
     
     return (
       <React.Fragment>
-        <label {...attrs}>
+        <label className="upload-container" {...attrs}>
           <input type="file" ref={this.fileInput} onChange={this.handleSubmit} multiple style={{display:'none'}}/>
-
+          <div className={classes} ></div>
           {/* {children} */}
-          {ch}
+          {/* {ch} */}
         </label>
         <div className="upload-list-files">{list}</div> 
       </React.Fragment>

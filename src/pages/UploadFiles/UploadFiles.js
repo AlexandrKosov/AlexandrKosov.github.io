@@ -10,12 +10,7 @@ class UploadFiles extends Component {
 
 	render() {
 		return (
-			
-			
-				<Upload>
-					<Button>Upload</Button>
-				</Upload>	
-			
+			<Upload />
 		)
 	}
 	
