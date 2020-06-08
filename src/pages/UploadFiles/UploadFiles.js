@@ -19,7 +19,7 @@ class UploadFiles extends Component {
 	onChange = (value) => {
 		console.log("val:",value);
 		this.setState({fileList: value})
-		}
+	}
 
 	onSubmit = (e) => {
 		const {fileList} = this.state;
@@ -46,9 +46,10 @@ formData.append("userfile", fileInputElement.files[0]);
 	}
 
 	render() {
+		console.log('this.state.fileList',this.state.fileList);
 		return (
 			<form onSubmit={this.onSubmit} >
-				<Upload onChange={this.onChange}/>
+				<Upload value={this.state.fileList} onChange={this.onChange}/>
 				<input type="submit" value="Отправить" />
 			</form>
 			

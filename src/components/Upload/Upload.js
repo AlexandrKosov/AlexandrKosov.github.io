@@ -22,7 +22,7 @@ class Upload extends Component {
 	};
 
 	state = {
-    fileList: []
+    fileList: this.props.value || []
   }
   
   addToFileList = (list) => {
@@ -45,13 +45,23 @@ class Upload extends Component {
     let files = event.dataTransfer.files;
 
     this.addToFileList(files);
-    this.props.onChange(this.state.fileList);
+    this.props.onChange([...this.state.fileList]);
   }
 
   fileInputRef = React.createRef();
   uploadContainerRef = React.createRef();
 
+  componentDidUpdate(prevProps){
+    console.log("componentDidUpdate value:",this.props.value);
+    if (this.props.value !== prevProps.value) {
+      //this.fetchData(this.props.userID);
+      this.setState({fileList: this.props.value })
+    }
+
+  }
+
   componentDidMount(){
+    console.log("value:",this.props.value);
     const dropZone = ReactDOM.findDOMNode(this.uploadContainerRef.current);
 
     dropZone.addEventListener("drag", function(event) {event.preventDefault()});
@@ -80,7 +90,8 @@ class Upload extends Component {
   handleChange = async (event) => {
     event.preventDefault();
     await this.addToFileList(this.fileInputRef.current.files);
-    this.props.onChange(this.state.fileList);
+    //this.props.onChange(this.state.fileList);
+    this.props.onChange([...this.state.fileList]);
   }
 
   onDelete = (i) => {
@@ -98,6 +109,7 @@ class Upload extends Component {
   render() {
     const {children, className, ...attrs} = this.props;
     const {fileList} = this.state;
+    console.log("fileList render:",fileList);
     let list = fileList.map((item,i)=>{
       return (
         <div key={i} className="upload-list-files__item">
