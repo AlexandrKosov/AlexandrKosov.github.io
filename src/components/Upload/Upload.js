@@ -45,6 +45,7 @@ class Upload extends Component {
     let files = event.dataTransfer.files;
 
     this.addToFileList(files);
+    this.props.onChange(this.state.fileList);
   }
 
   fileInputRef = React.createRef();
@@ -73,7 +74,6 @@ class Upload extends Component {
           dropZone.classList.remove('dragover');
       };
     });
-
     dropZone.addEventListener("drop", this.onDrop);
   }
 

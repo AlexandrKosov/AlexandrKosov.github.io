@@ -28,14 +28,6 @@ class UploadFiles extends Component {
 		let fData = new FormData();
 		//let fData = this.state.fileList;
 		console.log(fileList);
-                // Добавление файлов input type file 
-                // let file = el.querySelector('.upload-file__input');
-                // for (let i = 0; i < (file.files.length); i++) {
-                //     fData.append('files[]', file.files[i]); // добавляем файлы в объект FormData() 
-				// }
-				//console.log(">>",this.getFileList());
-
-
 
 /*
 // HTML file input, chosen by user
@@ -43,7 +35,7 @@ formData.append("userfile", fileInputElement.files[0]);
 */
 
 		fileList.forEach((file)=>{
-			console.log("+>",file.name, file);
+//			console.log("+>",file.name, file);
 			fData.append(file.name, file, file.name);
 			console.log("*",fData.get(file.name));
 		});
