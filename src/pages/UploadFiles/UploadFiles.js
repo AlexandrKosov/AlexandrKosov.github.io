@@ -21,27 +21,36 @@ class UploadFiles extends Component {
 		this.setState({fileList: value})
 	}
 
-	onSubmit = (e) => {
+	onSubmit = async (e) => {
 		const {fileList} = this.state;
 		e.preventDefault();
 		// создание объекта FormData 
 		let fData = new FormData();
 		//let fData = this.state.fileList;
 		console.log(fileList);
-
 /*
 // HTML file input, chosen by user
 formData.append("userfile", fileInputElement.files[0]);
 */
-
 		fileList.forEach((file)=>{
-//			console.log("+>",file.name, file);
-			fData.append(file.name, file, file.name);
+			fData.append('attachment', file, file.name);
 			console.log("*",fData.get(file.name));
 		});
-
 		console.log("fData:",fData);
 		this.setState({fileList:[]});
+//-----------------------------------------------------------------------
+
+let response = await fetch('http://angularhttp/upload.php', {
+	method: 'POST',
+	body: fData	//new FormData(formElem)
+  });
+
+  let result = await response.json();
+
+  alert(result.message);
+
+
+//-----------------------------------------------------------------------
 		return false;
 	}
 
