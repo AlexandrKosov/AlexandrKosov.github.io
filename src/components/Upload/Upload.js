@@ -35,7 +35,6 @@ class Upload extends Component {
     
       return {fileList: arr}
     });
-    //console.log(">",this.fileInputRef.current.files = arr);
   }
 
   onDrop = async (event) => {
@@ -79,7 +78,6 @@ class Upload extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
-    console.log("componentDidUpdate", this.props.value);
     if(prevProps.value!=0 && this.props.value==0){
       this.setState({fileList: []});
     }
@@ -100,9 +98,7 @@ class Upload extends Component {
         ];
         return { fileList }
     });
-    
     await this.props.onChange(this.state.fileList);
-    console.log(">>>",this.state.fileList)
     return i
   } 
 

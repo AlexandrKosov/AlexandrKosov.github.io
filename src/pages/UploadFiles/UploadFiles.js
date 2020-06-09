@@ -7,17 +7,11 @@ import Button from '~c/Button';
 
 class UploadFiles extends Component {
 	
-	getFileList = (e) => {
-		console.log(e);
-		return e;
-	}
-
 	state = {
 		fileList:[],
 	}
 
 	onChange = (value) => {
-		console.log("val_____:",value);
 		this.setState({fileList: value})
 	}
 
@@ -26,13 +20,8 @@ class UploadFiles extends Component {
 		e.preventDefault();
 		// создание объекта FormData 
 		let fData = new FormData();
-/*
-// HTML file input, chosen by user
-formData.append("userfile", fileInputElement.files[0]);
-*/
 		fileList.forEach((file, index)=>{
 			fData.append(`attachment[]`, file, file.name);
-			//console.log("*",fData.get(`attachment`));
 		});		
 //---------------- обращение к серверу -------------------------------------------------------
 let response = await fetch('http://angularhttp/upload.php', {
@@ -40,14 +29,12 @@ let response = await fetch('http://angularhttp/upload.php', {
 	body: fData
   });
   //let result = await response.json();
-console.log("resp:",response);
 //-----------------------------------------------------------------------
   		this.setState({fileList:[]});
 		return false;
 	}
 
 	render() {
-		//console.log('this.state.fileList',this.state.fileList);
 		return (
 			<form onSubmit={this.onSubmit} >
 				<Upload value={this.state.fileList.length} onChange={this.onChange}/>
