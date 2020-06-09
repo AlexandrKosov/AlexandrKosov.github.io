@@ -18,7 +18,7 @@ class Upload extends Component {
 	static defaultProps = {
     children: null,
     onChange: function(cnt){},
-    className: ''
+    className: '',
 	};
 
 	state = {
@@ -76,6 +76,13 @@ class Upload extends Component {
     });
 
     dropZone.addEventListener("drop", this.onDrop);
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    console.log("componentDidUpdate", this.props.value);
+    if(prevProps.value!=0 && this.props.value==0){
+      this.setState({fileList: []});
+    }
   }
 
   handleChange = async (event) => {

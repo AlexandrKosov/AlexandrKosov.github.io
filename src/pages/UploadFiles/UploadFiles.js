@@ -13,7 +13,7 @@ class UploadFiles extends Component {
 	}
 
 	state = {
-		fileList:[]
+		fileList:[],
 	}
 
 	onChange = (value) => {
@@ -32,32 +32,26 @@ formData.append("userfile", fileInputElement.files[0]);
 */
 		fileList.forEach((file, index)=>{
 			fData.append(`attachment[]`, file, file.name);
-			console.log("*",fData.get(`attachment`));
-		});
-		console.log("fData:",fData);
-		this.setState({fileList:[]});
-//-----------------------------------------------------------------------
-
+			//console.log("*",fData.get(`attachment`));
+		});		
+//---------------- обращение к серверу -------------------------------------------------------
 let response = await fetch('http://angularhttp/upload.php', {
 	method: 'POST',
-	body: fData	//new FormData(formElem)
+	body: fData
   });
-
   //let result = await response.json();
 console.log("resp:",response);
-  //alert(result.message);
-
-
 //-----------------------------------------------------------------------
+  		this.setState({fileList:[]});
 		return false;
 	}
 
 	render() {
-		console.log('this.state.fileList',this.state.fileList);
+		//console.log('this.state.fileList',this.state.fileList);
 		return (
 			<form onSubmit={this.onSubmit} >
-				<Upload value={this.state.fileList} onChange={this.onChange}/>
-				<input type="submit" value="Отправить" />
+				<Upload value={this.state.fileList.length} onChange={this.onChange}/>
+				<input type="submit" value="Отправить" disabled={!this.state.fileList.length}/>
 			</form>
 			
 		)
