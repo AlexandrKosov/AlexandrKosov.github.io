@@ -22,7 +22,7 @@ class Upload extends Component {
 	};
 
 	state = {
-    fileList: this.props.value || []
+    fileList: [], //this.props.value || []
   }
   
   addToFileList = (list) => {
@@ -51,14 +51,12 @@ class Upload extends Component {
   fileInputRef = React.createRef();
   uploadContainerRef = React.createRef();
 
-  componentDidUpdate(prevProps){
-    console.log("componentDidUpdate value:",this.props.value);
-    if (this.props.value !== prevProps.value) {
-      //this.fetchData(this.props.userID);
-      this.setState({fileList: this.props.value })
-    }
-
-  }
+  // componentDidUpdate(prevProps){
+  //   console.log("componentDidUpdate value:",this.props.value);
+  //   if (this.props.value !== prevProps.value) {
+  //     this.setState({fileList: this.props.value })
+  //   }
+  // }
 
   componentDidMount(){
     console.log("value:",this.props.value);
@@ -87,11 +85,15 @@ class Upload extends Component {
     dropZone.addEventListener("drop", this.onDrop);
   }
 
-  handleChange = async (event) => {
-    event.preventDefault();
-    await this.addToFileList(this.fileInputRef.current.files);
-    //this.props.onChange(this.state.fileList);
-    this.props.onChange([...this.state.fileList]);
+  handleChange = async (e) => {
+    e.preventDefault();
+    var files = e.target.files;
+    var filesArr = Array.prototype.slice.call(files);
+    this.addToFileList(filesArr);
+     //this.props.onChange(filesArr);
+    // await this.addToFileList(this.fileInputRef.current.files);
+    // //this.props.onChange(this.state.fileList);
+    this.props.onChange(this.state.fileList);
   }
 
   onDelete = (i) => {
