@@ -22,7 +22,7 @@ class Upload extends Component {
 	};
 
 	state = {
-    fileList: [], //this.props.value || []
+    fileList: []
   }
   
   addToFileList = (list) => {
@@ -38,28 +38,20 @@ class Upload extends Component {
     //console.log(">",this.fileInputRef.current.files = arr);
   }
 
-  onDrop = (event) => {
+  onDrop = async (event) => {
     const dropZone = ReactDOM.findDOMNode(this.uploadContainerRef.current);
     event.preventDefault();
     dropZone.classList.remove('dragover');
     let files = event.dataTransfer.files;
 
-    this.addToFileList(files);
-    this.props.onChange([...this.state.fileList]);
+    await this.addToFileList(files);
+    this.props.onChange(this.state.fileList); ///????
   }
 
   fileInputRef = React.createRef();
   uploadContainerRef = React.createRef();
 
-  // componentDidUpdate(prevProps){
-  //   console.log("componentDidUpdate value:",this.props.value);
-  //   if (this.props.value !== prevProps.value) {
-  //     this.setState({fileList: this.props.value })
-  //   }
-  // }
-
   componentDidMount(){
-    console.log("value:",this.props.value);
     const dropZone = ReactDOM.findDOMNode(this.uploadContainerRef.current);
 
     dropZone.addEventListener("drag", function(event) {event.preventDefault()});
@@ -82,17 +74,13 @@ class Upload extends Component {
           dropZone.classList.remove('dragover');
       };
     });
+
     dropZone.addEventListener("drop", this.onDrop);
   }
 
-  handleChange = async (e) => {
-    e.preventDefault();
-    var files = e.target.files;
-    var filesArr = Array.prototype.slice.call(files);
-    this.addToFileList(filesArr);
-     //this.props.onChange(filesArr);
-    // await this.addToFileList(this.fileInputRef.current.files);
-    // //this.props.onChange(this.state.fileList);
+  handleChange = async (event) => {
+    event.preventDefault();
+    await this.addToFileList(this.fileInputRef.current.files);
     this.props.onChange(this.state.fileList);
   }
 
@@ -111,7 +99,6 @@ class Upload extends Component {
   render() {
     const {children, className, ...attrs} = this.props;
     const {fileList} = this.state;
-    console.log("fileList render:",fileList);
     let list = fileList.map((item,i)=>{
       return (
         <div key={i} className="upload-list-files__item">
