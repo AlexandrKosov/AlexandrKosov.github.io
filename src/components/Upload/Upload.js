@@ -84,8 +84,8 @@ class Upload extends Component {
     this.props.onChange(this.state.fileList);
   }
 
-  onDelete = (i) => {
-    this.setState((prev)=>{
+  onDelete = async (i) => {
+    await this.setState((prev)=>{
         const idx = prev.fileList.findIndex((item, index)=>index===i);
         const fileList = [
           ...prev.fileList.slice(0,idx),
@@ -93,6 +93,9 @@ class Upload extends Component {
         ];
         return { fileList }
     });
+    
+    await this.props.onChange(this.state.fileList);
+    console.log(">>>",this.state.fileList)
     return i
   } 
 
