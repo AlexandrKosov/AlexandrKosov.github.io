@@ -76,8 +76,9 @@ class Modal extends Component {
       } 
     },0);
   }
-  componentDidUpdate(){
-    this.checkForContentScroll();
+  componentDidUpdate() {
+    const {current: body} = this.bodyRef;
+    this.checkForContentScroll(body);
   }
 
   onmousedown = (event) => {
@@ -114,7 +115,7 @@ class Modal extends Component {
 
   onResize = (event) => {
     const { width, height } = this.state;
-
+    const that = this;
     event.preventDefault();
     if(event.button == 0){
        const {current: modal } = this.modalRef; 
@@ -130,23 +131,8 @@ class Modal extends Component {
 
       function onMouseMove(event) {
         resizeAt(event.clientX, event.clientY);
-            //-------------------------------------
-            console.log("THIS",this);
-    //const {current: body} = this.bodyRef;
-    const body = this.querySelector(".cos-modal-body");
-    body.style.height = 'auto';
-    console.log('real:',body.getBoundingClientRect().height);
-    let real = body.getBoundingClientRect().height;
-    let fact = body.scrollHeight;
-    console.log('fact:',body.scrollHeight);
-    if(real < fact) {
-      console.log('scroll',real < fact);
-      body.classList.add("bordered");
-    }else{
-      console.log('==')
-      body.classList.remove("bordered");
-    }
-    //--------------------------------------------
+            const body = this.querySelector(".cos-modal-body");
+            that.checkForContentScroll(body);
       }
       overlay.addEventListener('mousemove', onMouseMove);
 
@@ -158,9 +144,8 @@ class Modal extends Component {
     }
   };
 
-  checkForContentScroll = () => {
+  checkForContentScroll = (body) => {
     //-------------------------------------
-    const {current: body} = this.bodyRef;
     body.style.height = 'auto';
     console.log('real:',body.getBoundingClientRect().height);
     let real = body.getBoundingClientRect().height;
