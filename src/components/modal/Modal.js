@@ -140,27 +140,19 @@ class Modal extends Component {
         overlay.removeEventListener('mousemove', onMouseMove); 
         modal.onmouseup = null;
       };
-      //this.checkForContentScroll();
     }
   };
 
   checkForContentScroll = (body) => {
-    //-------------------------------------
     body.style.height = 'auto';
-    console.log('real:',body.getBoundingClientRect().height);
     let real = body.getBoundingClientRect().height;
     let fact = body.scrollHeight;
-    console.log('fact:',body.scrollHeight);
     if(real < fact) {
-      console.log('scroll',real < fact);
       body.classList.add("bordered");
     }else{
-      console.log('==')
       body.classList.remove("bordered");
     }
-    //--------------------------------------------
   }
-
 
   toggleMaximize = () => {  
     const {fullscreen} = this.state;
