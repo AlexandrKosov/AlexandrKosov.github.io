@@ -55,6 +55,7 @@ class Modal extends Component {
 
   draggableRef = React.createRef();
   modalRef = React.createRef();
+  bodyRef = React.createRef();
 
   componentDidMount () {
     const { current: draggable } = this.draggableRef;
@@ -74,6 +75,9 @@ class Modal extends Component {
         this.setState({height: rect.height});
       } 
     },0);
+  }
+  componentDidUpdate(){
+    this.checkForContentScroll();
   }
 
   onmousedown = (event) => {
@@ -126,6 +130,23 @@ class Modal extends Component {
 
       function onMouseMove(event) {
         resizeAt(event.clientX, event.clientY);
+            //-------------------------------------
+            console.log("THIS",this);
+    //const {current: body} = this.bodyRef;
+    const body = this.querySelector(".cos-modal-body");
+    body.style.height = 'auto';
+    console.log('real:',body.getBoundingClientRect().height);
+    let real = body.getBoundingClientRect().height;
+    let fact = body.scrollHeight;
+    console.log('fact:',body.scrollHeight);
+    if(real < fact) {
+      console.log('scroll',real < fact);
+      body.classList.add("bordered");
+    }else{
+      console.log('==')
+      body.classList.remove("bordered");
+    }
+    //--------------------------------------------
       }
       overlay.addEventListener('mousemove', onMouseMove);
 
@@ -133,8 +154,28 @@ class Modal extends Component {
         overlay.removeEventListener('mousemove', onMouseMove); 
         modal.onmouseup = null;
       };
+      //this.checkForContentScroll();
     }
   };
+
+  checkForContentScroll = () => {
+    //-------------------------------------
+    const {current: body} = this.bodyRef;
+    body.style.height = 'auto';
+    console.log('real:',body.getBoundingClientRect().height);
+    let real = body.getBoundingClientRect().height;
+    let fact = body.scrollHeight;
+    console.log('fact:',body.scrollHeight);
+    if(real < fact) {
+      console.log('scroll',real < fact);
+      body.classList.add("bordered");
+    }else{
+      console.log('==')
+      body.classList.remove("bordered");
+    }
+    //--------------------------------------------
+  }
+
 
   toggleMaximize = () => {  
     const {fullscreen} = this.state;
@@ -177,7 +218,7 @@ class Modal extends Component {
       'cos-modal',
       { 'open': isOpen }
     );
-
+    
     const maximizeButton = 
             (<span className="cos-modal-maximize" onClick={this.toggleMaximize}>{fullscreen?<Icon name="maximize" />:<Icon name="win" />}</span>);
             // ❑ &#10065; \2751
@@ -193,7 +234,7 @@ class Modal extends Component {
               <div className="cos-modal-caption">{caption}</div>
               
             </div>
-            <div className="cos-modal-body">
+            <div className="cos-modal-body" ref={this.bodyRef}>
               {children}
             </div>
             <div className="cos-modal-footer">
