@@ -123,6 +123,7 @@ class Dialogs extends Component{
                     <Button onClick={this.openModalInner}>Вложенное Диалоговое окно</Button>
                 </Modal>
                 <Modal
+                    
                     caption="Второе диалоговое окно"
                     isOpen={this.state.isSecondOpen}
                     onCancel={this.handleSecondCancel}

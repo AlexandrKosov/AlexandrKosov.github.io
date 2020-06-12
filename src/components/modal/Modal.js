@@ -23,7 +23,8 @@ class Modal extends Component {
       PropTypes.number,
     ]),
     resizeable: PropTypes.bool,
-    maximize: PropTypes.bool
+    maximize: PropTypes.bool,
+    borderedContent: PropTypes.string //scroll, none, always (только при скролле, никогда, всегда)
   };
 
   static defaultProps = {
@@ -34,7 +35,8 @@ class Modal extends Component {
     width: null, 
     height: null,
     resizeable: false,
-    maximize: false
+    maximize: false,
+    borderedContent: 'scroll'
   };
 
   backWindow = {
@@ -144,13 +146,22 @@ class Modal extends Component {
   };
 
   checkForContentScroll = (body) => {
-    body.style.height = 'auto';
-    let real = body.getBoundingClientRect().height;
-    let fact = body.scrollHeight;
-    if(real < fact) {
+    const { borderedContent } = this.props;
+    console.log("borderedContent",borderedContent);
+    if(borderedContent==="scroll") {
+      body.style.height = 'auto';
+      let real = body.getBoundingClientRect().height;
+      let fact = body.scrollHeight;
+      if(real < fact) {
+        body.classList.add("bordered");
+      }else{
+        body.classList.remove("bordered");
+      }
+    }else if (borderedContent === "always"){
       body.classList.add("bordered");
-    }else{
-      body.classList.remove("bordered");
+    }
+    else if (borderedContent === "none") {
+      return
     }
   }
 
